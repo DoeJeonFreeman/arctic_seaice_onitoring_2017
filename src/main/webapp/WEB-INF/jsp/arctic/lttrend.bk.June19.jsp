@@ -169,9 +169,9 @@
 			var yy = parseInt(dateStrArr[0]);
 			var mm = parseInt(dateStrArr[1]);
 			var dd = parseInt(dateStrArr[2]);
-			//if(yy!=thisYear){ //June 2017
+			if(yy!=thisYear){
 				ts_trend.push([Date.UTC(yy,mm -1, dd),parseNumericVal((targetDiv=='ltt_ext')? someList[i].ext : someList[i].rou) ]); 
-			//}
+			}
 				
 			
 		}
@@ -1079,38 +1079,14 @@ Highcharts.theme = {
 					 	           {
 					 	               type: 'line',
 //					 	               name: '연평균<br/>(-0.0795)',
-//					 	               name: '연평균<br/>(-0.0810)',
-					 	               name: '연평균<br/>('+ jsonData.data.ice.someList.slope_ey + ')',
+					 	               name: '연평균<br/>(-0.0810)',
 					 	               showInLegend: true,
 					 	          	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           	   lineWidth : 0.8,
 		//			 	               data: [[Date.UTC(2007,0,1), 11.9317], [Date.UTC(thisYear-1,11,24), 10.5627]], //ext ~2014 avg //2015
 //					 	               data: [[Date.UTC(1988,0,1), 13.4824], [Date.UTC(thisYear-1,11,24), 11.3365]], //ext ~2015 avg //2016
-//					 	               data: [[Date.UTC(1988,0,1), 13.4992], [Date.UTC(thisYear-1,11,24), 11.2307]], //ext ~2016 avg //2017
-
-/* 
-											var dateStrArr = someList[i].date.split(",");
-											var yy = parseInt(dateStrArr[0]);
-											var mm = parseInt(dateStrArr[1]);
-											var dd = parseInt(dateStrArr[2]);
-											ts_trend.push([Date.UTC(yy,mm -1, dd),parseNumericVal((targetDiv=='ltt_ext')? someList[i].ext : someList[i].rou) ]); 
-												
- */			
-
- 						
-					 	               data: [
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.eymean_begin*1], 
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.eymean_end*1]
-			 	                       	 	 ], 
+					 	               data: [[Date.UTC(1988,0,1), 13.4992], [Date.UTC(thisYear-1,11,24), 11.2307]], //ext ~2016 avg //2017
 					 	               marker: {
 					 	                   enabled: false
 					 	               },
@@ -1124,27 +1100,13 @@ Highcharts.theme = {
 					 	           {
 					 	               type: 'line',
 //					 	               name: '여름평균(9월)<br/>(-0.1140)',
-//					 	               name: '여름평균(9월)<br/>(-0.1129)',
-									   name: '여름평균(9월)<br/>('+ jsonData.data.ice.someList.slope_es9 + ')',
+					 	               name: '여름평균(9월)<br/>(-0.1129)',
 					 	               showInLegend: true,
 					 	              color: '#CC0000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           	lineWidth : 0.8,
 //					 	               data: [[Date.UTC(1988,0,1), 8.17285], [Date.UTC(thisYear-1,11,24), 5.0946]], //ext 2016 sep mean
-//					 	               data: [[Date.UTC(1988,0,1), 8.16361], [Date.UTC(thisYear-1,11,24), 5.0029]], //ext 2017 sep mean
-									   data: [
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.esmean9_begin*1], 
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.esmean9_end*1]
-			 	                       	 	 ], 	
-										
+					 	               data: [[Date.UTC(1988,0,1), 8.16361], [Date.UTC(thisYear-1,11,24), 5.0029]], //ext 2017 sep mean
 					 	               marker: {
 					 	                   enabled: false
 					 	               },
@@ -1158,26 +1120,13 @@ Highcharts.theme = {
 					 	           {
 					 	               type: 'line',
 //					 	               name: '겨울평균(3월)<br/>(-0.0547)',
-//					 	               name: '겨울평균(3월)<br/>(-0.0564)',
-			                           name: '겨울평균(3월)<br/>('+ jsonData.data.ice.someList.slope_ew3 + ')',
+					 	               name: '겨울평균(3월)<br/>(-0.0564)',
 					 	               showInLegend: true,
 					 	              color: '#0000ff',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           	lineWidth : 0.8,
 //					 	               data: [[Date.UTC(1988,0,1), 17.4215], [Date.UTC(thisYear-1,11,24), 15.9437]],//2016
-//					 	               data: [[Date.UTC(1988,0,1), 17.4369], [Date.UTC(thisYear-1,11,24), 15.8574]],//2017!!!
-                                       data: [
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.ewmean3_begin*1], 
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.ewmean3_end*1]
-			 	                       	 	 ], 
+					 	               data: [[Date.UTC(1988,0,1), 17.4369], [Date.UTC(thisYear-1,11,24), 15.8574]],//2017!!!
 					 	               marker: {
 					 	                   enabled: false
 					 	               },
@@ -1399,27 +1348,13 @@ Highcharts.theme = {
 					 	           {
 					 	               type: 'line',
 //					 	               name: '연평균<br/>(-0.0006)',
-//					 	               name: '연평균<br/>(-0.0007)',
-			                           name: '연평균<br/>('+ jsonData.data.ice.someList.slope_ry + ')',
+					 	               name: '연평균<br/>(-0.0007)',
 					 	               showInLegend: true,
 					 	          	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           	   lineWidth : 0.8,
 //					 	               data: [[Date.UTC(1988,0,1), 0.410917], [Date.UTC(thisYear-1,11,24), 0.395702]], //rou 2016 avg
-//					 	               data: [[Date.UTC(1988,0,1), 0.411751], [Date.UTC(thisYear-1,11,24), 0.393521]], //2017
-                                       data: [
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rymean_begin*1], 
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rymean_end*1]
-			 	                       	 	 ], 
-
+					 	               data: [[Date.UTC(1988,0,1), 0.411751], [Date.UTC(thisYear-1,11,24), 0.393521]], //2017
 					 	               marker: {
 					 	                   enabled: false
 					 	               },
@@ -1433,26 +1368,13 @@ Highcharts.theme = {
 					 	           {
 					 	               type: 'line',
 //					 	               name: '여름평균(9월)<br/>(-0.0010)',
-//					 	               name: '여름평균(9월)<br/>(-0.0012)',
-			                           name: '여름평균(9월)<br/>('+ jsonData.data.ice.someList.slope_rs9 + ')',
+					 	               name: '여름평균(9월)<br/>(-0.0012)',
 					 	               showInLegend: true,
 					 	              color: '#CC0000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           		lineWidth : 0.8,
 //					 	               data: [[Date.UTC(1988,0,1), 0.355684], [Date.UTC(thisYear-1,11,24), 0.329151]], //rou 2016 sep
-//					 	               data: [[Date.UTC(1988,0,1), 0.357416], [Date.UTC(thisYear-1,11,24), 0.324759]], //2017
-                                       data: [
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rsmean9_begin*1], 
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rsmean9_end*1]
-			 	                       	 	 ], 			 	                       	 	 
+					 	               data: [[Date.UTC(1988,0,1), 0.357416], [Date.UTC(thisYear-1,11,24), 0.324759]], //2017
 					 	               marker: {
 					 	                   enabled: false
 					 	               },
@@ -1466,26 +1388,13 @@ Highcharts.theme = {
 					 	           {
 					 	               type: 'line',
 //					 	               name: '겨울평균(3월)<br/>(0.0004)',
-//					 	               name: '겨울평균(3월)<br/>(0.0003)',
-			                           name: '겨울평균(3월)<br/>('+ jsonData.data.ice.someList.slope_rw3 + ')',
+					 	               name: '겨울평균(3월)<br/>(0.0003)',
 					 	               showInLegend: true,
 					 	              color: '#0000ff',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           	lineWidth : 0.8,
-//					 	               data: [[Date.UTC(2007,0,1), 0.4802], [Date.UTC(thisYear-1,11,24), 0.4863]], //rou 2016 mar
-//					 	               data: [[Date.UTC(1988,0,1), 0.440813], [Date.UTC(thisYear-1,11,24), 0.450604]], //rou 2016 mar   0.440813 & 0.450604
-                                       data: [
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rwmean3_begin*1], 
-					 	                      	[Date.UTC(
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
-														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rwmean3_end*1]
-			 	                       	 	 ], 
+		//			 	               data: [[Date.UTC(2007,0,1), 0.4802], [Date.UTC(thisYear-1,11,24), 0.4863]], //rou 2016 mar
+					 	               data: [[Date.UTC(1988,0,1), 0.440813], [Date.UTC(thisYear-1,11,24), 0.450604]], //rou 2016 mar   0.440813 & 0.450604
 					 	               marker: { 
 					 	                   enabled: false
 					 	               },

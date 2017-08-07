@@ -41,10 +41,15 @@
 
 <script>
 	
-	var thisYear = 2016;
+	var thisYear = 2017;
 	var extAvg_since2007 = 0;
+	var extAvg_since1988 = 0;
 	
 	var extentSeriesJson;
+	
+	/**
+	DEREPCATED
+	*/
 	function requestData(dateFrom){
 		$.ajax({
 			type: 'GET',dataType:'json',contentType:'application/json',
@@ -54,6 +59,7 @@
 				extentSeriesJson = jsonData.data.ice.someList.ext;			
 //				console.log(jsonData.data.ice.someList.hasOwnProperty('extAvg_since2007'));
 				extAvg_since2007 = (jsonData.data.ice.someList.hasOwnProperty('extAvg_since2007'))? jsonData.data.ice.someList.extAvg_since2007 : 11.2714; // ~2015 
+				extAvg_since1988 = (jsonData.data.ice.someList.hasOwnProperty('extAvg_since1988'))? jsonData.data.ice.someList.extAvg_since1988 : null; // ~2015 
 				subtractPointData(jsonData.data.ice.someList.ext, 'ts_extent');
 	        },
 	        cache: false	
@@ -133,6 +139,8 @@
 		e8yearMean = [];
 		e8yearMean_week = [];
 		eNadirPeak = [];
+		weeklyMean_since98 = [];
+		meanSince98 = [];
 		
 		for ( var i = 0; i < someList.length; i++) {
 			var dateStrArr = someList[i].date.split(",");
@@ -144,6 +152,7 @@
 			e16.push([Date.UTC(thisYear,mm -1, dd),parseNumericVal(someList[i].e16) ]);
 			currYearArr.push([Date.UTC(thisYear,mm -1, dd),parseNumericVal(someList[i].e17) ]);
 			e8yearMean_week.push([Date.UTC(thisYear,mm -1, dd),parseNumericVal(someList[i].weeklyMean) ]);
+			weeklyMean_since98.push([Date.UTC(thisYear,mm -1, dd),parseNumericVal(someList[i].weeklyMean30) ]);
 			eNadirPeak.push([Date.UTC(thisYear,mm -1, dd),parseNumericVal(someList[i].nadir),parseNumericVal(someList[i].peak) ]);
 		}
 		var _chart; 
@@ -158,6 +167,9 @@
 		e8yearMean.push([Date.UTC(thisYear,0,1), parseNumericVal(extAvg_since2007)]);
 		e8yearMean.push([Date.UTC(thisYear,11,24), parseNumericVal(extAvg_since2007)]);
 		
+		meanSince98.push([Date.UTC(thisYear,0,1), parseNumericVal(extAvg_since1988)]);
+		meanSince98.push([Date.UTC(thisYear,11,24), parseNumericVal(extAvg_since1988)]);
+		console.log(extAvg_since1988)
 		
 		_chart.series[0].setData(e07); 
 		_chart.series[1].setData(e12); 
@@ -165,10 +177,17 @@
 		_chart.series[3].setData(currYearArr); //adios 2015
 		_chart.series[4].setData(e8yearMean); 
 		_chart.series[5].setData(e8yearMean_week); 
-		_chart.series[6].setData(eNadirPeak); 
+		_chart.series[6].setData(meanSince98);
+		_chart.series[7].setData(weeklyMean_since98); 
+		_chart.series[8].setData(eNadirPeak); 
+		
+		meRequest(moment(mostRecentDate));//최저순위스트링 삽입
 	}
-	
+	/*
+		여기서 순위스트링도 바꾸자잉
+	*/
 	function redrawSeriesData(extSeries,dateTarget){
+		//alert("fu : "+dateTarget);
 		currYearArr = [];
 		//yyyymmdd = dateTarget.split('-').join('');
 		dArr = dateTarget.split('-');
@@ -176,10 +195,34 @@
 		var selectedYear = 'e' + (dArr[0].substring(2,4)); //요걸로 e+연도 스트링만들고
 		var selectedMMDDInNumber = dArr[1]+dArr[2]; 
 		
+		//getNadir2017
+		var dateTargetInDateObj = new Date(thisYear,parseInt(dArr[1])-1,parseInt(dArr[2]));
+		//$('.dRangeStr_SSMIS p').text(dRangeStr); //or use .html(<strong>textGoesHere</strong>') instead haha
+		$('#nadirString').html(''); //or use .html(<strong>textGoesHere</strong>') instead haha
+		
+		
 		for ( var i = 0; i < extSeries.length; i++) {
 			var dateStrArr = extSeries[i].date.split(",");
 			var mm = parseInt(dateStrArr[0]);
 			var dd = parseInt(dateStrArr[1]);
+			
+			//getNadir2017
+			var dateFrom = new Date(thisYear, mm-1, dd);
+			var dateTo = new Date(dateFrom).add(6).day();
+			if(dateFrom <= dateTargetInDateObj && dateTargetInDateObj <= dateTo){
+				//alert(moment(dateFrom).format('YYYY-MM-DD') + ' ~ ' + moment(dateTo).format('YYYY-MM-DD') + ' [' +moment(dateTargetInDateObj).format('YYYY-MM-DD')+']');
+				var nadir1st = extSeries[i].nadir1;
+				var nadir2nd = extSeries[i].nadir2;
+				var nadir3rd = extSeries[i].nadir3;
+				//alert(moment(dateFrom).format('YYYY-MM-DD') + ' : ' + nadir1st + ' / ' + nadir2nd + ' / ' + nadir3rd)
+				var nadirText = '※ 1988년 이후 최저 면적('+ moment(dateFrom).format('MM월DD일') + ' ~ ' + moment(dateTo).format('MM월DD일') + ') ';
+				nadirText += "<span title="+nadir1st.split(",")[1]+">1위:" + nadir1st.split(",")[0] + "년</span>";
+				nadirText += ", <span title="+nadir2nd.split(",")[1]+">2위:" + nadir2nd.split(",")[0] + "년</span>";
+				nadirText += ", <span title="+nadir3rd.split(",")[1]+">3위:" + nadir3rd.split(",")[0] + "년</span>";
+				$('#nadirString').html(nadirText);
+				//※ 1988년 이후 최저 면적(MM월 DD일~MM월 DD일) <span title="extent value">1위:YYYY년</span>, <span>2위:YYYY년</span>, <span>3위:YYYY년</span> 
+			}
+			//getNadir2017
 			
 			var mmddIntVal = (dateStrArr[0] + dateStrArr[1] + '')*1;
 			if(selectedMMDDInNumber >= mmddIntVal){
@@ -199,8 +242,8 @@
 		
 		var _chart = $('#ts_extent').highcharts(); 
 		
-		_chart.series[2].setData(currYearArr); 
-		_chart.series[2].update({name: dArr[0].substring(2,4)+ '\''}, false);
+		_chart.series[3].setData(currYearArr); 
+		_chart.series[3].update({name: dArr[0].substring(2,4)+ '\''}, false);
 		_chart.redraw();
 	}
 	
@@ -429,7 +472,7 @@
 				 	           	 lineWidth:2,
 				 	           	connectNulls:false, data: []} ,
 				 	            {name: '10년평균(\'07~\'16)',
-				 	           	 color: '#000000', //#0000cc            	 
+				 	           	 color: '#21618C', //#0000cc            	 
 				 	           	 connectNulls:false, 
 				 	             showInLegend: true,
 					 	         dashStyle : 'Dash',
@@ -450,6 +493,32 @@
 				 	            {name: '주간단위 10년평균(\'07~\'16)',
 				 	           	 color: '#009DFF', //#0000cc            	 
 				 	           	connectNulls:false, data: []} ,
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
+				 	            {name: '29년평균(\'88~\'16)',
+				 	           	 color: '#117A65', //#0000cc            	 
+				 	           	 connectNulls:false, 
+				 	             showInLegend: true,
+					 	         dashStyle : 'Dash',
+					 	         lineWidth : 0.8,
+				 	             data: [],
+				 	              marker: {
+				 	                   enabled: false
+				 	               },
+				 	               states: {
+				 	                   hover: {
+				 	                       lineWidth: 0
+				 	                   }
+				 	               },
+				 	               enableMouseTracking: true
+				 	            } ,
+				 	            {name: '주간단위 29년평균(\'88~\'16)',
+				 	           	 color: '#229954', //#0000cc            	 
+				 	           	connectNulls:false, data: []} ,
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
 				 	           	
 				 	            {
 			 	           		name: '역대최고/최저',
@@ -483,6 +552,7 @@
 				extentSeriesJson = jsonData.data.ice.someList.ext;			
 //				console.log(jsonData.data.ice.someList.hasOwnProperty('extAvg_since2007'));
 				extAvg_since2007 = (jsonData.data.ice.someList.hasOwnProperty('extAvg_since2007'))? jsonData.data.ice.someList.extAvg_since2007 : 11.2714; // ~2015 
+				extAvg_since1988 = (jsonData.data.ice.someList.hasOwnProperty('extAvg_since1988'))? jsonData.data.ice.someList.extAvg_since1988 : null; 
 				subtractPointData(jsonData.data.ice.someList.ext, 'ts_extent');	
 	
 	        } //$.ajax
@@ -526,23 +596,29 @@
 	            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
 	            			 onclick="getDateCalculated(this.id)"></button>
 	            	</div>
-	            	
-	            	
-	            	<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
-					    <button class="  btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
-					    	<span class="selected" id="1" value="WEEK">1주일</span><span class="caret"></span>
-				    	</button>
-					    <ul class="dropdown-menu option" role="menu" >
-					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" >1주일</a></li>
-					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" >1개월</a></li>
-					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" >1년</a></li>
-					      <!-- 
+
+
+					<div id="retrievalRangeSelector" class="dropdown select pull-left"
+						style="margin-left: 3px; margin-right: 3px">
+						<button class="  btn-small dropdown-toggle " type="button"
+							id="menu1" data-toggle="dropdown" style="margin-top: 6px;">
+							<span class="selected" id="1" value="WEEK">1주일</span><span
+								class="caret"></span>
+						</button>
+						<ul class="dropdown-menu option" role="menu">
+							<li id="1" role="presentation" value="WEEK"><a
+								role="menuitem" tabindex="-1">1주일</a></li>
+							<li id="2" role="presentation" value="MONTH"><a
+								role="menuitem" tabindex="-1">1개월</a></li>
+							<li id="3" role="presentation" value="YEAR"><a
+								role="menuitem" tabindex="-1">1년</a></li>
+							<!-- 
 					      <li role="presentation" class="divider"></li>
 					       -->
-					    </ul>
-				    </div>
-				    
-	            	<div class="pull-left">
+						</ul>
+					</div>
+
+					<div class="pull-left">
 	            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
 	            			onclick="getDateCalculated(this.id)"></button>
 	            	</div>
@@ -623,6 +699,7 @@
 		<div class="hor-align" align="center">
 			<div id="ts_extent" class="sdist" style="width:100%; height: 530px;padding-top: 20px"></div>
 	 	</div>
+	 	<div id="nadirString" style="padding-left:55px"> </div> 
  	</div>
 	
     <!-- Footer -->
