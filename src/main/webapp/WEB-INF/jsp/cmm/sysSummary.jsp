@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>북극해빙감시시스템</title>
+	<title><spring:message code="global.main.title"/></title>
 	<script src="<c:url value="/js/jquery/jquery-1.9.1.js"/>"></script>	
     <script src="<c:url value="/mestrap/js/bootstrap.min.js"/>"></script>
 	
@@ -127,7 +127,7 @@ h2{color:#0b56a8;}
     <!-- /.container -->
 	<div class="container">
             <div class="col-lg-12">
-                <h2 class="page-header">시스템개요</h2>
+                <h2 class="page-header"><spring:message code="nav.system.summary"/></h2>
             </div>
 
 <!-- 
@@ -154,44 +154,41 @@ h2{color:#0b56a8;}
 	
 	<!-- #0b56a8 -->
 	<section class="col-md-10 col-md-offset-1">
-		<h5><a name="about"><strong>개요</strong></a></h5>
-	    <p>해빙은 지구에 입사하는 태양에너지를 반사시켜 극지방을 차갑게 유지함으로써 지구의 평균기온을 일정하게 한다. 그러나 최근 지구온난화의 영향으로 북극지역의 기온이 상승함에 따라 북극해빙이 빠르게 감소하고 있다. 2012년 9월 북극 해빙의 최저면적은 3,600,000km² 으로 1979년 말 위성관측이 시작된 이후 역대 최저면적을 기록했으며 또한 4,000,000km² 이하의 면적으로 기록된 최초의 해이다. 해빙감소는 지구온난화를 가속시키고 북극해 인근 지역 뿐 아니라 우리나라의 기후변화에 영향을 미친다. 최근 증가하고 있는 한파, 가뭄, 폭염 등도 해빙 감소와 관련이 높은 것으로 연구되고 있다. 또한 북극해빙의 감소는 북극항로 이용여부와도 관련 있기 때문에 최근 북극해 지역과 해빙의 감소에 대한 관심이 증가하고 있다. <a target="_blank" href="http://kma.go.kr">기상청</a>은 이러한 상황에 대응하고 해빙의 변화를 감시하기 위해 마이크로파 위성자료(SSMIS : Special Sensor Microwave Imager/Sounder)를 이용하여 북극해빙 감시 시스템을 구축하였다. 본 시스템은 매주 최신의 해빙감시 정보를 업데이트하며 연 2회(5월, 11월) “북극현황 분석보고서”를 제공한다. 
+		<h5><a name="about"><strong><spring:message code="systemsummary.summary"/></strong></a></h5>
+	    <p><spring:message code="systemsummary.summary.content"/>
 		</p>
 
-		<h5><a name="history"><strong>해빙면적(Sea Ice Extent)</strong></a></h5>
-      	<p>해빙면적은 위성에서 산출되는 해빙농도를 이용하여 계산한다. 본 시스템은 2007년 1월 1일부터 현재까지 7일 동안의 해빙농도를 평균하여 면적을 산출한다.
+		<h5><a name="history"><strong><spring:message code="systemsummary.extent"/></strong></a></h5>
+      	<p><spring:message code="systemsummary.extent.content"/>
 		</p>
 
 
-		<h5><a name="history"><strong>해빙 표면거칠기(Small-Scale Sea ice Surface Roughness)</strong></a></h5>
-      	<p>해빙 표면거칠기는 해빙표면의 울퉁불퉁한 정도를 지수로 표현한 것으로 해빙표면의 물성(물 or 얼음)을 의미한다. <a target="_blank" href="http://kma.go.kr">기상청</a>은 독자적인 기술로 마이크로파 위성자료의 편광성을 이용하여 해빙 표면거칠기를 산출하는 기술을 개발하였으며 이를 이용하여 7일 평균된 해빙 표면거칠기 정보를 제공한다.
-			해빙 표면거칠기에 따른 해빙의 물성은 다음과 같다. 
+		<h5><a name="history"><strong><spring:message code="systemsummary.roughness"/></strong></a></h5>
+      	<p><spring:message code="systemsummary.roughness.content"/>
 		</p>
 			<ul>
-	            <li>
-	            	물 :   표면거칠기 &lt; 0.2 cm
-	            </li>
-	            <li>혼합 :  0.2 cm &lt; 표면거칠기 &lt; 0.4 cm</li>
-	            <li>얼음/눈 :  표면거칠기 &gt; 0.4 cm</li>
+	            <li><spring:message code="systemsummary.roughness.content.water"/></li>
+	            <li><spring:message code="systemsummary.roughness.content.mixed"/></li>
+	            <li><spring:message code="systemsummary.roughness.content.icesnow"/></li>
             </ul>        
             
             
             
          
-		<h5><a name="history"><strong>해빙 변화</strong></a></h5>	
-      	<p>북극해빙은 매년 태양고도의 변화에 따라 녹고 얼음을 반복하는 계절변동이 뚜렷하다. 태양이 비추지 않는 겨울 동안 해빙은 지속적으로 증가하여 3월에 최대로 증가하였다가 태양이 뜨기 시작하는 봄부터 녹기 시작한다. 여름 동안 감소한 해빙은 9월에 최저 면적에 도달한 후 태양이 지는 시기와 함께 다시 증가하기 시작한다. 최근 여름철 해빙의 면적 감소가 급격히 진행되고 있으며 2012년 9월에는 위성관측이 시작된 이후 최저면적을 기록한 바 있다. 해빙 표면거칠기는 해빙이 녹음에 따라 감소하며 최저가 되는 시기는 해빙면적의 최소시기보다 약 한달 정도 앞선 8월에 관측된다. 이는 해빙 표면거칠기의 변화가 북극해빙 면적의 최소시점 전망에 활용 가능한 정보라는 것을 의미한다.
+		<h5><a name="history"><strong><spring:message code="systemsummary.changes"/></strong></a></h5>	
+      	<p><spring:message code="systemsummary.changes.content"/>
 		</p>
             
         <p align="center"> 
 			<img src="<c:url value='/assets/arctic/summary_trend.png'/>" class="img-responsive"  alt="해빙변화경향 시계열차트"/>&lt;북극해빙면적(왼쪽)과 표면거칠기(오른쪽)의 장기변화 경향  &gt;   
         </p> 
         
-		<h5><a name="history"><strong>해빙전망</strong></a></h5>
-		<p>북극의 변화는 우리나라 및 동아시아, 북미지역의 기후변화에 영향을 준다. 또한 북극에서의 과학 활동, 항로 운항이용에 북극해빙정보는 다양하게 사용할 수 있다. <a target="_blank" href="http://kma.go.kr">기상청</a>과 전남대학교 정지훈 교수팀은 독자적인 해빙전망정보 생산 기술을 개발하고 있다. 장기간해빙자료를 이용하여 통계적인 방법으로 해빙의 계절적 변화 특성을 분석하고, 그 결과를 이용하여 앞으로의 해빙변화를 전망한다. 본 시스템에서는 예측일 기준으로 3개월까지의 미래 전망 정보를 제공한다. 
+		<h5><a name="history"><strong><spring:message code="systemsummary.fcst"/></strong></a></h5>
+		<p><spring:message code="systemsummary.fcst.content"/>
 		</p>
 		
-		<h5><a name="history"><strong>북극항로</strong></a></h5>
-		<p>북극해빙의 감소로 여름철 북극항로의 이용이 가능해졌다. 북극항로 이용에 도움이 되고자, 본 시스템에서는 7개의 북극항로 구역에서의 해빙면적과 해빙표면거칠기 정보를 제공한다. 
+		<h5><a name="history"><strong><spring:message code="systemsummary.passage"/></strong></a></h5>
+		<p><spring:message code="systemsummary.passage.content"/>
 		</p>
 		<!--		
         <h5><a name="history"><strong>북극해빙 지도</strong></a></h5>

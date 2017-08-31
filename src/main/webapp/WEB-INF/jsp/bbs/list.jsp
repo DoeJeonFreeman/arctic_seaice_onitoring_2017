@@ -125,7 +125,7 @@
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>게시판</a></li>
+						<li><a><spring:message code="bbs.board"/></a></li>
 						<li><a><spring:message code="bbs.board.${param.boardCd }"/></a></li>
 					</ul>
             	</div>
@@ -146,15 +146,15 @@
 			<ul id="leftnav" class="ul-left-nav fa-ul hidden-print">
 	       		<li>
 	            	<i class="fa fa-angle-double-right orange fa-fw"></i>
-	            	<a href="<c:url value='/' />bbs/list?boardCd=notice&curPage=1" >공지사항</a>
+	            	<a href="<c:url value='/' />bbs/list?boardCd=notice&curPage=1" ><spring:message code="bbs.board.notice"/></a>
 	          	</li>
 	       		<li>
 	            	<i class="fa fa-angle-double-right orange fa-fw"></i>
-	            	<a href="<c:url value='/' />bbs/list?boardCd=anal&curPage=1" >분석정보</a>
+	            	<a href="<c:url value='/' />bbs/list?boardCd=anal&curPage=1" ><spring:message code="bbs.board.anal"/></a>
 	          	</li>
 	       		<li>
 	            	<i class="fa fa-angle-double-right orange fa-fw"></i>
-	            	<a href="<c:url value='/' />bbs/list?boardCd=refs&curPage=1" >참고자료</a>
+	            	<a href="<c:url value='/' />bbs/list?boardCd=refs&curPage=1" ><spring:message code="bbs.board.refs"/></a>
 	          	</li>
 			</ul>
 		</section>
@@ -204,13 +204,15 @@
 				 -->
 				<p></p>
 				<div id="bbs">
+				
+				
 					<!-- BBS Headings -->
 					<table>
 						<tr>
-							<th style="width: 60px;">번호</th>
-							<th style="text-align: left;">제목</th>
-							<th style="width: 84px;">등록일</th>
-							<th style="width: 60px;">조회</th>
+							<th style="width: 60px;"><spring:message code="bbs.board.no"/></th>
+							<th style="text-align: left;"><spring:message code="bbs.board.title"/></th>
+							<th style="width: 84px;"><spring:message code="bbs.board.writtendate"/></th>
+							<th style="width: 60px;"><spring:message code="bbs.board.hits"/></th>
 						</tr>
 						<!--  bbs list begin-->
 						<c:forEach var="article" items="${list }" varStatus="status">	

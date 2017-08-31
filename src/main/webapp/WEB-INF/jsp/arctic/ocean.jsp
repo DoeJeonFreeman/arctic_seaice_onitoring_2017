@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>해역별분포</title>
+	<title><spring:message code="global.main.title"/></title>
 	
 	
 	<script src="<c:url value="/js/jquery/jquery-1.9.1.js"/>"></script>	

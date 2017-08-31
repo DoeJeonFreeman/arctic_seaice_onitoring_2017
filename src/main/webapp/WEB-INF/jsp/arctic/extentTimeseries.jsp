@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>최근해빙변화</title>
+	<title><spring:message code="global.main.title"/></title>
 	
 	<script src="<c:url value="/js/jquery/jquery-1.9.1.js"/>"></script>	
     <script src="<c:url value="/mestrap/js/bootstrap.min.js"/>"></script>

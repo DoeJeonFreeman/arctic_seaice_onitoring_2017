@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>북극해빙감시시스템</title>
+	<title><spring:message code="global.main.title"/></title>
 	
 	<script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>	
     <script src="${pageContext.request.contextPath}/mestrap/js/bootstrap.min.js"></script>
@@ -98,14 +98,14 @@
                 <div class="col-md-10 col-md-offset-2">
             		<div class="intro-heading text-left visible-lg visible-md">&nbsp; </div>
                 	<div class="col-md-4 visible-lg visible-md visible-sm">
-	            		<div class="intro-heading text-left">SSMIS 해빙분포</div>
+	            		<div class="intro-heading text-left"><spring:message code="global.main.distribution.title"/></div>
     	        		<h4 class="text-left" style="white-space: nowrap;"> ${mostRecentStuff.compbegindate4Main}</h4>
                 	</div>
                 	
                 	<div class="col-md-3" >
 	                	<div class="">
 							<div align="center" class=""> 
-								<div><h4>SSMIS 해빙 면적</h4></div>
+								<div><h4><spring:message code="global.main.distribution.ext.title"/></h4></div>
 								<p>${mostRecentStuff.compbegindate4View}</p>
 							</div>
 							<p  align="center">
@@ -124,7 +124,7 @@
                 	<div class="col-md-3"  style=" min-height: 280px;">
 	                	<div class="">
 							<div align="center" class=""> 
-								<div><h4 style="white-space: nowrap;">SSMIS 해빙 표면거칠기</h4></div>
+								<div><h4 style="white-space: nowrap;"><spring:message code="global.main.distribution.rou.title"/></h4></div>
 								<p>${mostRecentStuff.compbegindate4View}</p>
 							</div>
 							<p  align="center">

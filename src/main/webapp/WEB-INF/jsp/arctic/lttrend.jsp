@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>장기해빙변화</title>
+	<title><spring:message code="global.main.title"/></title>
 	
 	
 	<script src="<c:url value="/js/jquery/jquery-1.9.1.js"/>"></script>	
@@ -139,7 +139,7 @@
 		}else if(Math.abs(someStuff)==999){	
 			return null;
 		}else{
-			return parseFloat(someStuff);
+			return parseFloat(someStuff).toFixed(6)*1;
 		}
 	}
 	
@@ -1104,12 +1104,12 @@ Highcharts.theme = {
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.eymean_begin*1], 
+					 	                      			 ), (jsonData.data.ice.someList.eymean_begin*1).toFixed(6)*1], 
 					 	                      	[Date.UTC(
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.eymean_end*1]
+					 	                      			 ), (jsonData.data.ice.someList.eymean_end*1).toFixed(6)*1]
 			 	                       	 	 ], 
 					 	               marker: {
 					 	                   enabled: false
@@ -1137,12 +1137,12 @@ Highcharts.theme = {
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.esmean9_begin*1], 
+					 	                      			 ), (jsonData.data.ice.someList.esmean9_begin*1).toFixed(6)*1], 
 					 	                      	[Date.UTC(
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.esmean9_end*1]
+					 	                      			 ), (jsonData.data.ice.someList.esmean9_end*1).toFixed(6)*1]
 			 	                       	 	 ], 	
 										
 					 	               marker: {
@@ -1171,12 +1171,12 @@ Highcharts.theme = {
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.ewmean3_begin*1], 
+					 	                      			 ), (jsonData.data.ice.someList.ewmean3_begin*1).toFixed(6)*1], 
 					 	                      	[Date.UTC(
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.ewmean3_end*1]
+					 	                      			 ), (jsonData.data.ice.someList.ewmean3_end*1).toFixed(6)*1]
 			 	                       	 	 ], 
 					 	               marker: {
 					 	                   enabled: false
@@ -1412,12 +1412,12 @@ Highcharts.theme = {
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rymean_begin*1], 
+					 	                      			 ), (jsonData.data.ice.someList.rymean_begin*1).toFixed(6)*1], 
 					 	                      	[Date.UTC(
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rymean_end*1]
+					 	                      			 ), (jsonData.data.ice.someList.rymean_end*1).toFixed(6)*1]
 			 	                       	 	 ], 
 
 					 	               marker: {
@@ -1446,12 +1446,12 @@ Highcharts.theme = {
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rsmean9_begin*1], 
+					 	                      			 ), (jsonData.data.ice.someList.rsmean9_begin*1).toFixed(6)*1], 
 					 	                      	[Date.UTC(
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rsmean9_end*1]
+					 	                      			 ), (jsonData.data.ice.someList.rsmean9_end*1).toFixed(6)*1]
 			 	                       	 	 ], 			 	                       	 	 
 					 	               marker: {
 					 	                   enabled: false
@@ -1479,12 +1479,12 @@ Highcharts.theme = {
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dbegin.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rwmean3_begin*1], 
+					 	                      			 ), (jsonData.data.ice.someList.rwmean3_begin*1).toFixed(6)*1], 
 					 	                      	[Date.UTC(
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[0]),
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[1])-1,
 														 parseInt(jsonData.data.ice.someList.dend.split(",")[2])
-					 	                      			 ), jsonData.data.ice.someList.rwmean3_end*1]
+					 	                      			 ), (jsonData.data.ice.someList.rwmean3_end*1).toFixed(6)*1]
 			 	                       	 	 ], 
 					 	               marker: { 
 					 	                   enabled: false

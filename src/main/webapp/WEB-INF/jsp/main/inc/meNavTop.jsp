@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 
-	var isVERBOSE = true; 
+	var isVERBOSE = false; 
 	
 	function sysout(str) {
 		if(!isVERBOSE) return;
@@ -99,7 +99,7 @@
 	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr_xs_krOnly.png" alt="kma.go.kr logo"  width="124px;"  style="padding-bottom:5px;"/>&nbsp; 북극해빙감시시스템
 	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr.png" alt="kma.go.kr logo"  width="223px;"  style="padding-bottom:10px;"/>&nbsp; 북극해빙감시시스템
 	           	 -->
-	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr_en.png" alt="kma.go.kr logo"  width="250px;"  style="padding-bottom:5px;"/>&nbsp; 북극해빙감시시스템
+	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr_en.png" alt="kma.go.kr logo"  width="250px;"  style="padding-bottom:5px;"/>&nbsp; <spring:message code="global.main.title"/>
 	       	 	</a>              
 	         </div>		    
 	</div>
@@ -126,7 +126,7 @@
              <ul class="nav navbar-nav navbar-right">
              
              	  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">해빙감시<b class="caret"></b></a>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="nav.monitoring"/><b class="caret"></b></a>
                      <ul class="dropdown-menu" id="meDropdown-mnt">
                          <li>
                              <a href="#LINK" onclick="javascript:fn_main_headPageAction('11','arctic/spatialDistribution.do')" >해빙분포</a>
@@ -142,32 +142,49 @@
                          </li>
                      </ul>
                  </li>
-             
+            	<!-- 
                  <li>
                      <a href="#LINK" onclick="javascript:fn_main_headPageAction('21','arctic/monthlyPrediction.do')" >해빙전망</a>
                  </li>
+            	 -->
+             	 
+             	 <li>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="nav.prediction"/><b class="caret"></b></a>
+                     <ul class="dropdown-menu" id="meDropdown-mnt">
+                         <li>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('21','arctic/monthlyPredictionNew.do')" ><spring:message code="nav.prediction.fcst"/></a>
+                         </li>
+                         <li>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('22','arctic/monthlyPredictionDiff.do')" ><spring:message code="nav.prediction.fcst.verification"/></a>
+                         </li>
+                         <li>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('23','arctic/monthlyPredictionMap.do')" ><spring:message code="nav.prediction.seasonal.prediction"/></a>
+                         </li>
+                     </ul>
+                 </li>
+             	 
                  <li>
-                     <a href="#LINK" onclick="javascript:fn_main_headPageAction('31','arctic/passage.do')" >북극항로</a>
+                     <a href="#LINK" onclick="javascript:fn_main_headPageAction('31','arctic/passage.do')" ><spring:message code="nav.routes"/></a>
                  </li>
                  <li class="dropdown">
-                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown">게시판 <b class="caret"></b></a>
+                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="nav.board"/> <b class="caret"></b></a>
                      <ul class="dropdown-menu" id="meDropdown-bbs">
                          <li>
-                         	<a href= '${pageContext.request.contextPath}/bbs/list?boardCd=notice&curPage=1'>공지사항</a>
+                         	<a href= '${pageContext.request.contextPath}/bbs/list?boardCd=notice&curPage=1'><spring:message code="bbs.board.notice"/></a>
                          </li>
                          <li>
-                             <a href= '${pageContext.request.contextPath}/bbs/list?boardCd=anal&curPage=1'>분석정보</a>
+                             <a href= '${pageContext.request.contextPath}/bbs/list?boardCd=anal&curPage=1'><spring:message code="bbs.board.anal"/></a>
                          </li>
                          <li>
-                             <a href= '${pageContext.request.contextPath}/bbs/list?boardCd=refs&curPage=1'>참고자료</a>
+                             <a href= '${pageContext.request.contextPath}/bbs/list?boardCd=refs&curPage=1'><spring:message code="bbs.board.refs"/></a>
                          </li>
                      </ul>
                  </li>
                  <li>
-                     <a href="#LINK" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')" >시스템개요</a>
+                     <a href="#LINK" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')" ><spring:message code="nav.system.summary"/></a>
                  </li>
                  <li>
-                     <a href="#LINK" onclick="javascript:fn_main_headPageMove('61','cmm/reference')" >관련사이트</a>
+                     <a href="#LINK" onclick="javascript:fn_main_headPageMove('61','cmm/reference')" ><spring:message code="nav.related.site"/></a>
                  </li>
              </ul>
          </div>

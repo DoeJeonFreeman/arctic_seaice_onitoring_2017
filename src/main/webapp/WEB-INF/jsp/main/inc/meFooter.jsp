@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
  <!-- clipboard.js
  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
@@ -24,10 +25,7 @@
             <div class="container">
               	 <img src="${pageContext.request.contextPath}/mestrap/assets/ci/footer_kma_kr_en.png" alt="kma.go.kr logo" width="160" id="logo-kma-white"/>
 	             <div style="float: left;padding-left: 10px; padding-top: 5px;">
-	              	 <div>Copyright &copy; 2015 NMSC. All Rights Reserved.&nbsp;&nbsp;&nbsp;우.27803 충청북도 진천군 광혜원면 구암길 64-18</div>
-	              	 <!-- 
-    	          	 <div>우.27803 충청북도 진천군 광혜원면 구암길 64-18</div>
-	              	  -->
+	              	 <div>Copyright &copy; 2015 NMSC. All Rights Reserved.&nbsp;&nbsp;&nbsp;<spring:message code="global.address"/></div>
 	             </div> 	 	
 	             
 	            
@@ -35,7 +33,7 @@
 	             	<ul class="list-inline">
 	             		<li>
 	             			<button id="urlcopy" class="meLinkBtn meLinkBtn outline" >
-	             			<i class="fa fa-link"></i>&nbsp;URL 복사
+	             			<i class="fa fa-link"></i>&nbsp;<spring:message code="global.copy.url"/>
              				</button>
 <!-- 	             			<button title="URL 복사" href="#" id="urlcopy" class="meBtn meBtn-primary outline"  data-clipboard-text="">
 	             			URL 복사

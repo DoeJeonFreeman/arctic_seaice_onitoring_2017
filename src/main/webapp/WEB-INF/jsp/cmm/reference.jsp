@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>북극해빙감시시스템</title>
+	<title><spring:message code="global.main.title"/></title>
 	
 	<script src="<c:url value="/js/jquery/jquery-1.9.1.js"/>"></script>	
     <script src="<c:url value="/mestrap/js/bootstrap.min.js"/>"></script> 
@@ -68,9 +68,24 @@
         <!-- Reference Section -->
         <div class="container">
             <div class="col-lg-12">
-                <h2 class="page-header">관련사이트</h2>
+                <h2 class="page-header"><spring:message code="nav.related.site.title"/></h2>
             </div>
             <div class="col-md-12">
+                <ul id="references">
+                    <li>
+                    	<a href="http://nsidc.org" target="_blank">&nbsp;National Snow &amp; Ice Data Center<strong></strong></a>
+                    </li>
+                    <li>
+                    	<a href="http://www.arctic.noaa.gov" target="_blank">&nbsp;National Oceanic and Atmospheric Administration : Arctic theme page</a>
+                    </li>
+                    <li><a href="http://arctic.arh.noaa.gov/ice_anal.php" target="_blank">&nbsp;National Weather Service : Arctic Weather Support</a></li>
+                    <li><a href="http://polarview.met.no" target="_blank">&nbsp;European Arctic Node</a></li>
+                    <li><a href="http://www.myocean.eu.org" target="_blank">&nbsp;Ocean Monitoring and Forecasting</a></li>
+                    <li><a href="http://www.ijis.iarc.uaf.edu/cgi-bin/seaice-monitor.cgi?lang=e" target="_blank">&nbsp;IARC-JAXA Information System : Arctic Sea ice Monitor</a></li>
+                    <li><a href="http://arctic.atmos.uiuc.edu/cryosphere/" target="_blank">&nbsp;UIUC Polar Research Group : The Cryosphere Today</a></li>
+                    <li><a href="http://psc.apl.washington.edu/wordpress/" target="_blank">&nbsp;Polar Science Center</a></li>
+                </ul>
+            <!-- 
                 <ul id="references">
                     <li>
                     	<a href="http://nsidc.org" target="_blank">미국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;National Snow &amp; Ice Data Center<strong></strong></a>
@@ -85,44 +100,8 @@
                     <li><a href="http://arctic.atmos.uiuc.edu/cryosphere/" target="_blank">미국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UIUC Polar Research Group : The Cryosphere Today</a></li>
                     <li><a href="http://psc.apl.washington.edu/wordpress/" target="_blank">미국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Polar Science Center</a></li>
                 </ul>
-            </div>
-            <!-- 
-            <div class="col-md-12">
-            	<p>
-	 			<meLabel text="미국" />
-		     	<meLabel text="National Snow &amp; Ice Data Center"/>
-			    <meLabel id="nsidc" text="http://nsidc.org"  />
-	   
-	 			<meLabel text="미국" />
-	   		    <meLabel text="National Oceanic and Atmospheric Administration : Arctic theme page" />
-		   		<meLabel id="noaa" text="http://www.arctic.noaa.gov"/>
-	 	
-	 			<meLabel text="미국" />
-			     <meLabel text="National Weather Service : Arctic Weather Support"/>  
-			    <meLabel id="noaa2" text="http://arctic.arh.noaa.gov/ice_anal.php" /> 
-			    
-	 			<meLabel text="노르웨이" />
-			     <meLabel text="European Arctic Node"/>  
-			    <meLabel id="polarview" text="http://polarview.met.no"/>  
-	    
-	 			<meLabel text="유럽" />
-			     <meLabel text="Ocean Monitoring and Forecasting"  />
-			    <meLabel id="urOcean" text="http://www.myocean.eu.org"  />
-	    
-	 			<meLabel text="일본" />
-			     <meLabel text="IARC-JAXA Information System : Arctic Sea ice Monitor"  />
-			    <meLabel id="japMoney" text="http://www.ijis.iarc.uaf.edu/cgi-bin/seaice-monitor.cgi?lang=e" />
-	    
-	 			<meLabel text="미국" />
-			     <meLabel text="UIUC Polar Research Group : The Cryosphere Today"  />
-			    <meLabel id="illinois" text="http://arctic.atmos.uiuc.edu/cryosphere/"  />
-	    
-	 			<meLabel text="미국" />
-			     <meLabel text="Polar Science Center"  />
-			    <meLabel id="washington" text="http://psc.apl.washington.edu/wordpress/"/>  
-            	</p>
-            </div>
              -->
+            </div>
         </div>
         <!-- /.container -->
 

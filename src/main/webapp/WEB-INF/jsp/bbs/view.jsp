@@ -39,7 +39,7 @@
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>게시판</a></li>
+						<li><a><spring:message code="bbs.board"/></a></li>
 						<li><a><spring:message code="bbs.board.${param.boardCd }"/></a></li>
 					</ul>
             	</div>
@@ -55,15 +55,15 @@
 			<ul id="leftnav" class="ul-left-nav fa-ul hidden-print">
 	       		<li>
 	            	<i class="fa fa-angle-double-right orange fa-fw"></i>
-	            	<a href="<c:url value='/' />bbs/list?boardCd=notice&curPage=1">공지사항</a>
+	            	<a href="<c:url value='/' />bbs/list?boardCd=notice&curPage=1" ><spring:message code="bbs.board.notice"/></a>
 	          	</li>
 	       		<li>
 	            	<i class="fa fa-angle-double-right orange fa-fw"></i>
-	            	<a href="<c:url value='/' />bbs/list?boardCd=anal&curPage=1">분석정보</a>
+	            	<a href="<c:url value='/' />bbs/list?boardCd=anal&curPage=1" ><spring:message code="bbs.board.anal"/></a>
 	          	</li>
 	       		<li>
 	            	<i class="fa fa-angle-double-right orange fa-fw"></i>
-	            	<a href="<c:url value='/' />bbs/list?boardCd=refs&curPage=1">참고자료</a>
+	            	<a href="<c:url value='/' />bbs/list?boardCd=refs&curPage=1" ><spring:message code="bbs.board.refs"/></a>
 	          	</li>
 			</ul>
 		</section>
@@ -89,10 +89,10 @@
 					</div>
 					
 					<table>
-					<tr>
-					    <th style="width: 50px;text-align: left;vertical-align: top;">제목:</th>
-					    <th style="text-align: left;color: #555;"><c:out value="${fn:escapeXml(title) }"/></th>
-					</tr>
+						<tr>
+						    <th style="width: 50px;text-align: left;vertical-align: top;"><spring:message code="bbs.board.no"/>:</th>
+						    <th style="text-align: left;color: #555;"><c:out value="${fn:escapeXml(title) }"/></th>
+						</tr>
 					</table>
 					<div id="gul-content">
 					    <span id="date-writer-hit">edited ${fn:escapeXml(regdate) } by ${fn:escapeXml(name) } hit ${fn:escapeXml(hit) }</span>
@@ -188,14 +188,13 @@
 					        </security:authorize>
 					    </div>
 					</div>
-					
 					<!--  BBS list in detailed Article -->
 					<table id="list-table">
 					<tr>
-						<th style="width: 60px;">번호</th>
-						<th style="text-align: left;">제목</th>
-						<th style="width: 84px;">등록일</th>
-						<th style="width: 60px;">조회</th>
+						<th style="width: 60px;"><spring:message code="bbs.board.no"/></th>
+						<th style="text-align: left;"><spring:message code="bbs.board.title"/></th>
+						<th style="width: 84px;"><spring:message code="bbs.board.writtendate"/></th>
+						<th style="width: 60px;"><spring:message code="bbs.board.hits"/></th>
 					</tr>
 					
 					<c:forEach var="article" items="${list }" varStatus="status">        
