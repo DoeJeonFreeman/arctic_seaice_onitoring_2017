@@ -219,7 +219,7 @@
 		            	}
 					},
 					title: {
-			            text: '해빙 면적의 연 변화',
+			            text: $('#chart1').val(),
 			            align: 'center',
 			           // x: 50,
 			            style:{
@@ -281,7 +281,7 @@
 			        	
 			            title: {
 			            	useHTML: true,
-			                text: "해빙 면적 (x10<sup>6</sup> ㎢)",
+			                text: $('#axisTitle').val()+" (x10<sup>6</sup> ㎢)",
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -313,7 +313,7 @@
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 			                var s = '<b>'+this.series.name + '</b><br/>';
-							s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+							s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 		//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 							s+= '<b>'+this.y + '</b>'
 		//					Highcharts.dateFormat('%Y. %m. %d.', newDateMs)+'<br/>';
@@ -465,7 +465,7 @@
 				 	           {name: '\'17',
 				 	           	 color: '#000000', // BLACK            	 
 				 	            connectNulls:false, data: []}, 
-				 	            {name: ' 모두 선택',
+				 	            {name: ' '+$('#showAll').val(),
 				 	           	 color: '#ffffff', 	 
 				 	           	connectNulls:false, data: []}]
 		 	          ,legend: {
@@ -507,7 +507,7 @@
 		            	}
 					},
 					title: {
-			            text: '해빙 표면거칠기의 연 변화', 
+			            text: $('#chart2').val(), 
 			            align: 'center',
 			            //x: 50,
 			            style:{
@@ -563,7 +563,7 @@
 		
 			        	
 			            title: {
-			            	 text: '해빙 표면 거칠기 (㎝)',
+			            	 text: $('#axisTitle_rou').val(),
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -599,7 +599,7 @@
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 			                var s = '<b>'+this.series.name + '</b><br/>';
-							s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+							s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 		//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 							s+= '<b>'+this.y + '</b>'
 		//					Highcharts.dateFormat('%Y. %m. %d.', newDateMs)+'<br/>';
@@ -751,7 +751,7 @@
 				 	           {name: '\'17',
 				 	           	 color: '#000000', // BLACK            	 
 				 	            connectNulls:false, data: []}, 
-				 	            {name: ' 모두 선택',
+				 	            {name: ' '+$('#showAll').val(),
 				 	           	 color: '#ffffff', 	 
 				 	           	connectNulls:false, data: []}]
 		          ,legend: {
@@ -914,7 +914,7 @@ Highcharts.theme = {
 		            	}
 					},
 					title: {
-			            text: '해빙 면적의 장기 변화',
+			            text: $('#chart3').val(),
 			            align: 'center',
 			            //x: 50,
 			            style:{
@@ -972,7 +972,7 @@ Highcharts.theme = {
 			        	
 			            title: {
 			            	useHTML: true,
-			                text: "해빙 면적 (x10<sup>6</sup> ㎢)",
+			                text: $('#axisTitle').val()+" (x10<sup>6</sup> ㎢)",
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -1003,10 +1003,10 @@ Highcharts.theme = {
 			            formatter: function() {
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
-			                var s = Highcharts.dateFormat('%Y년 %m월 %d일', newDateMs)+'<br/>';
+			                var s = Highcharts.dateFormat('%b %e, %Y', newDateMs)+'<br/>';
 		//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 		//					s+= '<b>' + this.y + '</b><br/>';
-							s+= this.series.name + ': <b>' + this.y + '</b><br/>';
+							s+= this.series.name + '<b>' + this.y + '</b><br/>';
 		//	                $.each(this.points, function(i, point) {
 		//	                    s += this.series.name + ': <b>' + this.y + '°C</b><br/>';
 		//	                    Highcharts.dateFormat('%a %e %b %Y', this.point.options.from) + 
@@ -1080,7 +1080,7 @@ Highcharts.theme = {
 					 	               type: 'line',
 //					 	               name: '연평균<br/>(-0.0795)',
 //					 	               name: '연평균<br/>(-0.0810)',
-					 	               name: '연평균<br/>('+ jsonData.data.ice.someList.slope_ey + ')',
+					 	               name: $('#annualMean').val() + '<br/>('+ jsonData.data.ice.someList.slope_ey + ')',
 					 	               showInLegend: true,
 					 	          	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
@@ -1125,7 +1125,7 @@ Highcharts.theme = {
 					 	               type: 'line',
 //					 	               name: '여름평균(9월)<br/>(-0.1140)',
 //					 	               name: '여름평균(9월)<br/>(-0.1129)',
-									   name: '여름평균(9월)<br/>('+ jsonData.data.ice.someList.slope_es9 + ')',
+									   name: $('#summerMean').val() + '<br/>('+ jsonData.data.ice.someList.slope_es9 + ')',
 					 	               showInLegend: true,
 					 	              color: '#CC0000',            	 
 					 	           	   dashStyle : 'Dash',
@@ -1159,7 +1159,7 @@ Highcharts.theme = {
 					 	               type: 'line',
 //					 	               name: '겨울평균(3월)<br/>(-0.0547)',
 //					 	               name: '겨울평균(3월)<br/>(-0.0564)',
-			                           name: '겨울평균(3월)<br/>('+ jsonData.data.ice.someList.slope_ew3 + ')',
+			                           name: $('#winterMean').val() + '<br/>('+ jsonData.data.ice.someList.slope_ew3 + ')',
 					 	               showInLegend: true,
 					 	              color: '#0000ff',            	 
 					 	           	   dashStyle : 'Dash',
@@ -1197,7 +1197,7 @@ Highcharts.theme = {
 		                layout: 'horizontal',
 		//                align: 'right',
 		        //        verticalAlign: 'top',
-		                itemWidth:120,
+		                itemWidth:150,
 		      //          useHTML:true,
 		                x:0 ,
 		                y: 0,
@@ -1233,7 +1233,7 @@ Highcharts.theme = {
 		            	}
 					},
 					title: {
-			            text: '해빙 표면거칠기의 장기 변화', 
+			            text: $('#chart4').val(), 
 			            align: 'center',
 			          //  x: 50,
 			            style:{
@@ -1289,7 +1289,7 @@ Highcharts.theme = {
 		
 			        	
 			            title: {
-			            	 text: '해빙 표면 거칠기 (㎝)',
+			            	 text: $('#axisTitle_rou').val(),
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -1323,10 +1323,10 @@ Highcharts.theme = {
 			            formatter: function() {
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
-			                var s = Highcharts.dateFormat('%Y년 %m월 %d일', newDateMs)+'<br/>';
+			                var s = Highcharts.dateFormat('%b %e, %Y', newDateMs)+'<br/>';
 		//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 		//					s+= '<b>' + this.y + '</b><br/>';
-							s+= this.series.name + ': <b>' + this.y + '</b><br/>';
+							s+= this.series.name + '<b>' + this.y + '</b><br/>';
 		//	                $.each(this.points, function(i, point) {
 		//	                    s += this.series.name + ': <b>' + this.y + '°C</b><br/>';
 		//	                    Highcharts.dateFormat('%a %e %b %Y', this.point.options.from) + 
@@ -1400,7 +1400,7 @@ Highcharts.theme = {
 					 	               type: 'line',
 //					 	               name: '연평균<br/>(-0.0006)',
 //					 	               name: '연평균<br/>(-0.0007)',
-			                           name: '연평균<br/>('+ jsonData.data.ice.someList.slope_ry + ')',
+			                           name: $('#annualMean').val() + '<br/>('+ jsonData.data.ice.someList.slope_ry + ')',
 					 	               showInLegend: true,
 					 	          	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
@@ -1434,7 +1434,7 @@ Highcharts.theme = {
 					 	               type: 'line',
 //					 	               name: '여름평균(9월)<br/>(-0.0010)',
 //					 	               name: '여름평균(9월)<br/>(-0.0012)',
-			                           name: '여름평균(9월)<br/>('+ jsonData.data.ice.someList.slope_rs9 + ')',
+			                           name: $('#summerMean').val() + '<br/>('+ jsonData.data.ice.someList.slope_rs9 + ')',
 					 	               showInLegend: true,
 					 	              color: '#CC0000',            	 
 					 	           	   dashStyle : 'Dash',
@@ -1467,7 +1467,7 @@ Highcharts.theme = {
 					 	               type: 'line',
 //					 	               name: '겨울평균(3월)<br/>(0.0004)',
 //					 	               name: '겨울평균(3월)<br/>(0.0003)',
-			                           name: '겨울평균(3월)<br/>('+ jsonData.data.ice.someList.slope_rw3 + ')',
+			                           name: $('#winterMean').val() + '<br/>('+ jsonData.data.ice.someList.slope_rw3 + ')',
 					 	               showInLegend: true,
 					 	              color: '#0000ff',            	 
 					 	           	   dashStyle : 'Dash',
@@ -1503,7 +1503,7 @@ Highcharts.theme = {
 		             layout: 'horizontal',
 		//             align: 'right',
 		     //        verticalAlign: 'top',
-		             itemWidth:120,
+		             itemWidth:150,
 		   //          useHTML:true,
 		             x:0 ,
 		             y: 0,
@@ -1557,11 +1557,29 @@ Highcharts.theme = {
 	    <c:import url="/arcticPageLink.do?link=main/inc/meNavTop" />
 	</div>
 	
-	<!-- 
-	<div id="dateHandler">
-		<c import url="/arcticPageLink.do?link=main/inc/dateChooser" />
-	</div>	
-	 -->
+	<!-- axis title -->
+	<c:set var="axisTitle"><spring:message code="timeseries.chart.axis.title.million"/></c:set>
+	<input id="axisTitle" type="hidden" value="${axisTitle}"/>
+	<c:set var="axisTitle_rou"><spring:message code="timeseries.chart.axis.title.roughness"/></c:set>
+	<input id="axisTitle_rou" type="hidden" value="${axisTitle_rou}"/>
+	<!-- chart title -->
+	<c:set var="chart1"><spring:message code="trend.annual.ext"/></c:set>
+	<input id="chart1" type="hidden" value="${chart1}"/>
+	<c:set var="chart2"><spring:message code="trend.annual.rou"/></c:set>
+	<input id="chart2" type="hidden" value="${chart2}"/>
+	<c:set var="chart3"><spring:message code="trend.long.range.ext"/></c:set>
+	<input id="chart3" type="hidden" value="${chart3}"/>
+	<c:set var="chart4"><spring:message code="trend.long.range.rou"/></c:set>
+	<input id="chart4" type="hidden" value="${chart4}"/>
+	<!-- legend items -->
+	<c:set var="annualMean"><spring:message code="trend.long.range.legend1"/></c:set>
+	<input id="annualMean" type="hidden" value="${annualMean}"/>
+	<c:set var="summerMean"><spring:message code="trend.long.range.legend2"/></c:set>
+	<input id="summerMean" type="hidden" value="${summerMean}"/>
+	<c:set var="winterMean"><spring:message code="trend.long.range.legend3"/></c:set>
+	<input id="winterMean" type="hidden" value="${winterMean}"/>
+	<c:set var="showAll"><spring:message code="timeseries.chart.legend.select.all"/></c:set>
+	<input id="showAll" type="hidden" value="${showAll}"/>
 	
 	
 	<!--dateChoooooser--> 
@@ -1587,8 +1605,8 @@ Highcharts.theme = {
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>해빙감시</a></li>
-						<li><a>장기해빙변화</a></li>
+						<li><a><spring:message code="nav.monitoring"/></a></li>
+						<li><a><spring:message code="nav.monitoring.trend.longrange"/></a></li>
 					</ul>
             	</div>
             </div>

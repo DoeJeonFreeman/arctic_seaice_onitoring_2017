@@ -38,6 +38,9 @@
 	     * returns version of IE or false, if browser is not Internet Explorer
 	     */
 	    function detectIE() {
+	    	 
+	    	 	
+	    	 	
 	        var ua = window.navigator.userAgent;
 	        var msie = ua.indexOf('MSIE ');
 	        if (msie > 0) {
@@ -98,7 +101,7 @@
                 <div class="col-md-10 col-md-offset-2">
             		<div class="intro-heading text-left visible-lg visible-md">&nbsp; </div>
                 	<div class="col-md-4 visible-lg visible-md visible-sm">
-	            		<div class="intro-heading text-left"><spring:message code="global.main.distribution.title"/></div>
+	            		<div class="intro-heading text-left"><spring:message code="global.main.distribution.title"/> </div>
     	        		<h4 class="text-left" style="white-space: nowrap;"> ${mostRecentStuff.compbegindate4Main}</h4>
                 	</div>
                 	
@@ -206,8 +209,12 @@
 	
 	            <h5 class="section-title"><i class="fa fa-link fa-fw"></i>Links</h5>
 	            <ul class="list-inline" style="padding-top:10px; padding-left:15px; line-height: 40px; ">
-	              <li style="padding-right:20px;"><a href="http://kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png" alt="KMA CI"  /></a></li>
-	              <li><a href="http://nmsc.kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/nmsc_ci_creGothicB_sm.png" alt="NMSC CI" width="181"/></a></li>
+<%-- 	              <li style="padding-right:20px;"><a href="http://kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png" alt="KMA CI"  /></a></li>
+	              <li><a href="http://nmsc.kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/nmsc_ci_creGothicB_sm.png" alt="NMSC CI" /></a></li> --%>
+	              
+	              <li style="padding-right:55px;"><a href="http://kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma.png" alt="KMA CI"  /></a></li>
+	              <li><a href="http://nmsc.kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_nmsc.png" alt="NMSC CI" /></a></li>
+	              
 	            </ul>
 	          </section>
           </div>

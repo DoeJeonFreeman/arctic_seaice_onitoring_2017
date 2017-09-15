@@ -278,7 +278,7 @@
 			    		//get rid of horizontal grid lines  
 			            title: {
 			            	useHTML: true,
-			                text: "해빙 면적 (x10<sup>5</sup> ㎢)",
+			                text: $('#axisTitle').val()+" (x10<sup>5</sup> ㎢)",
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -313,7 +313,7 @@
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 			                var s = this.series.name + '<br/>';
-							s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+							s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 		//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 							s+= '<b>'+this.y + '</b>'
 		//					Highcharts.dateFormat('%Y. %m. %d.', newDateMs)+'<br/>';
@@ -544,7 +544,7 @@
 		    	        lineWidth:0,
 			        	
 			            title: {
-			            	 text: '해빙 표면 거칠기 (㎝)',
+			            	 text: $('#axisTitle_rou').val(),
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -576,7 +576,7 @@
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 			                var s = this.series.name + '<br/>';
-							s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+							s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 							s+= '<b>'+this.y + '</b>'
 			                return s;
 			            }
@@ -804,10 +804,9 @@
 			//console.log('changeImgSrc:: ' + path_img);
  	        $("#psgImg").attr("src",path_img);
  	        
- 	        $('#psgImgWrapper h4').text($('#routeSelector .selected').text() + ' ' + sensor+ ' 해빙 면적'); //or use .html(<strong>textGoesHere</strong>') instead haha
+ 	        $('#psgImgWrapper h4').text($('#routeSelector .selected').text() + ' ' + sensor+ ' ' + $('#extTrailling').val()); //or use .html(<strong>textGoesHere</strong>') instead haha
  	        $('#psgImgWrapper h5').text(dRangeStr); 
 		}
-		
 		
 		
 		//var minDate = 20070101;
@@ -881,11 +880,24 @@
 	<div id="meHeader">
 	    <c:import url="/arcticPageLink.do?link=main/inc/meNavTop" />
 	</div>
-	<!-- 
-	<div id="dateHandler">
-		<cccc import url="/arcticPageLink.do?link=main/inc/dateChooser" />
-	</div>	
-	 -->
+	
+	<!-- context menu -->
+	<c:set var="saveImage"><spring:message code="ctx.menu.save.image"/></c:set>
+	<c:set var="printImage"><spring:message code="ctx.menu.save.print"/></c:set>
+	<input id="saveImage" type="hidden" value="${saveImage}"/>
+	<input id="printImage" type="hidden" value="${printImage}"/>
+	
+	<!-- axis title -->
+	<c:set var="axisTitle"><spring:message code="timeseries.chart.axis.title.million"/></c:set>
+	<input id="axisTitle" type="hidden" value="${axisTitle}"/>
+	<c:set var="axisTitle_rou"><spring:message code="timeseries.chart.axis.title.roughness"/></c:set>
+	<input id="axisTitle_rou" type="hidden" value="${axisTitle_rou}"/>
+	
+	<c:set var="showAll"><spring:message code="timeseries.chart.legend.select.all"/></c:set>
+	<input id="showAll" type="hidden" value="${showAll}"/>
+	
+	<c:set var="extTrailling"><spring:message code="sdist.ext.title.trailling.str"/></c:set>
+	<input id="extTrailling" type="hidden" value="${extTrailling}"/>
 	
 		<!--dateChoooooser--> 
 	<!--dateChoooooser--> 
@@ -900,35 +912,35 @@
 		          </div>
             	
             	
-	              <div class="vcenter">
-	            	<div class="pull-left" style="margin-right: 15px;">
-	            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;" id="btn_getMostRecentOne">최근</button>
-	            	</div>
-	            	
-	            	<div class="pull-left">
-	            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
-	            			 onclick="getDateCalculated(this.id)"></button>
-	            	</div>
-	            	
-	            	
-	            	<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
+              <div class="vcenter">
+		            <div class="pull-left" style="margin-right: 15px;">
+		            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;text-transform: none;" id="btn_getMostRecentOne"><spring:message code="button.latest.stuff"/></button>
+		            	</div>
+		            	
+		            	<div class="pull-left">
+		            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
+		            			 onclick="getDateCalculated(this.id)"></button>
+		            	</div>
+	
+	
+					<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
 					    <button class="  btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
-					    	<span class="selected" id="1" value="WEEK">1주일</span><span class="caret"></span>
-				    	</button>
+						    	<span class="selected" id="1" value="WEEK"><spring:message code="dropdown.seeking.interval.weekly"/></span><span class="caret"></span>
+					    	</button>
 					    <ul class="dropdown-menu option" role="menu" >
-					      <li id="range1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" >1주일</a></li>
-					      <li id="range2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" >1개월</a></li>
-					      <li id="range3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" >1년</a></li>
+					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.weekly"/></a></li>
+					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.monthly"/></a></li>
+					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.annually"/></a></li>
 					      <!-- 
 					      <li role="presentation" class="divider"></li>
 					       -->
 					    </ul>
 				    </div>
 				    
-	            	<div class="pull-left">
-	            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
-	            			onclick="getDateCalculated(this.id)"></button>
-	            	</div>
+			     	<div class="pull-left">
+		            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
+		            			onclick="getDateCalculated(this.id)"></button>
+		            	</div>
 	            </div>	
             
             	<!-- 
@@ -950,7 +962,7 @@
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>북극항로</a></li>
+						<li><a><spring:message code="nav.routes"/></a></li>
 					</ul>
             	</div>
             	
@@ -1158,16 +1170,16 @@
 			      <div class="form-group">
 			       		
 						<div id="routeSelector" class="dropdown select pull-left">
-						    <button class="btn-small dropdown-toggle " type="button"  data-toggle="dropdown" style="margin-top:5px;width:100px;">
-						    	<span class="selected" ename="Barents Sea" id="passage1" meIdx="1" meLatLng="바렌츠해 (lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents">바렌츠해</span><span class="caret"></span>
+						    <button class="btn-small dropdown-toggle " type="button"  data-toggle="dropdown" style="margin-top:5px;width:120px;">
+						    	<span class="selected" ename="Barents Sea" id="passage1" meIdx="1" meLatLng="바렌츠해 (lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents"><spring:message code="shipping.routes.dropdown.barents"/></span><span class="caret"></span>
 					    	</button>
 						    <ul class="dropdown-menu option" role="menu" >
-						      <li id="passage1" ename="Barents Sea" meIdx="1" meLatLng="(lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents"><a role="menuitem" tabindex="-1" >바렌츠해</a></li>
-						      <li id="passage2" ename="Kara Sea" meIdx="2" meLatLng="(lat: 70 ~ 80N, lon: 60 ~ 100E)" value="kara"><a role="menuitem" tabindex="-1" >카라해</a></li>
-						      <li id="passage3" ename="Laptev Sea" meIdx="3" meLatLng="(lat: 70 ~ 80N, lon: 100 ~ 135E)" value="laptev"><a role="menuitem" tabindex="-1" >랍테프해</a></li>
-						      <li id="passage4" ename="East Siberian Sea" meIdx="4" meLatLng="(lat: 70 ~ 80N, lon: 135 ~ 180E)" value="eastSiberia"><a role="menuitem" tabindex="-1" >동시베리아해</a></li>
-						      <li id="passage5" ename="Chukchi Sea" meIdx="5" meLatLng="(lat: 65 ~ 75N, lon: 150 ~ 180W)" value="chukchi"><a role="menuitem" tabindex="-1" >척치해</a></li>
-						      <li id="passage6" ename="Bering Sea" meIdx="6" meLatLng="(lat: 55 ~ 65N, lon: 160W ~ 165E)" value="bering"><a role="menuitem" tabindex="-1" >베링해</a></li>
+						      <li id="passage1" ename="Barents Sea" meIdx="1" meLatLng="(lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.barents"/></a></li>
+						      <li id="passage2" ename="Kara Sea" meIdx="2" meLatLng="(lat: 70 ~ 80N, lon: 60 ~ 100E)" value="kara"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.kara"/></a></li>
+						      <li id="passage3" ename="Laptev Sea" meIdx="3" meLatLng="(lat: 70 ~ 80N, lon: 100 ~ 135E)" value="laptev"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.laptev"/></a></li>
+						      <li id="passage4" ename="East Siberian Sea" meIdx="4" meLatLng="(lat: 70 ~ 80N, lon: 135 ~ 180E)" value="eastSiberia"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.siberian"/></a></li>
+						      <li id="passage5" ename="Chukchi Sea" meIdx="5" meLatLng="(lat: 65 ~ 75N, lon: 150 ~ 180W)" value="chukchi"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.chukchi"/></a></li>
+						      <li id="passage6" ename="Bering Sea" meIdx="6" meLatLng="(lat: 55 ~ 65N, lon: 160W ~ 165E)" value="bering"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.bering"/></a></li>
 						    </ul>
 					    </div>	    
 					    

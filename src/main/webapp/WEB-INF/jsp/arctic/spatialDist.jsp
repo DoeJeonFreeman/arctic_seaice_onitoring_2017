@@ -108,6 +108,23 @@
 	<!--dateChoooooser--> 
 	<!--dateChoooooser--> 
 	<header class="meControllPanel">
+	
+	
+	<c:set var="show_controller"><spring:message code="sdist.view.controller.show"/></c:set>
+	<c:set var="hide_controller"><spring:message code="sdist.view.controller.hide"/></c:set>
+	<input id="representante_show" type="hidden" value="${show_controller}"/>
+	<input id="representante_hide" type="hidden" value="${hide_controller}"/>
+	
+	<c:set var="lbl_ext"><spring:message code="sdist.ext.title.trailling.str"/></c:set>
+	<c:set var="lbl_rou"><spring:message code="sdist.rou.title.trailling.str"/></c:set>
+	<input id="ext_label" type="hidden" value="${lbl_ext}"/>
+	<input id="rou_label" type="hidden" value="${lbl_rou}"/>
+		
+	<c:set var="saveImage"><spring:message code="ctx.menu.save.image"/></c:set>
+	<c:set var="printImage"><spring:message code="ctx.menu.save.print"/></c:set>
+	<input id="saveImage" type="hidden" value="${saveImage}"/>
+	<input id="printImage" type="hidden" value="${printImage}"/>
+	
 		<div class="container" align="left">
             <div class="row form-horizontal">
             	 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 demo vcenter">
@@ -117,46 +134,46 @@
             	
             	
 	            <div class="vcenter">
-	            	<div class="pull-left" style="margin-right: 15px;">
-	            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;" id="btn_getMostRecentOne">최근</button>
-	            	</div>
-	            	
-	            	<div class="pull-left">
-	            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
-	            			 onclick="getDateCalculated(this.id)"></button>
-	            	</div>
-	            	
-	            	
-	            	<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
+		            	<div class="pull-left" style="margin-right: 15px;">
+		            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;text-transform: none;" id="btn_getMostRecentOne"><spring:message code="button.latest.stuff"/></button>
+		            	</div>
+		            	
+		            	<div class="pull-left">
+		            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
+		            			 onclick="getDateCalculated(this.id)"></button>
+		            	</div>
+		            	
+		            	
+		            	<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
 					    <button class="  btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
-					    	<span class="selected" id="1" value="WEEK">1주일</span><span class="caret"></span>
-				    	</button>
+						    	<span class="selected" id="1" value="WEEK"><spring:message code="dropdown.seeking.interval.weekly"/></span><span class="caret"></span>
+					    	</button>
 					    <ul class="dropdown-menu option" role="menu" >
-					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" >1주일</a></li>
-					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" >1개월</a></li>
-					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" >1년</a></li>
+					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.weekly"/></a></li>
+					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.monthly"/></a></li>
+					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.annually"/></a></li>
 					      <!-- 
 					      <li role="presentation" class="divider"></li>
 					       -->
 					    </ul>
 				    </div>
-				    
-	            	<div class="pull-left">
-	            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
-	            			onclick="getDateCalculated(this.id)"></button>
-	            	</div>
-	            	
-	            	<div class="pull-left" style="margin-left:10px;margin-top:10px;">
-	            		|&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="trigger">영상 콘트롤러 보기 <i class="fa fa-caret-down"></i></a>
-	            	</div>
+					    
+		            	<div class="pull-left">
+		            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
+		            			onclick="getDateCalculated(this.id)"></button>
+		            	</div>
+		            	
+		            	<div class="pull-left" style="margin-left:10px;margin-top:10px;">
+		            		|&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="trigger"><spring:message code="sdist.view.controller.show"/> <i class="fa fa-caret-down"></i></a>
+		            	</div>
 	            	
 	            </div>	
             
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>해빙감시</a></li>
-						<li><a>해빙분포</a></li>
+						<li><a><spring:message code="nav.monitoring"/></a></li>
+						<li><a><spring:message code="nav.monitoring.sdist"/></a></li>
 					</ul>
             	</div>
             </div>
@@ -214,7 +231,10 @@
            		
            		$("#trigger").click(function(){ 
            			//console.log($(this).text());
-	            	var meNewText = $(this).text().includes('보기')?  '영상 콘트롤러 숨기기 <i class="fa fa-caret-up">' : '영상 콘트롤러 보기 <i class="fa fa-caret-down">';
+	            	var meNewText = $(this).text().includes('Show')?  $('#representante_hide').val() + ' <i class="fa fa-caret-up">' : $('#representante_show').val() + ' <i class="fa fa-caret-down">';
+	            	if($(this).text().includes('보기')){
+		            meNewText = $(this).text().includes('보기')?  $('#representante_hide').val() + ' <i class="fa fa-caret-up">' : $('#representante_show').val() + ' <i class="fa fa-caret-down">';
+	            	}
 //	           	    $(this).text(meNewText);
 	           	    $(this).html(meNewText);
            		});
@@ -315,7 +335,7 @@
 	            
 	            	<div class="extWrapperDiv">
 						<div align="center" class="dRangeStr_SSMIS"> 
-							<div class="sensor_ext"><h4>${sdist.sensor} 해빙 면적</h4></div>
+							<div class="sensor_ext"><h4>${sdist.sensor} <spring:message code="sdist.ext.title.trailling.str"/></h4></div>
 							<p>${sdist.compbegindate4View}</p>
 						</div>
 						<p>
@@ -325,8 +345,8 @@
 							</span>	
 						</p>
 						<div align="center" class="titleEnhancer" > 
-							<div id="extInKm">해빙 면적 = <span>${sdist.extentInkmSquared}</span> ㎢</div>
-							<div>(7일 평균)</div>
+							<div id="extInKm"><spring:message code="sdist.ext.title.trailling.str"/> = <span>${sdist.extentInkmSquared}</span> ㎢</div>
+							<div>(<spring:message code="sdist.ext.weekly.mean"/>)</div>
 						</div>
 					</div>
 	            </div>
@@ -334,7 +354,7 @@
 	            <div class="col-md-6" id="djd">
 	            	<div class="rouWrapperDiv">
 						<div align="center" class="dRangeStr_SSMIS"> 
-							<div class="sensor_rou"><h4>${sdist.sensor} 해빙 표면거칠기</h4></div>
+							<div class="sensor_rou"><h4>${sdist.sensor} <spring:message code="sdist.rou.title.trailling.str"/></h4></div>
 							<p>${sdist.compbegindate4View}</p>
 						</div>
 						<p>
@@ -579,8 +599,8 @@ if(!isInvisible) meRequestList(meDateObj,meDateObj);
 		function changeImgSrc(dateStr,dRangeStr,extValInKmSquared, sensor){
 	        $("#img_ssmi_ext").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+".png");
 	        $("#img_ssmi_rou").attr("src","<c:url value='/data/IMG/ROUGH/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_rou_"+dateStr+".png");
-$('.sensor_ext h4').text(sensor + " 해빙 면적"); 
-$('.sensor_rou h4').text(sensor + " 해빙 표면거칠기"); 
+$('.sensor_ext h4').text(sensor + ' ' + $('#ext_label').val()); 
+$('.sensor_rou h4').text(sensor + ' ' + $('#rou_label').val()); 
 	        $('.dRangeStr_SSMIS p').text(dRangeStr); //or use .html(<strong>textGoesHere</strong>') instead haha
 	        $('#extInKm span').text(extValInKmSquared);
 	        currDateString = dateStr;
@@ -727,7 +747,7 @@ $('.sensor_rou h4').text(sensor + " 해빙 표면거칠기");
 		
 		  var cmenu = new BootstrapMenu('#img_ssmi_ext', {
 		      actions: [{
-		        name: '이미지 저장',
+		        name: $('#saveImage').val(),
 		        onClick: function() {
 		        	//$('#img_ssmi_ext').removeClass('watermark').addClass('watermark');
 		         	 $('.mePopup_ext .watermark').watermark({
@@ -774,7 +794,7 @@ $('.sensor_rou h4').text(sensor + " 해빙 표면거칠기");
 		         	 
 			      }//onclick
 		    	}, {
-			        name: '이미지 인쇄',
+			        name: $('#printImage').val(),
 			        onClick: function() {
 			        	
 			        	/* 
@@ -832,7 +852,7 @@ $('.sensor_rou h4').text(sensor + " 해빙 표면거칠기");
 		
 		  var cmenu2 = new BootstrapMenu('#img_ssmi_rou', {
 		      actions: [{
-		        name: '이미지 저장',
+		        name: $('#saveImage').val(),
 		        onClick: function() {
 		        	
 	   		     	//$('#img_ssmi_rou').removeClass('watermark').addClass('watermark');
@@ -881,7 +901,7 @@ $('.sensor_rou h4').text(sensor + " 해빙 표면거칠기");
 		         	 
 			      }//onclick
 		    	}, {
-			        name: '이미지 인쇄',
+			        name: $('#printImage').val(),
 			        onClick: function() {
 			        	
 		 	         	$('.mePopup_rou .watermark').watermark({
@@ -942,9 +962,9 @@ $('.sensor_rou h4').text(sensor + " 해빙 표면거칠기");
 	<div id="meModalBody" class="modal-body ">
 		<section id="inverted-contain">
 	      <div class="buttons" id="popup_btnset">
-	        <button class="btn btn-primary zoom-in"><i class="fa fa-fw fa-search-plus"></i>확대</button>
-	        <button class="btn btn-primary zoom-out"><i class="fa fa-fw fa-search-minus"></i>축소</button>
-	        <button id="meReset" class="btn btn-primary reset">Reset</button>
+	        <button class="btn btn-primary zoom-in"><i class="fa fa-fw fa-search-plus"></i> Zoom In &nbsp;</button>
+	        <button class="btn btn-primary zoom-out"><i class="fa fa-fw fa-search-minus"></i> Zoom Out</button>
+	        <button id="meReset" class="btn btn-primary reset">Reset zoom</button>
 	      </div>
 	      
 	      

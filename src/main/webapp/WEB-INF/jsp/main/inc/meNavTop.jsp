@@ -5,9 +5,13 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 
+<c:set var="localeCode" value="${requestContext.locale.language}" />
 
 <script type="text/javascript">
 
+	alert('localeCode is :: <c:out value="${localeCode}"/>')
+	//('<c out value="${pageContext.request.locale.language}"/>');
+	
 	var isVERBOSE = false; 
 	
 	function sysout(str) {
@@ -70,6 +74,12 @@
 						</security:authorize>
             		
             			<li>
+            				<a onclick="javascript:fn_main_headPageMove('8318','cmm/sitemap')">Korean</a>
+            			</li>
+            			<li>
+            				<a onclick="javascript:fn_main_headPageMove('8318','cmm/sitemap')">English</a>
+            			</li>
+            			<li>
             				<a onclick="javascript:fn_main_headPageMove('8318','cmm/sitemap')"><i class="fa fa-sitemap fa-fw"></i> Site map </a>
             			</li>
               			<c:choose>
@@ -99,7 +109,8 @@
 	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr_xs_krOnly.png" alt="kma.go.kr logo"  width="124px;"  style="padding-bottom:5px;"/>&nbsp; 북극해빙감시시스템
 	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr.png" alt="kma.go.kr logo"  width="223px;"  style="padding-bottom:10px;"/>&nbsp; 북극해빙감시시스템
 	           	 -->
-	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr_en.png" alt="kma.go.kr logo"  width="250px;"  style="padding-bottom:5px;"/>&nbsp; <spring:message code="global.main.title"/>
+<%-- 	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_kr_en.png" alt="kma.go.kr logo"  height="55px;"  style="padding-bottom:5px;"/>&nbsp; <spring:message code="global.main.title"/> --%>
+	           		<img src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_main_ci_en.png" alt="kma.go.kr logo"  height="55px;"  style="padding-bottom:5px;"/>&nbsp; <spring:message code="global.main.title"/>
 	       	 	</a>              
 	         </div>		    
 	</div>
@@ -117,9 +128,10 @@
                  <span class="icon-bar"></span>
              </button>
              <!-- navbar-brand visible-xs -->
-             <a class="navbar-brand visible-xs" href="${pageContext.request.contextPath}/cmm/main/mainPage.do">
-             	<img style="max-width:330px; margin-top: -12px;" src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_ci_with_sysName.png">
-           	 </a>
+	             <a class="navbar-brand visible-xs" href="${pageContext.request.contextPath}/cmm/main/mainPage.do" >
+	             	<img style="height:60px; margin-top: -19px;" src="${pageContext.request.contextPath}/mestrap/assets/ci/kma_ci_without_sysName.png"> 
+	           	 </a> 
+	           	 <a class="navbar-brand visible-xs" style="color:#;font-size:14px; margin-top: 0px; font-weight:bold; text-decoration:none;"><spring:message code="global.main.title"/></a>
          </div>
          <!-- Collect the nav links, forms, and other content for toggling -->
          <div class="collapse navbar-collapse" id="navbar-mecollapse">
@@ -129,16 +141,16 @@
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="nav.monitoring"/><b class="caret"></b></a>
                      <ul class="dropdown-menu" id="meDropdown-mnt">
                          <li>
-                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('11','arctic/spatialDistribution.do')" >해빙분포</a>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('11','arctic/spatialDistribution.do')" ><spring:message code="nav.monitoring.sdist"/></a>
                          </li>
                          <li>
-                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('12','arctic/timeseries/extent.do')" >최근해빙변화</a>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('12','arctic/timeseries/extent.do')" ><spring:message code="nav.monitoring.trend.current"/></a>
                          </li>
                          <li>
-                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('13','arctic/timeseries/trend.do')" >장기해빙변화</a>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('13','arctic/timeseries/trend.do')" ><spring:message code="nav.monitoring.trend.longrange"/></a>
                          </li>
                          <li>
-                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('14','arctic/ocean.do')" >해역별분포</a>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('14','arctic/ocean.do')" ><spring:message code="nav.monitoring.ocean"/></a>
                          </li>
                      </ul>
                  </li>

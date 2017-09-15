@@ -45,6 +45,7 @@
 	var extAvg_since2007 = 0;
 	var extAvg_since1988 = 0;
 	
+	
 	var extentSeriesJson;
 	
 	/**
@@ -215,14 +216,14 @@
 				var nadir2nd = extSeries[i].nadir2;
 				var nadir3rd = extSeries[i].nadir3;
 				//alert(moment(dateFrom).format('YYYY-MM-DD') + ' : ' + nadir1st + ' / ' + nadir2nd + ' / ' + nadir3rd)
-				var nadirText = '※ 1988년 이후 최저 면적('+ moment(dateFrom).format('MM월DD일') + ' ~ ' + moment(dateTo).format('MM월DD일') + ') ';
-				nadirText += "<span title="+nadir1st.split(",")[1]+">1위:" + nadir1st.split(",")[0] + "년</span>";
-				nadirText += ", <span title="+nadir2nd.split(",")[1]+">2위:" + nadir2nd.split(",")[0] + "년</span>";
-				nadirText += ", <span title="+nadir3rd.split(",")[1]+">3위:" + nadir3rd.split(",")[0] + "년</span>";
+				var nadirText = '※ '+ $('#lowest_leadingStr').val() +' ('+ moment(dateFrom).format('MM.DD.') + ' ~ ' + moment(dateTo).format('MM.DD.') + ')  - ';
+				nadirText += "  <span title='"+nadir1st.split(",")[1]+" million sq. km'>" + $('#lowest_1st').val() + ' ' + nadir1st.split(",")[0] + "</span>";
+				nadirText += ", <span title="+nadir2nd.split(",")[1]+">" + $('#lowest_2nd').val() + ' ' + nadir2nd.split(",")[0] + "</span>";
+				nadirText += ", <span title="+nadir3rd.split(",")[1]+">" + $('#lowest_3rd').val() + ' ' + nadir3rd.split(",")[0] + "</span>";
 				$('#nadirString').html(nadirText);
 				//※ 1988년 이후 최저 면적(MM월 DD일~MM월 DD일) <span title="extent value">1위:YYYY년</span>, <span>2위:YYYY년</span>, <span>3위:YYYY년</span> 
 			}
-			//getNadir2017
+			//getNadir2017  10<sup>6</sup> ㎢
 			
 			var mmddIntVal = (dateStrArr[0] + dateStrArr[1] + '')*1;
 			if(selectedMMDDInNumber >= mmddIntVal){
@@ -292,7 +293,7 @@
 		            	}
 					},
 					title: {
-			            text: '최근 해빙 변화 경향',
+			            text: $("#mainTitle").val(),
 			            align: 'center',
 		//	            x: 50,
 			            style:{
@@ -355,7 +356,7 @@
 			        	        
 			            title: {
 			            	useHTML: true,
-			                text: "해빙 면적 (x10<sup>6</sup> ㎢)",
+			                text: $('#axisTitle').val()+" (x10<sup>6</sup> ㎢)",
 		                	style : {
 		                		font:'normal 12px NanumGothic'
 								//color : '#000000'
@@ -393,7 +394,8 @@
 			            	var myDate = new Date(this.x);
 			            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 			                var s = '<b>'+this.series.name + '</b><br/>';
-							s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+//							s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+							s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 		//					s+= '<b>'+this.y + '</b>'
 							s+= '<b>'+parseFloat(this.y).toFixed(4) + '</b>'
 			                return s;
@@ -471,7 +473,7 @@
 				 	           	 color: '#000000', //#0000cc 
 				 	           	 lineWidth:2,
 				 	           	connectNulls:false, data: []} ,
-				 	            {name: '10년평균(\'07~\'16)',
+				 	            {name: $("#series1").val(), //10년평균('07~'16)
 				 	           	 color: '#21618C', //#0000cc            	 
 				 	           	 connectNulls:false, 
 				 	             showInLegend: true,
@@ -490,13 +492,13 @@
 				 	               },
 				 	               enableMouseTracking: true
 				 	            } ,
-				 	            {name: '주간단위 10년평균(\'07~\'16)',
+				 	            {name: $("#series2").val(), //주간단위 10년평균('07~'16)
 				 	           	 color: '#009DFF', //#0000cc            	 
 				 	           	connectNulls:false, data: []} ,
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
-				 	            {name: '29년평균(\'88~\'16)',
+				 	            {name: $("#series3").val(),//29년평균('88~'16)
 				 	           	 color: '#117A65', //#0000cc            	 
 				 	           	 connectNulls:false, 
 				 	             showInLegend: true,
@@ -513,7 +515,7 @@
 				 	               },
 				 	               enableMouseTracking: true
 				 	            } ,
-				 	            {name: '주간단위 29년평균(\'88~\'16)',
+				 	            {name: $("#series4").val(),//주간단위 29년평균('88~'16)
 				 	           	 color: '#229954', //#0000cc            	 
 				 	           	connectNulls:false, data: []} ,
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
@@ -521,7 +523,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				 	           	
 				 	           	
 				 	            {
-			 	           		name: '역대최고/최저',
+			 	           		name: $("#series5").val(),//역대 최고/최
 				 	            type: 'arearange',
 				 	            lineWidth: 0,
 				 	            
@@ -558,7 +560,7 @@
 	        } //$.ajax
 		 	,cache: false
 		});
-		
+		//alert($('#series1').val() + ' / ' + $('#mainTitle').val());
 	}); //JCV good to go sir //end of $.ready
 
 
@@ -570,6 +572,52 @@
 <body id="fabulousbdtc">
 	<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
 	<!-- 전체 레이어 시작 -->
+	
+	<!-- title -->
+	<c:set var="mainTitle"><spring:message code="trend.recent.titile"/></c:set>
+	<input id="mainTitle" type="hidden" value="${mainTitle}"/>
+	
+	<!-- '07 -'16 mean  -->
+	<c:set var="series1"><spring:message code="trend.recent.series.10years.mean"/></c:set>
+	<input id="series1" type="hidden" value="${series1}"/>
+	
+	<!-- '07 -'16 weekly mean  -->
+	<c:set var="series2"><spring:message code="trend.recent.series.10years.mean.weekly"/></c:set>
+	<input id="series2" type="hidden" value="${series2}"/>
+	
+	<!-- '88 -'16 mean  -->
+	<c:set var="series3"><spring:message code="trend.recent.series.30years.mean"/></c:set>
+	<input id="series3" type="hidden" value="${series3}"/>
+	
+	<!-- '88 -'16 weekly mean  -->
+	<c:set var="series4"><spring:message code="trend.recent.series.30years.mean.weekly"/></c:set>
+	<input id="series4" type="hidden" value="${series4}"/>
+	
+	<!-- sd -->
+	<c:set var="series5"><spring:message code="trend.recent.series.lowest.and.highest"/></c:set>
+	<input id="series5" type="hidden" value="${series5}"/>
+	
+	<!-- lowest title -->
+	<c:set var="lowest_leadingStr"><spring:message code="trend.recent.lowest"/></c:set>
+	<input id="lowest_leadingStr" type="hidden" value="${lowest_leadingStr}"/>
+	
+	<!-- 1st lowest -->
+	<c:set var="lowest_1st"><spring:message code="trend.recent.lowest.first"/></c:set>
+	<input id="lowest_1st" type="hidden" value="${lowest_1st}"/>
+	
+	<!-- 2nd lowest -->
+	<c:set var="lowest_2nd"><spring:message code="trend.recent.lowest.second"/></c:set>
+	<input id="lowest_2nd" type="hidden" value="${lowest_2nd}"/>
+	
+	<!-- 3rd lowest -->
+	<c:set var="lowest_3rd"><spring:message code="trend.recent.lowest.third"/></c:set>
+	<input id="lowest_3rd" type="hidden" value="${lowest_3rd}"/>
+	
+	<!-- axis title -->
+	<c:set var="axisTitle"><spring:message code="timeseries.chart.axis.title.million"/></c:set>
+	<input id="axisTitle" type="hidden" value="${axisTitle}"/>
+	
+	
 	
 	<!-- header-->
 	<div id="meHeader">
@@ -588,37 +636,31 @@
             	
             	
 	             <div class="vcenter">
-	            	<div class="pull-left" style="margin-right: 15px;">
-	            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;" id="btn_getMostRecentOne">최근</button>
-	            	</div>
-	            	
-	            	<div class="pull-left">
-	            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
-	            			 onclick="getDateCalculated(this.id)"></button>
-	            	</div>
-
-
-					<div id="retrievalRangeSelector" class="dropdown select pull-left"
-						style="margin-left: 3px; margin-right: 3px">
-						<button class="  btn-small dropdown-toggle " type="button"
-							id="menu1" data-toggle="dropdown" style="margin-top: 6px;">
-							<span class="selected" id="1" value="WEEK">1주일</span><span
-								class="caret"></span>
-						</button>
-						<ul class="dropdown-menu option" role="menu">
-							<li id="1" role="presentation" value="WEEK"><a
-								role="menuitem" tabindex="-1">1주일</a></li>
-							<li id="2" role="presentation" value="MONTH"><a
-								role="menuitem" tabindex="-1">1개월</a></li>
-							<li id="3" role="presentation" value="YEAR"><a
-								role="menuitem" tabindex="-1">1년</a></li>
-							<!-- 
+		            	<div class="pull-left" style="margin-right: 15px;">
+		            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;text-transform: none;" id="btn_getMostRecentOne"><spring:message code="button.latest.stuff"/></button>
+		            	</div>
+		            	
+		            	<div class="pull-left">
+		            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
+		            			 onclick="getDateCalculated(this.id)"></button>
+		            	</div>
+	
+	
+					<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
+					    <button class="  btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
+						    	<span class="selected" id="1" value="WEEK"><spring:message code="dropdown.seeking.interval.weekly"/></span><span class="caret"></span>
+					    	</button>
+					    <ul class="dropdown-menu option" role="menu" >
+					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.weekly"/></a></li>
+					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.monthly"/></a></li>
+					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.annually"/></a></li>
+					      <!-- 
 					      <li role="presentation" class="divider"></li>
 					       -->
-						</ul>
-					</div>
+					    </ul>
+				    </div>
 
-					<div class="pull-left">
+				<div class="pull-left">
 	            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
 	            			onclick="getDateCalculated(this.id)"></button>
 	            	</div>
@@ -627,8 +669,8 @@
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>해빙감시</a></li>
-						<li><a>최근해빙변화</a></li>
+						<li><a><spring:message code="nav.monitoring"/></a></li>
+						<li><a><spring:message code="nav.monitoring.trend.current"/></a></li>
 					</ul>
             	</div>
             </div>

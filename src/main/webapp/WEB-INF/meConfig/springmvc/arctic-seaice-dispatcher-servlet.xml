@@ -36,7 +36,12 @@
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:contentType="text/html;charset=UTF-8"
-	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"
+	    
+	    p:requestContextAttribute="requestContext"
+	    
+	    />
+	    
      
     
 

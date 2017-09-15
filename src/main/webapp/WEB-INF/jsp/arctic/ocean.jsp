@@ -220,7 +220,7 @@
 									var myDate = new Date(this.value);
 									var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 								  //return Highcharts.dateFormat('%e. %b',newDateMs);
-			//						return Highcharts.dateFormat('%m월 %d일',newDateMs);
+			//						return Highcharts.dateFormat('%b %e',newDateMs);
 								   return Highcharts.dateFormat('%b',newDateMs);
 								}
 							},
@@ -255,9 +255,9 @@
 				        	
 				            title: {
 				            	useHTML: true,
-				                text: "해빙 면적 (x10<sup>5</sup> ㎢)",
+				                text: $('#axisTitle').val() + " (x10<sup>5</sup> ㎢)",
 			                	style : {
-			                		font:'normal 12px Dotum'
+			                		font:'normal 12px NanumGothic'
 									//color : '#000000'
 			                	}	
 				            },
@@ -297,7 +297,7 @@
 				        	//Tertiary yAxis~
 				        	opposite:true,
 				        	title: {
-			                text: '해빙 표면거칠기 (cm)',
+			                text: $('#axisTitle_rou').val(),
 			            	style : {
 			            		font:'normal 12px Dotum'
 								//color : '#000000'
@@ -330,7 +330,7 @@
 				            	var myDate = new Date(this.x);
 				            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 				                var s = this.series.name + '<br/>';
-								s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+								s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 			//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 								s+= '<b>'+this.y + '</b>'
 			//					Highcharts.dateFormat('%Y. %m. %d.', newDateMs)+'<br/>';
@@ -383,35 +383,35 @@
 				        },
 				        series: [
 					 	            {
-					 	             name: '\'07 해빙면적',
+					 	             name: '\'07 '+ $('#axisTitle').val(),
 					 	               color: '#CC0000' ,
 					     	           connectNulls:false, data: []},
-					 	        	{name: '\'07 해빙 표면거칠기',
+					 	        	{name: '\'07 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#CC0000',
 					 	           	   dashStyle : 'Dash',
 					 	           	   yAxis:1,
 					 	              connectNulls:false, data: []}, 
-					 	        	{name: '\'12 해빙면적',
+					 	        	{name: '\'12 '+ $('#axisTitle').val(),
 					 	           	   color: '#3366CC',    	 
 					 	               connectNulls:false, data: []}, 
-					 	        	{name: '\'12 해빙 표면거칠기',
+					 	        	{name: '\'12 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#3366CC',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           		yAxis:1,
 					 	           	    connectNulls:false, data: []}, 
-					 	        	{name: '\'16 해빙면적',
+					 	        	{name: '\'16 '+ $('#axisTitle').val(),
 					 	           	   color: '#424143',    	 
 					 	               connectNulls:false, data: []}, 
-					 	        	{name: '\'16 해빙 표면거칠기',
+					 	        	{name: '\'16 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#424143',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           		yAxis:1,
 					 	           	    connectNulls:false, data: []}, 
-					 	        	{name: '\'17 해빙면적',
+					 	        	{name: '\'17 '+ $('#axisTitle').val(),
 					 	           	   color: '#000000',
 					 	           	   lineWidth: 1.5,
 					 	           	   connectNulls:false, data: []}, 
-					 	        	{name: '\'17 해빙 표면거칠기',
+					 	        	{name: '\'17 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	             	lineWidth: 1.5,
@@ -473,7 +473,7 @@
 									var myDate = new Date(this.value);
 									var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 								  //return Highcharts.dateFormat('%e. %b',newDateMs);
-			//						return Highcharts.dateFormat('%m월 %d일',newDateMs);
+			//						return Highcharts.dateFormat('%b %e',newDateMs);
 								   return Highcharts.dateFormat('%b',newDateMs);
 								}
 							},
@@ -508,9 +508,9 @@
 							
 				            title: {
 				            	useHTML: true,
-				                text: "해빙 면적 (x10<sup>5</sup> ㎢)",
+				                text: $('#axisTitle').val() + " (x10<sup>5</sup> ㎢)",
 			                	style : {
-			                		font:'normal 12px Dotum'
+			                		font:'normal 12px NanumGothic'
 									//color : '#000000'
 			                	}	
 				            },
@@ -549,7 +549,7 @@
 				        	//Tertiary yAxis~
 				        	opposite:true,
 				        	title: {
-			                text: '해빙 표면거칠기 (cm)',
+			                text: $('#axisTitle_rou').val(),
 			            	style : {
 			            		font:'normal 12px Dotum'
 								//color : '#000000'
@@ -581,7 +581,7 @@
 				            	var myDate = new Date(this.x);
 				            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 				                var s = this.series.name + '<br/>';
-								s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+								s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 			//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 								s+= '<b>'+this.y + '</b>'
 			//					Highcharts.dateFormat('%Y. %m. %d.', newDateMs)+'<br/>';
@@ -634,35 +634,35 @@
 				        },
 				        series: [
 					 	            {
-					 	             name: '\'07 해빙면적',
+					 	             name: '\'07 '+ $('#axisTitle').val(),
 					 	               color: '#CC0000' ,
 					     	           connectNulls:false, data: []},
-					 	        	{name: '\'07 해빙 표면거칠기',
+					 	        	{name: '\'07 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#CC0000',
 					 	           	   dashStyle : 'Dash',
 					 	           	   yAxis:1,
 					 	              connectNulls:false, data: []}, 
-					 	        	{name: '\'12 해빙면적',
+					 	        	{name: '\'12 '+ $('#axisTitle').val(),
 					 	           	   color: '#3366CC',    	 
 					 	               connectNulls:false, data: []}, 
-					 	        	{name: '\'12 해빙 표면거칠기',
+					 	        	{name: '\'12 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#3366CC',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           		yAxis:1,
 					 	           	    connectNulls:false, data: []}, 
-					 	           	{name: '\'16 해빙면적',
+					 	           	{name: '\'16 '+ $('#axisTitle').val(),
 						 	           	   color: '#424143',    	 
 						 	               connectNulls:false, data: []}, 
-						 	        	{name: '\'16 해빙 표면거칠기',
+						 	        	{name: '\'16 '+ $('#rou_without_unit').val(),
 						 	           	   color: '#424143',            	 
 						 	           	   dashStyle : 'Dash',
 						 	           		yAxis:1,
 						 	           	    connectNulls:false, data: []}, 
-					 	        	{name: '\'17 해빙면적',
+					 	        	{name: '\'17 '+ $('#axisTitle').val(),
 					 	           	   color: '#000000',
 					 	           	   lineWidth: 1.5,
 					 	           	   connectNulls:false, data: []}, 
-					 	        	{name: '\'17 해빙 표면거칠기',
+					 	        	{name: '\'17 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	             	lineWidth: 1.5,
@@ -720,7 +720,7 @@
 									var myDate = new Date(this.value);
 									var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 								  //return Highcharts.dateFormat('%e. %b',newDateMs);
-			//						return Highcharts.dateFormat('%m월 %d일',newDateMs);
+			//						return Highcharts.dateFormat('%b %e',newDateMs);
 								   return Highcharts.dateFormat('%b',newDateMs);
 								}
 							},
@@ -755,7 +755,7 @@
 							
 				            title: {
 				            	useHTML: true,
-				                text: "해빙 면적 (x10<sup>5</sup> ㎢)",
+				                text: $('#axisTitle').val() + " (x10<sup>5</sup> ㎢)",
 			                	style : {
 			                		font:'normal 12px NanumGothic'
 									//color : '#000000'
@@ -763,7 +763,7 @@
 				            },
 				            labels:{
 					            style : {
-				            		font:'normal 11px NanumGothic'
+				            		font:'normal 11px Dotum'
 									//color : '#000000'
 					            }
 			            	},	
@@ -796,7 +796,7 @@
 				        	//Tertiary yAxis~
 				        	opposite:true,
 				        	title: {
-			                text: '해빙 표면거칠기 (cm)',
+			                text: $('#axisTitle_rou').val(),
 			            	style : {
 			            		font:'normal 12px Dotum'
 								//color : '#000000'
@@ -828,7 +828,7 @@
 				            	var myDate = new Date(this.x);
 				            	var newDateMs = Date.UTC(myDate.getUTCFullYear(), myDate.getUTCMonth() , myDate.getUTCDate());
 				                var s = this.series.name + '<br/>';
-								s+= Highcharts.dateFormat('%m월 %d일', newDateMs)+'<br/>';
+								s+= Highcharts.dateFormat('%b %e', newDateMs)+'<br/>';
 			//	                var s = Highcharts .dateFormat('%e. %b %Y', newDateMs)+'<br/>';
 								s+= '<b>'+this.y + '</b>'
 			//					Highcharts.dateFormat('%Y. %m. %d.', newDateMs)+'<br/>';
@@ -881,35 +881,35 @@
 				        },
 				        series: [
 					 	            {
-					 	             name: '\'07 해빙면적',
+					 	             name: '\'07 '+ $('#axisTitle').val(),
 					 	               color: '#CC0000' ,
 					     	           connectNulls:false, data: []},
-					 	        	{name: '\'07 해빙 표면거칠기',
+					 	        	{name: '\'07 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#CC0000',
 					 	           	   dashStyle : 'Dash',
 					 	           	   yAxis:1,
 					 	              connectNulls:false, data: []}, 
-					 	        	{name: '\'12 해빙면적',
+					 	        	{name: '\'12 '+ $('#axisTitle').val(),
 					 	           	   color: '#3366CC',    	 
 					 	               connectNulls:false, data: []}, 
-					 	        	{name: '\'12 해빙 표면거칠기',
+					 	        	{name: '\'12 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#3366CC',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           		yAxis:1,
 					 	           	    connectNulls:false, data: []}, 
-					 	           	{name: '\'16 해빙면적',
+					 	           	{name: '\'16 '+ $('#axisTitle').val(),
 					 	           	   color: '#424143',    	 
 					 	               connectNulls:false, data: []}, 
-					 	        	{name: '\'16 해빙 표면거칠기',
+					 	        	{name: '\'16 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#424143',            	 
 					 	           	   dashStyle : 'Dash',
 					 	           		yAxis:1,
 					 	           	    connectNulls:false, data: []},     
-					 	        	{name: '\'17 해빙면적',
+					 	        	{name: '\'17 '+ $('#axisTitle').val(),
 					 	           	   color: '#000000',
 					 	           	   lineWidth: 1.5,
 					 	           	   connectNulls:false, data: []}, 
-					 	        	{name: '\'17 해빙 표면거칠기',
+					 	        	{name: '\'17 '+ $('#rou_without_unit').val(),
 					 	           	   color: '#000000',            	 
 					 	           	   dashStyle : 'Dash',
 					 	             	lineWidth: 1.5,
@@ -1059,12 +1059,19 @@
 	    <c:import url="/arcticPageLink.do?link=main/inc/meNavTop" />
 	</div>
 	
-	<!-- 
-		<div id="dateHandler">
-			<c   import url="/arcticPageLink.do?link=main/inc/dateChooser"/>
-		</div>	
-	-->
+	<!-- axis title -->
+	<c:set var="axisTitle"><spring:message code="timeseries.chart.axis.title.million"/></c:set>
+	<input id="axisTitle" type="hidden" value="${axisTitle}"/>
+	<c:set var="axisTitle_rou"><spring:message code="timeseries.chart.axis.title.roughness"/></c:set>
+	<input id="axisTitle_rou" type="hidden" value="${axisTitle_rou}"/>
+	<c:set var="rou_without_unit"><spring:message code="timeseries.chart.axis.title.rou"/></c:set>
+	<input id="rou_without_unit" type="hidden" value="${rou_without_unit}"/>
 	
+	<!-- context menu -->
+	<c:set var="saveImage"><spring:message code="ctx.menu.save.image"/></c:set>
+	<c:set var="printImage"><spring:message code="ctx.menu.save.print"/></c:set>
+	<input id="saveImage" type="hidden" value="${saveImage}"/>
+	<input id="printImage" type="hidden" value="${printImage}"/>
 	
 	<!--dateChoooooser--> 
 	<!--dateChoooooser--> 
@@ -1079,48 +1086,41 @@
             	
             	
 	            <div class="vcenter">
-	            	<div class="pull-left" style="margin-right: 15px;">
-	            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;" id="btn_getMostRecentOne">최근</button>
-	            	</div>
-	            	
-	            	<div class="pull-left">
-	            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
-	            			 onclick="getDateCalculated(this.id)"></button>
-	            	</div>
-	            	
-	            	
-	            	<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
+	            		<div class="pull-left" style="margin-right: 15px;">
+		            		<button  type="button" class="meBtn meBtn-primary meBtn-lg outline " style="margin-top:2px;text-transform: none;" id="btn_getMostRecentOne"><spring:message code="button.latest.stuff"/></button>
+		            	</div>
+		            	
+		            	<div class="pull-left">
+		            		<button  id="btn_prev" type="button" class="meBtn meBtn-primary  fa fa-chevron-left"
+		            			 onclick="getDateCalculated(this.id)"></button>
+		            	</div>
+	
+	
+					<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
 					    <button class="  btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
-					    	<span class="selected" id="1" value="WEEK">1주일</span><span class="caret"></span>
-				    	</button>
+						    	<span class="selected" id="1" value="WEEK"><spring:message code="dropdown.seeking.interval.weekly"/></span><span class="caret"></span>
+					    	</button>
 					    <ul class="dropdown-menu option" role="menu" >
-					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" href="#">1주일</a></li>
-					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" href="#">1개월</a></li>
-					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" href="#">1년</a></li>
+					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.weekly"/></a></li>
+					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.monthly"/></a></li>
+					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.annually"/></a></li>
 					      <!-- 
 					      <li role="presentation" class="divider"></li>
 					       -->
 					    </ul>
 				    </div>
-				    
-				    <!-- 
-				    <select id="retrievalIntervalChooser" style="font-size: 9pt;">
-						<option value="MONTH">1 Month</option>
-						<option value="YEAR">1 Year</option>
-					</select>
-				     -->
-				    
-	            	<div class="pull-left">
-	            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
-	            			onclick="getDateCalculated(this.id)"></button>
-	            	</div>
+					    
+		            	<div class="pull-left">
+		            		<button  id="btn_next" type="button" class="meBtn meBtn-primary fa fa-chevron-right"  
+		            			onclick="getDateCalculated(this.id)"></button>
+		            	</div>
 	            </div>	
             
            		<div class="pull-right" style="padding-right:50px;"> 
 	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
 						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a>해빙감시</a></li>
-						<li><a>해역별분포</a></li>
+						<li><a><spring:message code="nav.monitoring"/></a></li>
+						<li><a><spring:message code="nav.monitoring.ocean"/></a></li>
 					</ul>
             	</div>
             </div>
@@ -1195,7 +1195,7 @@
            		
            		var cmenu = new BootstrapMenu('#sd_barents', {
       		      actions: [{
-      		        name: '이미지 저장',
+      		        name: $('#saveImage').val(),
       		        onClick: function() {
       		         	 $('.barents .watermark').watermark({
       		             	path: '${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png',
@@ -1231,7 +1231,7 @@
       			         });
       			      }//onclick
       		    	}, {
-    			        name: '이미지 인쇄',
+    			        name: $('#printImage').val(),
     			        onClick: function() {
     			        	
     		 	         	$('.barents .watermark').watermark({
@@ -1270,7 +1270,7 @@
       		    });	
            		var cmenu2 = new BootstrapMenu('#sd_bering', {
       		      actions: [{
-      		        name: '이미지 저장',
+      		        name: $('#saveImage').val(),
       		        onClick: function() {
       		         	 $('.bering .watermark').watermark({
       		             	path: '${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png',
@@ -1306,7 +1306,7 @@
       			         });
       			      }//onclick
       		    	}, {
-    			        name: '이미지 인쇄',
+    			        name: $('#printImage').val(),
     			        onClick: function() {
     			        	
     		 	         	$('.bering .watermark').watermark({
@@ -1345,7 +1345,7 @@
       		    });	
            		var cmenu3 = new BootstrapMenu('#sd_hudson', {
       		      actions: [{
-      		        name: '이미지 저장',
+      		        name: $('#saveImage').val(),
       		        onClick: function() {
       		         	 $('.hudson .watermark').watermark({
       		             	path: '${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png',
@@ -1381,7 +1381,7 @@
       			         });
       			      }//onclick
       		    	}, {
-    			        name: '이미지 인쇄',
+    			        name: $('#printImage').val(),
     			        onClick: function() {
     			        	
     		 	         	$('.hudson .watermark').watermark({
@@ -1437,12 +1437,12 @@
 			<div class="row">
             	<div class="col-lg-12" style="padding-top: 10px; margin-bottom: -0px; font-size: 12px;">
                		<a href="${pageContext.request.contextPath}/arctic/passage.do" style="float:right;" >
-               		상세해역보기&nbsp;<i class="fa fa-caret-right"></i>
+               		<spring:message code="button.shipping.routes"/>&nbsp;<i class="fa fa-caret-right"></i>
 					</a>
             	</div>
             	
             	<div class="col-lg-12">
-               		<h4 class="page-header">바렌츠해(Barents Sea)의 해빙변화</h4>
+               		<h4 class="page-header"><spring:message code="oceans.barents.title"/></h4>
             	</div>
 	            <div class="col-md-5">
 	            	<div class="hbox">
@@ -1462,7 +1462,7 @@
 			
 			<div class="row">
             	<div class="col-lg-12">
-               		<h4 class="page-header">베링해(Bering Sea)의 해빙변화</h4>
+               		<h4 class="page-header"><spring:message code="oceans.bering.title"/></h4>
             	</div>
 	            <div class="col-md-5">
 	            	<div class="hbox">
@@ -1482,7 +1482,7 @@
 			
 			<div class="row">
             	<div class="col-lg-12">
-               		<h4 class="page-header">허드슨만(Hudson Bay)의 해빙변화</h4>
+               		<h4 class="page-header"><spring:message code="oceans.hudson.title"/></h4>
             	</div>
 	            <div class="col-md-5">
 	            	<div class="hbox">
@@ -1503,7 +1503,7 @@
 			
 			<div class="col-lg-12" style="padding-top: 10px; font-size: 12px;">
            		<a href="${pageContext.request.contextPath}/arctic/passage.do" style="float:right;" >
-               		상세해역보기&nbsp;<i class="fa fa-caret-right"></i>
+               		<spring:message code="button.shipping.routes"/>&nbsp;<i class="fa fa-caret-right"></i>
 				</a>
            	</div>
 			
