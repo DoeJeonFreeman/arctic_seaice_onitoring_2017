@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+<title>��������</title>
+
+<link rel="stylesheet" type="text/css" href="./notification.css">
+
+<script language="JavaScript">
+function setCookie(name, value, expiredays) {
+	var todayDate = new Date();
+	todayDate.setDate(todayDate.getDate() + expiredays);
+	document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+
+function closeWin() { 
+	//if (document.lehit.event.checked) 
+	//setCookie("kr.go.nims.seaice", "no", 1); 
+	self.close(); 
+}
+</script>
+
+
+
+<style>
+	.popup_bodyPadding		{padding:7px 7px 4px 7px;}
+	.popup_border			{background:#dddddd;height:1px;font-size:0px;}
+	.popup_contentBox		{margin-bottom:7px;border-collapse:collapse;}
+	.popup_stl				{height:22px;padding:9px 0 0 9px;border-bottom:1px solid #DDDDDD;}
+	.popup_conLayout		{padding:0 7px 7px 20px;border-bottom:1px solid #DDDDDD;}
+	.popup_block			{padding-top:13px;}
+	.popup_block ul li		{background:url('./pop_down_bu01.gif') 0 6px no-repeat;padding:0 0 5px 9px;font-size:11px;color:#7a7a7a;line-height:160%;}
+	.popup_block ul li.none	{background:url('') 0 6px no-repeat;padding:0 0 5px 9px;font-size:11px;color:#7a7a7a;line-height:160%;}
+	.popup_img				{padding-left:6px;}
+	.pop_imgCaption			{padding:8px 0 0 7px;}
+	.popup_btTop			{margin-top:6px;text-align:right;height:12px;}
+	.popup_blue				{color:#2d57cf;}
+	.popup_blueB			{color:#2d57cf;font-weight:bold;}
+	.popup_blackB			{color:#505050;font-weight:bold;}
+	.popup_orangeU			{color:#ff7401;text-decoration:underline;}
+	.popup_white			{color:#FFFFFF;}
+	
+	.popup_notice_blackB	{color:#343434;font-weight:bold;}
+	.popup_notice_blueBU	{color:#084999;text-decoration:underline;font-weight:bold;}
+	
+	.popup_notice_imgTlBox	{margin:9px 10px 5px 10px;}
+	.popup_notice_imgTl		{border:5px solid #f2f2f2;background:#FFFFFF;padding:9px 0;text-align:center;}
+	.popup_notice_content	{margin:10px 20px 40px 20px;}
+	.popup_notice_textBlock	{padding-top:15px;}
+	.popup_notice_textTl	{background:url('./pop_notice_bu01.gif') no-repeat;padding:0 0 0 17px;color:#343434;height:18px;}
+	.popup_notice_text		{padding:0 0 0 18px;line-height:160%;}
+	
+	.popup_notice_table		{margin-top:10px;border-collapse:collapse;border-top:2px solid #427fc4;}
+	.popup_notice_table th	{border:1px solid #b9cee7;background:#e7f1fb;color:#305f98;font-weight:bold;padding:6px 0 3px 0;}
+	.popup_notice_table td.con_l	{border:1px solid #b9cee7;color:#7a7a7a;padding:3px 0 1px 8px;line-height:150%;}
+	.popup_notice_table td.con_c	{border:1px solid #b9cee7;color:#7a7a7a;padding:3px 0 1px 0px;line-height:150%;text-align:center;}
+	.popup_notice_footer	{background:#f3f6f7;height:25px;}
+	.popup_notice_footer_today	{padding:2px 0 0 5px;}
+	
+	
+	.popup_notice_course	{height:22px;background:url('./pop_notice_bu01.gif') 0 6px no-repeat;padding:2px 0 0 17px;}
+	.popup_notice_line		{height:1px;background:#f0f0f0;}
+	.popup_notice_cont		{padding:7px 0 0 17px;line-height:170%;}
+	.popup_notice_btngo		{padding-top:26px;text-align:center;}
+	.popup_bacground_white  {background:url('./bg_w.gif') repeat-y;}
+</style>
+
+</head>
+
+<body style="overflow-x:hidden;" class="popup_bacground_white">
+<a name="top"></a>
+<div class="popup_bodyPadding">
+<div style="width:436px;">
+	<img src="${pageContext.request.contextPath}/mestrap/assets/notice/top_img.gif">
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="popup_contentBox">
+		<colgroup><col width="1"><col><col width="1"></colgroup>
+		<tbody>
+			<tr>
+				<td></td>
+				<td class="popup_border"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="popup_border"></td>
+				<td>
+				<!-- content -->
+					<div class="popup_stl">
+						&nbsp;<img src="${pageContext.request.contextPath}/mestrap/assets/notice/pop_icon.gif">
+						<font color="#343434"><b><span id="meTitle">설문조사 참여 해주세염</span></b></font>
+					</div>
+					<div class="popup_conLayout">
+						<div class="popup_block">
+						<span id="content">
+						<!--
+						<br><br>
+						-->
+						<img src="${pageContext.request.contextPath}/mestrap/assets/notice/sshot.png">
+						<table width="90%" >
+						<tbody><tr>
+						<td colspan="3">&nbsp;</td></tr>
+						
+						<tr>
+						     <td colspan="4" style="padding-left: 20px;"><a target="_blank" href="http://seaice.kma.go.kr">http://seaice.kma.go.kr</a></td>
+						</tr>
+						</tbody></table>
+						 <br>
+		
+						</span>
+						</div>
+					</div>
+				</td>
+				<td class="popup_border"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="popup_border"></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- footer -->
+	<div class="pop_footer">
+	<table width="100%" border="0">
+	<tbody><tr>
+		<td class="footer_btn"><a href="javascript:closeWin();"><img src="${pageContext.request.contextPath}/mestrap/assets/notice/btn_close.gif" alt="close"></a></td>
+	</tr>
+	</tbody></table>
+	</div>
+
+</div>
+</div>
+
+</body></html>
