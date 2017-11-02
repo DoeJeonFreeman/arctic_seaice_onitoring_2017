@@ -59,6 +59,7 @@
 	
  	$(document).ready(function(){
  		changeImgSrc("<c:out value="${seaRoute.compbegindateInString}" />","<c:out value="${seaRoute.compbegindate4View}" />","<c:out value="${seaRoute.sensor}" />");
+ 	
 	}); 
  
  
@@ -224,7 +225,7 @@
 		            	}
 					},
 					title: {
-			            text: '바렌츠해(Barents Sea)의 해빙 면적변화',
+			            text: (isLocal)? '바렌츠해(Barents Sea)의 해빙 면적변화' : 'Barents Sea ice extent changes',
 			            align: 'center',
 			            //x:50,
 			            style:{
@@ -433,7 +434,7 @@
 				 	        	{name: '\'17',
 				 	           	 color: '#000000',            	 
 				 	           	connectNulls:false, data: []}, 
-				 	            {name: ' 모두 선택',
+				 	            {name: ' '+$('#showAll').val(),
 				 	           	 color: '#ffffff', //#0000cc            	 
 				 	           	connectNulls:false, data: []}]
 			        ,legend: {
@@ -491,7 +492,7 @@
 		            	}
 					},
 					title: {
-			            text: '바렌츠해(Barents Sea)의 해빙 표면거칠기변화',
+			            text:  (isLocal)? '바렌츠해(Barents Sea)의 해빙 표면거칠기 변화' : 'Barents Sea ice surface roughness changes',
 			            align: 'center',
 			            //x: 50,
 			            style:{
@@ -704,7 +705,7 @@
 				 	        	{name: '\'17',
 				 	           	 color: '#000000',            	 
 				 	           	connectNulls:false, data: []}, 
-				 	            {name: ' 모두 선택',
+				 	            {name: ' '+$('#showAll').val(),
 				 	           	 color: '#ffffff', //#0000cc            	 
 				 	           	connectNulls:false, data: []}]
 			 	          ,legend: {
@@ -752,16 +753,20 @@
 			subtractPointData(roughnessSeriesJson[whichRoute], 'psgRou');
 			//3
 			//change subtitle.. arg 0=title 1=subtitle
-//			$('#psgExt').highcharts().setTitle({text:$('#routeSelector .selected').attr('meLatLng') + ' 해빙 면적'},undefined); 
-//			$('#psgRou').highcharts().setTitle({text:$('#routeSelector .selected').attr('meLatLng') + ' 해빙 표면거칠기'},undefined);
-			var extChartTitle = $('#routeSelector .selected').text() +'(' +$('#routeSelector .selected').attr('ename') + ')의 해빙 면적변화';
-			var rouChartTitle = $('#routeSelector .selected').text() +'(' +$('#routeSelector .selected').attr('ename') + ')의 해빙 표면거칠기변화';
+
+//			var extChartTitle = $('#routeSelector .selected').text() + '(' +$('#routeSelector .selected').attr('ename') + ')의 해빙 면적변화';
+			var extChartTitle = $('#routeSelector .selected').text() + ((isLocal)? '(' +$('#routeSelector .selected').attr('ename') + ')' :' ')		+ $('#extTitle').val();
+//			var rouChartTitle = $('#routeSelector .selected').text() + '(' +$('#routeSelector .selected').attr('ename') + ')의 해빙 표면거칠기변화';
+			var rouChartTitle = $('#routeSelector .selected').text() + ((isLocal)? '(' +$('#routeSelector .selected').attr('ename') + ')' :' ') 		+ $('#rouTitle').val();
+			
 			$('#psgExt').highcharts().setTitle({text:extChartTitle},undefined);// xx해 해빙면적 
 			$('#psgRou').highcharts().setTitle({text:rouChartTitle},undefined);// xx해 해빙 표면거칠기
 			//4
 			$('#lbl_latlonRange').text($('#routeSelector .selected').attr('meLatLng'));
 			//alert("pasaageName ~ setTItle " + whichRoute);
 		});
+		
+		//$("ul.djf li:nth-child(1)").click();
 		
 	}); //JCV good to go sir
 
@@ -899,7 +904,16 @@
 	<c:set var="extTrailling"><spring:message code="sdist.ext.title.trailling.str"/></c:set>
 	<input id="extTrailling" type="hidden" value="${extTrailling}"/>
 	
-		<!--dateChoooooser--> 
+	<!-- title.ext -->
+	<c:set var="extTitle"><spring:message code="shipping.routes.chart.ext.title"/></c:set>
+	<input id="extTitle" type="hidden" value="${extTitle}"/>
+	<!-- title.rou -->
+	<c:set var="rouTitle"><spring:message code="shipping.routes.chart.rou.title"/></c:set>
+	<input id="rouTitle" type="hidden" value="${rouTitle}"/>
+	
+	
+	
+	<!--dateChoooooser--> 
 	<!--dateChoooooser--> 
 	<!--dateChoooooser--> 
 	<header class="meControllPanel">
@@ -1057,7 +1071,7 @@
         	           		
         	           		var cmenu = new BootstrapMenu('#psgImg', {
 			      		      actions: [{
-			      		        name: '이미지 저장',
+			      		        name: $('#saveImage').val(),
 			      		        onClick: function() {
 			      		         	 $('.watermark').watermark({
 			      		             	path: '${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png',
@@ -1093,7 +1107,7 @@
 			      			         });
 			      			      }//onclick
 			      		    	}, {
-			    			        name: '이미지 인쇄',
+			    			        name: $('#printImage').val(),
 			    			        onClick: function() {
 			    			        	
 			    		 	         	$('.watermark').watermark({
@@ -1171,9 +1185,9 @@
 			       		
 						<div id="routeSelector" class="dropdown select pull-left">
 						    <button class="btn-small dropdown-toggle " type="button"  data-toggle="dropdown" style="margin-top:5px;width:120px;">
-						    	<span class="selected" ename="Barents Sea" id="passage1" meIdx="1" meLatLng="바렌츠해 (lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents"><spring:message code="shipping.routes.dropdown.barents"/></span><span class="caret"></span>
+						    	<span class="selected" ename="Barents Sea" id="passage1" meIdx="1" meLatLng="(lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents"><spring:message code="shipping.routes.dropdown.barents"/></span><span class="caret"></span>
 					    	</button>
-						    <ul class="dropdown-menu option" role="menu" >
+						    <ul class="dropdown-menu option djf" role="menu" >
 						      <li id="passage1" ename="Barents Sea" meIdx="1" meLatLng="(lat: 65 ~ 80N, lon: 20 ~ 60E)" value="barents"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.barents"/></a></li>
 						      <li id="passage2" ename="Kara Sea" meIdx="2" meLatLng="(lat: 70 ~ 80N, lon: 60 ~ 100E)" value="kara"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.kara"/></a></li>
 						      <li id="passage3" ename="Laptev Sea" meIdx="3" meLatLng="(lat: 70 ~ 80N, lon: 100 ~ 135E)" value="laptev"><a role="menuitem" tabindex="-1" ><spring:message code="shipping.routes.dropdown.laptev"/></a></li>

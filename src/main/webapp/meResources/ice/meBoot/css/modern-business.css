@@ -7,6 +7,37 @@
 
 /* Print styling */
 
+
+
+.block {
+  /* width: 100px; */
+  /*float: left;*/
+    display: inline-block;
+    font-size:11px;
+    zoom: 1;
+}
+
+#lbl_mean10 {
+    color: #000;
+    text-decoration: none;
+}
+#lbl_lbl_mean10:hover, #lbl_lbl_mean10:focus {
+    color: #000;
+    text-decoration: underline;
+}
+
+#lbl_mean30 {
+    color: #000;
+    text-decoration: none;
+}
+#lbl_lbl_mean30:hover, #lbl_lbl_mean30:focus {
+    color: #000;
+    text-decoration: underline;
+}
+
+
+
+
 @media print {
 
 	
@@ -255,7 +286,7 @@ th{
 	text-align: center;
 }
 
-td,th{
+th{
 	padding:5px;
 }
 

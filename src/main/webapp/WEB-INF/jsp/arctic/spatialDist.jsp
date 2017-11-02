@@ -42,8 +42,6 @@
 	<link rel="Stylesheet" href="<c:url value="/js/select2slider/css/ui.slider.extras.css"/>" type="text/css" />
 	 -->
 	 
-	 
-	 
 	<!-- slider -->
 	<script src="<c:url value="/js/carousel/ui/jquery-ui-1111.js"/>"></script>
 	<link rel="stylesheet" href="<c:url value="/js/carousel/ui/themes/eggplant/jquery-ui.css"/>">
@@ -55,6 +53,7 @@
 	 -->
 	<!-- timer -->
     <script type="text/javascript" src="<c:url value="/js/carousel/jquery.timer.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/carousel/jquery.timer.js"/>"></script>
 	
 	<!-- modal popup -->
 	<script src="<c:url value="/js/modal/bootstrap-modalmanager.js"/>"></script>	
@@ -62,9 +61,25 @@
     <link href="<c:url value="/css/bootstrap-modal-bs3patch.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/bootstrap-modal.css"/>" rel="stylesheet">
     
-	<!-- pan n zoom -->	
+	<!-- pan n zoom
+	 -->	
     <script src="<c:url value="/js/scalable/panzoom/jquery.panzoom.js"/>"></script>
     <script src="<c:url value="/js/scalable/panzoom/jquery.mousewheel.js"/>"></script>
+    
+	 <!-- pan zoom alternative 2017 -->
+	 <!-- pan zoom alternative 2017 -
+ 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.12/jquery.mousewheel.js"></script>
+ 	<link rel="Stylesheet" href="<c:url value="/js/tinySvg/zoom-svg.min.css"/>" type="text/css" />
+	 ->
+    <script src="<c:url value="/js/tinySvg/jquery.zoom-svg.min.js"/>"></script>
+	 <!-- pan zoom alternative 2017 -->
+	 <!-- pan zoom alternative 2017 -->
+	 
+	 
+	 
+	 
+	 
+	 
     
 	<!-- spinner -->	
     <script src="<c:url value="/js/meSpinner/spin.min.js"/>"></script>
@@ -86,6 +101,43 @@
 
 	<style>
 	     #inverted-contain .panzoom { width: 100%; height: 100%; }
+	     
+	     #slideShow {
+		    /* position: relative; */
+		    position: absolute; left:0; top:0;
+		    width: 300px;
+		    height: 200px;
+		    border: 1px solid #444;
+		    list-style: none;
+		    margin: 0;
+		    padding: 0;
+		    /* background: url(http://dummyimage.com/300x200/ccc/fff) */
+		}
+		
+	     #mean_10year {
+		    /* position: relative; */
+		    position: absolute; left:5%; top:0;
+		    /* border: 1px solid #444; */
+		    width:90%; height:auto; 
+		    padding:6px 12px; 
+		    /* margin-left:28px; */
+		    /* display: none */
+		}
+	     #mean_30year {
+		    /* position: relative; */
+		    position: absolute; left:5%; top:0;
+		    /* border: 1px solid #444; */
+		    width:90%; height:auto; 
+		    padding:6px 12px; 
+		   /*  margin-left:28px; */
+		    /* display: none */
+		}
+		
+		#slideShow li {
+		    position: absolute;
+		    left: 0; top: 0;
+		    display: none
+		}
 	</style>
 	
 	
@@ -125,6 +177,13 @@
 	<input id="saveImage" type="hidden" value="${saveImage}"/>
 	<input id="printImage" type="hidden" value="${printImage}"/>
 	
+	<c:set var="lgend_mean10"><spring:message code="sdist.ext.mean.legend2"/></c:set>
+	<input id="lgend_mean10" type="hidden" value="${lgend_mean10}"/>
+	
+	<c:set var="lgend_mean30"><spring:message code="sdist.ext.mean.legend1"/></c:set>
+	<input id="lgend_mean30" type="hidden" value="${lgend_mean30}"/>
+	
+	
 		<div class="container" align="left">
             <div class="row form-horizontal">
             	 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5 demo vcenter">
@@ -163,19 +222,29 @@
 		            			onclick="getDateCalculated(this.id)"></button>
 		            	</div>
 		            	
+	            		<div id="periodSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px; display:none">|&nbsp;&nbsp;&nbsp;<spring:message code="sdist.select.period"/>: &nbsp;
+					    <button class=" btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
+						    	<span class="selected" id="1" value="WEEKLY"><spring:message code="sdist.select.period.weekly"/></span><span class="caret"></span>
+					    	</button>
+					    <ul class="dropdown-menu option" role="menu" >
+					      <li id="1" role="presentation" value="WEEKLY"><a role="menuitem" tabindex="-1" ><spring:message code="sdist.select.period.weekly"/></a></li>
+					      <li id="2" role="presentation" value="MONTHLY"><a role="menuitem" tabindex="-1" ><spring:message code="sdist.select.period.monthly"/></a></li>
+					    </ul>
+				    </div>
+	            	
 		            	<div class="pull-left" style="margin-left:10px;margin-top:10px;">
 		            		|&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="trigger"><spring:message code="sdist.view.controller.show"/> <i class="fa fa-caret-down"></i></a>
 		            	</div>
-	            	
 	            </div>	
             
            		<div class="pull-right" style="padding-right:50px;"> 
-	            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
-						<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
-						<li><a><spring:message code="nav.monitoring"/></a></li>
-						<li><a><spring:message code="nav.monitoring.sdist"/></a></li>
-					</ul>
-            	</div>
+		            	<ul id="breadcrumbs-one" class="pull-right vcenter" >
+							<li><a href="<c:url value='/cmm/main/mainPage.do'/>">Home</a></li>
+							<li><a><spring:message code="nav.monitoring"/></a></li>
+							<li><a><spring:message code="nav.monitoring.sdist"/></a></li>
+						</ul>
+	            	</div>
+	            	
             </div>
 		     
 		            
@@ -189,6 +258,18 @@
 	        		$('#'+i+' .selected').attr('id',o);
 	        		$('#'+i+' .selected').text(v);
 	        		$('#'+i+' .selected').attr('value',valStr);
+	        		//var haha = $('#retrievalRangeSelector .selected').attr('value');
+	        	});
+	        	
+	        	$('#periodSelector').on('click','.option li',function(){
+	        		var i = $(this).parents('.select').attr('id');
+	        		var v = $(this).children().text();
+	        		var o = $(this).attr('id');
+	        		var valStr = $(this).attr('value'); // (WEEKLY || MONTHLY)
+	        		$('#'+i+' .selected').attr('id',o);
+	        		$('#'+i+' .selected').text(v);
+	        		$('#'+i+' .selected').attr('value',valStr);
+	        		alert(valStr);
 	        		//var haha = $('#retrievalRangeSelector .selected').attr('value');
 	        	});
         	
@@ -206,7 +287,7 @@
     					var mRecent = new Date(dStrArr[0],dStrArr[1]-1,dStrArr[2]);
     					meRequest(moment(mRecent));
     		      	}else{
-	        			changeImgSrc("<c:out value="${sdist.compbegindateInString}" />","<c:out value="${sdist.compbegindate4View}" />" ,"<c:out value="${sdist.extentInkmSquared}" />","<c:out value="${sdist.sensor}" />");
+	        			changeImgSrc("<c:out value="${sdist.compbegindateInString}" />","<c:out value="${sdist.compbegindate4View}" />" ,"<c:out value="${sdist.extentInkmSquared}" />","<c:out value="${sdist.sensor}" />","<c:out value="${sdist.compbegindate4legend}" />","<c:out value="${sdist.compbegindate4legend30}" />");
     		      	}
         		});
         	
@@ -238,6 +319,10 @@
 //	           	    $(this).text(meNewText);
 	           	    $(this).html(meNewText);
            		});
+           		
+	        		function getAppropriateLegend(){
+	        			return (isLocal)? '${pageContext.request.contextPath}/assets/arctic/rouIndex_labeled.png' : '${pageContext.request.contextPath}/assets/arctic/rouIndex_labeled_en.png';
+	        		}
 		        	
 		    </script>    
 		        
@@ -338,16 +423,41 @@
 							<div class="sensor_ext"><h4>${sdist.sensor} <spring:message code="sdist.ext.title.trailling.str"/></h4></div>
 							<p>${sdist.compbegindate4View}</p>
 						</div>
-						<p>
-							<span class="mePopup_ext">
-								<img id="img_ssmi_ext"  alt="SSMIS 북극해빙면적" onerror="return errOccuredWhileChangingSource(this)"
-									class="btn img-responsive watermark" style="width:90%; height:auto;">
-							</span>	
-						</p>
+						<div style="position:relative;" >
+							<p>
+								<span class="mePopup_ext">
+									<img id="mean_30year" class="img-responsive btn"/>
+								</span>
+							</p>
+							<p>
+								<span class="mePopup_ext">
+									<img id="mean_10year" class="img-responsive btn"/>
+								</span>
+							</p>
+							<p>
+								<span class="mePopup_ext">
+									<img id="img_ssmi_ext"  alt="SSMIS 북극해빙면적" onerror="return errOccuredWhileChangingSource(this)"
+										class="btn img-responsive watermark" style="width:90%; height:auto;">
+								</span>	
+							</p>
+						</div>
+						
 						<div align="center" class="titleEnhancer" > 
 							<div id="extInKm"><spring:message code="sdist.ext.title.trailling.str"/> = <span>${sdist.extentInkmSquared}</span> ㎢</div>
 							<div>(<spring:message code="sdist.ext.weekly.mean"/>)</div>
 						</div>
+						
+					<!--  -->
+					<!--  -->
+						<div align="center" class="form-horizontal"  >
+							<div class="block"  style="width:22px;height:4px;background-color:#ffc0cb;"></div>
+							<div class="block" style="padding-right:10px;"><a href="#" id="lbl_mean30" ><spring:message code="sdist.ext.mean.legend1"/></a></div>
+							<div class="block" style="width:22px;height:4px;background-color:#006400;"></div>
+							<div class="block"><a href="#" id="lbl_mean10" ><spring:message code="sdist.ext.mean.legend2"/></a></div>
+						</div>
+					<!--  -->
+					<!--  -->
+						
 					</div>
 	            </div>
 	            
@@ -365,7 +475,8 @@
 						</p>
 						<div align="center" > 
 							<img id="legend_rou" alt="SSMIS 북극해빙거칠기 범례" class="img-responsive" style="width:77%; height:auto;"
-								src="<c:url value='/assets/arctic/'/>rouIndex_labeled.png">
+								src="<c:url value='/assets/arctic/'/>rouIndex_labeled.png" 
+								onload="this.onload=null; this.src=getAppropriateLegend();">
 						</div>
 					</div>
           	  	</div>
@@ -406,6 +517,14 @@
 	        currDateString = "${sdist.compbegindateInString}";
 	        titleString = "${sdist.compbegindate4View}";
 			
+	        $("#mean_10year").attr("src","<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${sdist.compbegindateInString}_decadal.png' />"); // 
+	        $("#mean_30year").attr("src","<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${sdist.compbegindateInString}_clim.png' />" ); // 
+	        
+	        
+	        //$("#lbl_mean10").append('${fn:substring(sdist.compbegindate4legend,0,4) }');
+	         /* fromTo.split(',').join('~\'') */
+	        $("#lbl_mean10").append("${sdist.compbegindate4legend}");
+	        $("#lbl_mean30").append("${sdist.compbegindate4legend30}");
 	        
 	        $('#slider').labeledslider({
 		        min: 0,
@@ -422,7 +541,7 @@
 			 	  	idx = ui.value;
 			 	  	idx *= 1; 
 			 	  	var iceObj = iceList[idx];
-        	        changeImgSrc(iceObj.compbegindateInString, iceObj.compbegindate4View, iceObj.extentInkmSquared, iceObj.sensor);
+        	        changeImgSrc(iceObj.compbegindateInString, iceObj.compbegindate4View, iceObj.extentInkmSquared, iceObj.sensor,iceObj.compbegindate4legend, iceObj.compbegindate4legend30);
 			    },
 		      });	
 	        
@@ -458,9 +577,48 @@
 		      });   
 		      
 		      
+			  $('#lbl_mean10').click(function(e){
+				  	e.preventDefault();
+				    e.stopPropagation();
+				    /* $('#slideShow li:hidden:first').fadeIn(); */
+				    if(!isVisible('mean_10year')){
+					    $('#mean_10year').fadeIn();
+					    $('#lbl_mean10').css('color', '');
+//					    $('#lbl_mean10').text('Hide overlay');
+				    	}else{
+					    $('#mean_10year').fadeOut();
+					    $('#lbl_mean10').css('color', '#ccc');
+//					    $('#lbl_mean10').text('Show overlay');
+				    	}
+			  });
+			  
+			  $('#lbl_mean30').click(function(e){
+				    e.preventDefault();
+				    e.stopPropagation();
+				    /* $('#slideShow li:hidden:first').fadeIn(); */
+				    if(!isVisible('mean_30year')){
+					    $('#mean_30year').fadeIn();
+					    $('#lbl_mean30').css('color', '');
+//					    $('#lbl_mean30').text('Hide overlay2');
+				    	}else{
+					    $('#mean_30year').fadeOut();
+					    $('#lbl_mean30').css('color', '#ccc');
+//					    $('#lbl_mean30').text('Show overlay2');
+				    	}
+			  });
 	        
 		}); //JCV good to go sir
 		
+		
+		//check if exist and is visible
+		function isVisible(id) {
+		    var element = $('#' + id);
+		    if (element.length > 0 && element.css('visibility') !== 'hidden' && element.css('display') !== 'none') {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
 		
 		function pleaseWait(targetDiv){
 			//sysout('pleaseWait(targetDiv):: #'+targetDiv);	
@@ -500,12 +658,12 @@
      			  cache: false,    
      			  data: "selectedDate="+meDateObj.format('YYYY-MM-DD'),
      			  success: function(response){
-        	        changeImgSrc(response.compbegindateInString, response.compbegindate4View, response.extentInkmSquared, response.sensor);
-        	        
-        	        var isInvisible =  ! $("#sliderContainer").is(":visible");
-        	        //console.log('labeledSlider isInvisible:: ' + isInvisible);
-        	        
-if(!isInvisible) meRequestList(meDateObj,meDateObj);
+	        	        changeImgSrc(response.compbegindateInString, response.compbegindate4View, response.extentInkmSquared, response.sensor, response.compbegindate4legend, response.compbegindate4legend30);
+	        	        
+	        	        var isInvisible =  ! $("#sliderContainer").is(":visible");
+	        	        //console.log('labeledSlider isInvisible:: ' + isInvisible);
+	        	        
+					if(!isInvisible) meRequestList(meDateObj,meDateObj);
         	        
      			  },
      			  error: function(){      
@@ -596,11 +754,23 @@ if(!isInvisible) meRequestList(meDateObj,meDateObj);
 		}
 		
 		
-		function changeImgSrc(dateStr,dRangeStr,extValInKmSquared, sensor){
+		function changeImgSrc(dateStr,dRangeStr,extValInKmSquared, sensor, mean10label,mean30label){
+			//평년 및 최근 10년 평균	        /data/IMG/SEAICE/mean_10years.png'
+	        
 	        $("#img_ssmi_ext").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+".png");
 	        $("#img_ssmi_rou").attr("src","<c:url value='/data/IMG/ROUGH/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_rou_"+dateStr+".png");
-$('.sensor_ext h4').text(sensor + ' ' + $('#ext_label').val()); 
-$('.sensor_rou h4').text(sensor + ' ' + $('#rou_label').val()); 
+			
+	        //10-year, 30-year mean overlay
+	        $("#mean_10year").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+"_decadal.png");
+	        $("#mean_30year").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+"_clim.png");
+	        ////10-year label
+	        $("#lbl_mean30").text($('#lgend_mean30').val() + mean30label);
+	        $("#lbl_mean10").text($('#lgend_mean10').val() + mean10label);
+	        
+	        
+			$('.sensor_ext h4').text(sensor + ' ' + $('#ext_label').val()); 
+			$('.sensor_rou h4').text(sensor + ' ' + $('#rou_label').val()); 
+			
 	        $('.dRangeStr_SSMIS p').text(dRangeStr); //or use .html(<strong>textGoesHere</strong>') instead haha
 	        $('#extInKm span').text(extValInKmSquared);
 	        currDateString = dateStr;
@@ -715,21 +885,69 @@ $('.sensor_rou h4').text(sensor + ' ' + $('#rou_label').val());
 	<script id="ajax" type="text/javascript">
 		var currDateString;
 		var titleString;
+		
+		
 		$('.mePopup_ext .btn').on('click', function(e){
 			$( ".spinner" ).remove();
 			pleaseWait('popup_btnset');
 			
 		  	var path = "<c:url value='/data/ASC/SEAICE/Y'/>" + currDateString.substring(0,4) + "/dmsp_ssmis_ice_"   +currDateString+".svg";
 		  	
-		  
-		  $('#icePopup').load(function(){  //Callback Function
-			$( ".spinner" ).remove();
-		  }).attr('src',path);
-		  $('#popupTitle').text($('.sensor_ext h4').html() + '('+titleString+')');
-		  $('#meReset').click();
-		  $('#panzoomDialog').modal('show');
-		  
+			  $('#icePopup').load(function(){  //Callback Function
+				$( ".spinner" ).remove();
+			  /* 
+				$('img.svg').each(function(){
+			        var $img = jQuery(this);
+			        var imgID = $img.attr('id');
+			        var imgClass = $img.attr('class');
+			        var imgURL = $img.attr('src');
+			    
+			        jQuery.get(imgURL, function(data) {
+			            // Get the SVG tag, ignore the rest
+			            var $svg = jQuery(data).find('svg');
+			    
+			            // Add replaced image's ID to the new SVG
+			            if(typeof imgID !== 'undefined') {
+			                $svg = $svg.attr('id', imgID);
+			            }
+			            // Add replaced image's classes to the new SVG
+			            if(typeof imgClass !== 'undefined') {
+			                $svg = $svg.attr('class', imgClass+' replaced-svg');
+			            }
+			    
+			            // Remove any invalid XML tags as per http://validator.w3.org
+			            $svg = $svg.removeAttr('xmlns:a');
+			            
+			            // Check if the viewport is set, else we gonna set it if we can.
+			            if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+			                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+			            }
+			    
+			            // Replace image with new SVG
+			            $img.replaceWith($svg);
+			    
+			        }, 'xml');
+			    });	 	  
+			 	*/    
+			  
+			  }).attr('src',path);
+			  $('#popupTitle').text($('.sensor_ext h4').html() + '('+titleString+')');
+			  $('#meReset').click();
+			  $('#panzoomDialog').modal('show');
+			  
+			  
+			  
+			  
+			//  $("#svg1").zoomSvg();
+			//  $("#icePopup").zoomSvg();
+			  
+			  
+			  
+			  
 		});	
+		
+		
+		
 		
 		$('.mePopup_rou .btn').on('click', function(){
 		  $( ".spinner" ).remove()	
@@ -938,6 +1156,9 @@ $('.sensor_rou h4').text(sensor + ' ' + $('#rou_label').val());
 				         }); 
 				      }//onclick
 			    	}]
+		  
+		  
+		  
 		    });	
 		
 		  
@@ -965,29 +1186,72 @@ $('.sensor_rou h4').text(sensor + ' ' + $('#rou_label').val());
 	        <button class="btn btn-primary zoom-in"><i class="fa fa-fw fa-search-plus"></i> Zoom In &nbsp;</button>
 	        <button class="btn btn-primary zoom-out"><i class="fa fa-fw fa-search-minus"></i> Zoom Out</button>
 	        <button id="meReset" class="btn btn-primary reset">Reset zoom</button>
+	        <!-- 
+	        <button id="mean10" class="btn btn-primary"><i class=""></i> 10 </button>
+	        <button id="mean30" class="btn btn-primary"><i class=""></i> 30 </button>
+	        
+	        <div class="zoom-svg-zoom zoom-svg-zoom-in"> + </div>
+			<div class="zoom-svg-zoom zoom-svg-zoom-rst"> = </div>
+			<div class="zoom-svg-zoom zoom-svg-zoom-out"> - </div>
+	         -->
 	      </div>
 	      
-	      
+			
 	      <div class="panzoom-parent">
-	       	<img id="icePopup" class="panzoom"   width="500"/>
+				
+				
+	       	<img id="icePopup" class="panzoom svg"   width="500"  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 500 400" version="1.1" 
+				preserveAspectRatio="xMinYMid slice" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/"/>
+				
+		<!-- 		
+				<svg id="svg1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 0 500 400" version="1.1" 
+				preserveAspectRatio="xMinYMid slice" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
+					 <defs id="defs3">
+						 <linearGradient id="linearGradient585">
+						 	<stop id="stop586" stop-color="#fff" stop-opacity=".175" offset="0"/>
+						 	<stop id="stop587" stop-color="#fff" stop-opacity=".375" offset="1"/>
+						 </linearGradient>
+						 <linearGradient id="linearGradient582" y2=".60227" x2=".41176" y1=".51136" x1=".48529">
+						 	<stop id="stop580" stop-opacity=".40833" offset="0"/>
+						 	<stop id="stop581" stop-opacity="0" offset="1"/>
+						 </linearGradient>
+						 <linearGradient id="linearGradient584" y2="1.0965" xlink:href="#linearGradient585" x2".32721" y1=".12281" x1=".50735"/>
+						 <linearGradient id="linearGradient589" xlink:href="#linearGradient585"/>
+					 </defs>
+					  <path id="path575" stroke-linejoin="round" d="m93.858 201.9c2.914-12.97 5.827-102.33 32.052-100.89 93.23 2.88 189.38-93.69 259.3 121.07 215.6 100.9 14.99 181.97-155.69 174.77-168.66-7.07-312.66-128.65-135.66-194.95z" fill-opacity=".99167" stroke="#000" stroke-width="10" fill="#d90000"/>
+					  <path id="path576" d="m89.488 230.73c107.8 67.74 285.52 25.94 292.81-7.21 10.19 11.53 0 43.24 0 43.24-46.62 60.54-272.42 47.57-297.18 4.33-2.916-11.53 2.911-36.04 4.368-40.36z" stroke="#000" stroke-width="5"/>
+					  <path id="path578" d="m130.28 122.63c27.68-24.505 148.59 10.09 164.61 28.83 5.83 31.71-148.59 7.2-164.61-28.83z" stroke-width="1pt" fill="url(#linearGradient582)"/>
+					  <path id="path583" d="m130.28 158.66c13.11 30.27 64.09 100.9 150.04 33.15-71.38 2.89-101.97-5.76-150.04-33.15z" stroke-width="1pt" fill="url(#linearGradient584)"/>
+					  <path id="path588" d="m160.87 99.567c18.94 8.643 138.39 41.803 151.5 31.713 14.57-5.77 11.66-8.65 4.37-10.09-11.65 7.2-32.05 11.53-155.87-21.623z" stroke-width="1pt" fill="url(#linearGradient589)"/>
+					  <path id="path590" d="m106.97 246.58c17.48 8.65 71.38 20.18 91.78 21.62 14.56 10.09 7.28 25.95 1.45 37.48-39.33 0-84.49-10.09-96.14-23.06-7.288-12.97-4.375-23.06 2.91-36.04z" fill-opacity=".31667" stroke="#000" stroke-width="1.8783pt" fill="#fff"/>
+				</svg>	
+	       -->
+				
 	      </div>
 	      
 	      
 	      <script>
 	        (function() {
-	          var $section = $('#inverted-contain');
-	          $section.find('.panzoom').panzoom({
-	            $zoomIn: $section.find(".zoom-in"),
-	            $zoomOut: $section.find(".zoom-out"),
-	            $reset: $section.find(".reset"),
-	            startTransform: 'scale(1.0)',
-	            increment: 0.5,
-	            maxScale:3,
-	            minScale: 1,
-	          }).panzoom('zoom');
+	        	
+	        	/* 
+			 */	 
+		          var $section = $('#inverted-contain');
+		          $section.find('.panzoom').panzoom({
+		            $zoomIn: $section.find(".zoom-in"),
+		            $zoomOut: $section.find(".zoom-out"),
+		            $reset: $section.find(".reset"),
+		            startTransform: 'scale(1.0)',
+		            increment: 0.5,
+		            maxScale:5,
+		            minScale: 1,
+	//	          }).panzoom('zoom');
+	          }).panzoom('reset');
 	          
 	          $('#meReset').click();
-	        })();
+				
+				 
+				 
+ 			})();
 	      </script>
 		 </section>
 	</div>

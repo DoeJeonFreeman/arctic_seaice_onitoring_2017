@@ -12,7 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title><spring:message code="global.main.title"/></title>
+	<title>북극해빙감시시스템</title>
+	
+	
 	
 	<script src="${pageContext.request.contextPath}/js/jquery/jquery-1.9.1.js"></script>	
     <script src="${pageContext.request.contextPath}/mestrap/js/bootstrap.min.js"></script>
@@ -24,7 +26,6 @@
     <!-- Custom Fonts -->
     <link href="${pageContext.request.contextPath}/mestrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
-    <link href="${pageContext.request.contextPath}/mestrap/css/modern-business.css" rel="stylesheet">
     
     
 	<!-- LOGGER TRACKING SCRIPT V.30 FOR seaice.kma.go.kr seaice.nimr.go.kr / 56 : FAIL-SAFE TYPE / DO NOT ALTER THIS SCRIPT. -->
@@ -38,9 +39,6 @@
 	     * returns version of IE or false, if browser is not Internet Explorer
 	     */
 	    function detectIE() {
-	    	 
-	    	 	
-	    	 	
 	        var ua = window.navigator.userAgent;
 	        var msie = ua.indexOf('MSIE ');
 	        if (msie > 0) {
@@ -79,6 +77,105 @@
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
     
+    
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <style> 
+		#mask {  
+		    position:absolute;  
+		    z-index:9000;  
+		    background-color:#000;  
+		    display:none;  
+		    left:0;
+		    top:0;
+		} 
+		.window{
+		    display: none;
+		    position:absolute;  
+		    left:10%;
+		    top:78px;
+		    margin-left: 0px;
+		    width:436px;
+		    /* height:500px; */
+		    background-color:#FFF;
+		    z-index:10000;   
+		 }
+	</style>
+	
+	<style>
+		.pop_footer {
+			background-color:#F3F6F7;
+			height:30px;
+			width:100%;
+			margin-bottom:0px;
+		}
+		
+		.footer_btn {
+			text-align:right;
+			padding:7px 10px 0 0;
+		}
+		
+		.popup_bodyPadding		{/*  padding:7px 7px 4px 7px;  */}
+		.popup_border			{background:#dddddd;height:1px;font-size:0px; padding:0px;}
+		.popup_contentBox		{margin-bottom:0px;border-collapse:collapse;}
+		.popup_stl				{height:35px;padding:9px 0 0 9px;border-bottom:1px solid #DDDDDD;}
+		.popup_conLayout		{padding:0 7px 7px 20px;border-bottom:1px solid #DDDDDD;}
+		.popup_block			{padding-top:13px;}
+		.popup_block ul li		{background:url('./pop_down_bu01.gif') 0 6px no-repeat;padding:0 0 5px 9px;font-size:11px;color:#7a7a7a;line-height:160%;}
+		.popup_block ul li.none	{background:url('') 0 6px no-repeat;padding:0 0 5px 9px;font-size:11px;color:#7a7a7a;line-height:160%;}
+		.popup_bacground_white  {background:url('${pageContext.request.contextPath}/mestrap/assets/notice/bg_w.gif') repeat-y;}
+		.popup_contentBox th td {padding : 0px;}
+	
+	</style>
+
+	<script type="text/javascript"> 
+	//<![CDATA[
+	    function wrapWindowByMask(){
+	 
+	        var maskHeight = $(document).height();  
+	        var maskWidth = $(window).width();  
+	 
+	        $("#mask").css({"width":maskWidth,"height":maskHeight});  
+	 
+	        //opacity 60%
+	        $("#mask").fadeIn(0);      
+	        $("#mask").fadeTo("slow",0.6);    
+	 
+	        $(".window").show();
+	 
+	    }
+	 
+	    $(document).ready(function(){
+	        $(".openMask").click(function(e){
+	            e.preventDefault();
+	            wrapWindowByMask();
+	        });
+	 
+	        $(".window .close").click(function (e) {  
+	            e.preventDefault();  
+	            $("#mask, .window").hide();  
+	        });       
+	 
+	        $("#mask").click(function () {  
+	            $(this).hide();  
+	            $(".window").hide();  
+	        });      
+	        
+	        wrapWindowByMask();
+	    });
+	 
+	//]]>
+	</script>
+    
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    
 </head>
 
 
@@ -93,7 +190,6 @@
 	    <c:import url="/arcticPageLink.do?link=main/inc/meNavTop" />
 	</div>
 	
-	
     <!-- Header -->
     <header class="meBGCover">
         <div class="container">
@@ -101,14 +197,14 @@
                 <div class="col-md-10 col-md-offset-2">
             		<div class="intro-heading text-left visible-lg visible-md">&nbsp; </div>
                 	<div class="col-md-4 visible-lg visible-md visible-sm">
-	            		<div class="intro-heading text-left"><spring:message code="global.main.distribution.title"/> </div>
+	            		<div class="intro-heading text-left">SSMIS 해빙분포</div>
     	        		<h4 class="text-left" style="white-space: nowrap;"> ${mostRecentStuff.compbegindate4Main}</h4>
                 	</div>
                 	
                 	<div class="col-md-3" >
 	                	<div class="">
 							<div align="center" class=""> 
-								<div><h4><spring:message code="global.main.distribution.ext.title"/></h4></div>
+								<div><h4>SSMIS 해빙 면적</h4></div>
 								<p>${mostRecentStuff.compbegindate4View}</p>
 							</div>
 							<p  align="center">
@@ -127,7 +223,7 @@
                 	<div class="col-md-3"  style=" min-height: 280px;">
 	                	<div class="">
 							<div align="center" class=""> 
-								<div><h4 style="white-space: nowrap;"><spring:message code="global.main.distribution.rou.title"/></h4></div>
+								<div><h4 style="white-space: nowrap;">SSMIS 해빙 표면거칠기</h4></div>
 								<p>${mostRecentStuff.compbegindate4View}</p>
 							</div>
 							<p  align="center">
@@ -139,11 +235,6 @@
 									</a>	
 								</span>	
 							</p>
-							<!--
-		                 	<a class="btn btn-link-2" href="#">
-		                  		<i class="">해빙분포보기</i>
-		                 	</a>
-							-->
 						</div>
                 	</div>
                 </div>
@@ -160,9 +251,114 @@
     <!-- Page Content -->
     <div class="container">
 
+		<div id ="wrap"> 
+	        <div id = "container">  
+	            <div id="mask"></div>
+	            <div class="window">
+	                <div style="overflow-x:hidden;" class="popup_bacground_white">
+					<a name="top"></a>
+					<div class="popup_bodyPadding">
+	                
+	                <!-- ////////////////////////////////////////////////// -->
+	                	<div style="width:436px;" class="">
+							<img src="${pageContext.request.contextPath}/mestrap/assets/notice/top_img.gif">
+						
+							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="popup_contentBox">
+								<colgroup><col width="1"><col><col width="1"></colgroup>
+								<tbody>
+									<tr>
+										<td></td>
+										<td class="popup_border"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="popup_border"></td>
+										<td>
+										<!-- content -->
+											<div class="popup_stl">
+												&nbsp;<img src="${pageContext.request.contextPath}/mestrap/assets/notice/pop_icon.gif">
+												<font color="#343434"><b><span id="meTitle">북극해빙감시시스템 활용성 강화를 위한 설문조사 안내</span></b></font>
+											</div>
+											<div class="popup_conLayout">
+												<div class="popup_block">
+												<span id="content" style="color:#555">
+													<br>
+													북극해빙 감시시스템 활용성 강화 사업의 일환으로 <br><br>'북극해빙 감시정보 사용자 선호도 조사'를 실시 중입니다.
+													<br><br>
+													방문자 여러분들의 많은 관심과 참여 부탁드립니다. 
+													<br><br>
+													[설문 기간] 2017년 9월 25일 ~ 2017년 10월 31일, 37일 간 	<br>
+													<br>[설문조사 홈페이지 바로가기]
+												<table width="90%" >
+													<tbody><tr>
+													<td colspan="3">&nbsp;</td></tr>
+													
+													<tr>
+													     <td colspan="4" style="padding-left: 20px;"><a target="_blank" href="http://2csolution.iptime.org:8880/survey/index.php/195938?newtest=Y">설문조사 홈페이지로 이동</a></td>
+													</tr>
+													</tbody>
+												</table>
+												<br>
+								
+												</span>
+												</div>
+											</div>
+										</td>
+										<td class="popup_border"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td class="popup_border"></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						
+							<!-- footer -->
+							<div class="pop_footer">
+							<table width="100%" border="0">
+							<tbody><tr>
+								<td class="footer_btn"><a href="javascript:closeWin();"><img src="${pageContext.request.contextPath}/mestrap/assets/notice/btn_close.gif" class="close" style="opacity:1;" alt="close"></a></td>
+							</tr>
+							</tbody></table>
+							</div>
+						
+						</div>
+	                <!-- ////////////////////////////////////////////////// -->
+	                </div></div>
+	                
+	                
+	                
+	                
+						                
+	                
+	                
+	                
+	                
+	                
+	                
+	                
+	                
+	                <!-- 
+	                <p style="text-align:center; background:#ffffff; padding:20px;"><a href="#" class="close">닫기X</a></p>
+	                 -->
+	                 
+	            </div>
+	            <!-- 
+	            <table border="0" cellpadding="0" cellspacing="0" width="100%">       
+	                <tr>
+	                    <td align="center">
+	                    <a href="#" class="openMask">레이어 팝업 발생</a>
+	                    </td>
+	                </tr>       
+	            </table>
+	             -->
+	             
+	        </div>
+	    </div>
 
-   </div>
-   <!-- /.container -->
+    </div>
+    <!-- /.container -->
 	
 	
 <div style="background-color: #f3f3f4; padding-bottom: 15px;">
@@ -209,12 +405,8 @@
 	
 	            <h5 class="section-title"><i class="fa fa-link fa-fw"></i>Links</h5>
 	            <ul class="list-inline" style="padding-top:10px; padding-left:15px; line-height: 40px; ">
-<%-- 	              <li style="padding-right:20px;"><a href="http://kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png" alt="KMA CI"  /></a></li>
-	              <li><a href="http://nmsc.kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/nmsc_ci_creGothicB_sm.png" alt="NMSC CI" /></a></li> --%>
-	              
-	              <li style="padding-right:55px;"><a href="http://kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma.png" alt="KMA CI"  /></a></li>
-	              <li><a href="http://nmsc.kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_nmsc.png" alt="NMSC CI" /></a></li>
-	              
+	              <li style="padding-right:20px;"><a href="http://kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/banner_kma_kr_en.png" alt="KMA CI"  /></a></li>
+	              <li><a href="http://nmsc.kma.go.kr" target="_blank"><img src="${pageContext.request.contextPath}/mestrap/assets/ci/nmsc_ci_creGothicB_sm.png" alt="NMSC CI" width="181"/></a></li>
 	            </ul>
 	          </section>
           </div>

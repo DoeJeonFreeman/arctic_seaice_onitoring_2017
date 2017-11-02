@@ -73,17 +73,17 @@
             <div class="col-md-12">
                 <ul id="references">
                     <li>
-                    	<a href="http://nsidc.org" target="_blank">&nbsp;National Snow &amp; Ice Data Center<strong></strong></a>
+                    	<a href="http://nsidc.org" target="_blank">&nbsp;USA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;National Snow &amp; Ice Data Center<strong></strong></a>
                     </li>
                     <li>
-                    	<a href="http://www.arctic.noaa.gov" target="_blank">&nbsp;National Oceanic and Atmospheric Administration : Arctic theme page</a>
+                    	<a href="http://www.arctic.noaa.gov" target="_blank">&nbsp;USA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;National Oceanic and Atmospheric Administration : Arctic theme page</a>
                     </li>
-                    <li><a href="http://arctic.arh.noaa.gov/ice_anal.php" target="_blank">&nbsp;National Weather Service : Arctic Weather Support</a></li>
-                    <li><a href="http://polarview.met.no" target="_blank">&nbsp;European Arctic Node</a></li>
-                    <li><a href="http://www.myocean.eu.org" target="_blank">&nbsp;Ocean Monitoring and Forecasting</a></li>
-                    <li><a href="http://www.ijis.iarc.uaf.edu/cgi-bin/seaice-monitor.cgi?lang=e" target="_blank">&nbsp;IARC-JAXA Information System : Arctic Sea ice Monitor</a></li>
-                    <li><a href="http://arctic.atmos.uiuc.edu/cryosphere/" target="_blank">&nbsp;UIUC Polar Research Group : The Cryosphere Today</a></li>
-                    <li><a href="http://psc.apl.washington.edu/wordpress/" target="_blank">&nbsp;Polar Science Center</a></li>
+                    <li><a href="http://arctic.arh.noaa.gov/ice_anal.php" target="_blank">&nbsp;USA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;National Weather Service : Arctic Weather Support</a></li>
+                    <li><a href="http://polarview.met.no" target="_blank">&nbsp;Norway&nbsp;&nbsp;&nbsp;European Arctic Node</a></li>
+                    <li><a href="http://www.myocean.eu.org" target="_blank">&nbsp;Europe&nbsp;&nbsp;&nbsp;&nbsp;Ocean Monitoring and Forecasting</a></li>
+                    <li><a href="http://www.ijis.iarc.uaf.edu/cgi-bin/seaice-monitor.cgi?lang=e" target="_blank">&nbsp;Japan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IARC-JAXA Information System : Arctic Sea ice Monitor</a></li>
+                    <li><a href="http://arctic.atmos.uiuc.edu/cryosphere/" target="_blank">&nbsp;USA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UIUC Polar Research Group : The Cryosphere Today</a></li>
+                    <li><a href="http://psc.apl.washington.edu/wordpress/" target="_blank">&nbsp;USA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Polar Science Center</a></li>
                 </ul>
             <!-- 
                 <ul id="references">

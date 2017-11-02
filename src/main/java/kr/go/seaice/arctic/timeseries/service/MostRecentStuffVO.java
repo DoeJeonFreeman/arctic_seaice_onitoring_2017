@@ -40,6 +40,9 @@ public class MostRecentStuffVO implements Serializable {
 			new SimpleDateFormat("yyyyMMdd");
 	private static final SimpleDateFormat CAL_DATE_FORMAT = 
 			new SimpleDateFormat("yyyy-MM-dd");
+	private static final SimpleDateFormat LEGEND_DATE_FORMAT = 
+			new SimpleDateFormat("YY");
+//	new SimpleDateFormat("YY MM dd");
 	
 	
 	public MostRecentStuffVO() {
@@ -177,6 +180,49 @@ public class MostRecentStuffVO implements Serializable {
 	//return yyyy-mm-dd
 	public String getCompbegindate4Cal() {
 		return MostRecentStuffVO.CAL_DATE_FORMAT.format(this.compbegindate);
+	}
+	
+	
+	public String getPseudoCode() {
+		return "[pseudo code]";
+	}
+	
+	public String getCompbegindate4legend() {
+		String minDateStr = "1988-01-01";
+		String mean10_fromTo = "";
+		try {
+			Date minDate = CAL_DATE_FORMAT.parse(minDateStr);
+			Date tenYearsAgo = DateUtils.addYears(compbegindate, -9);
+			
+			if(tenYearsAgo.getTime() >= minDate.getTime() ) {
+				mean10_fromTo = "('" + LEGEND_DATE_FORMAT.format(tenYearsAgo) + "~'" + LEGEND_DATE_FORMAT.format(compbegindate) + ")"; 
+			}else if(tenYearsAgo.getTime() < minDate.getTime()) {
+				mean10_fromTo = "('" + LEGEND_DATE_FORMAT.format(minDate) + "~'" + LEGEND_DATE_FORMAT.format(DateUtils.addYears(minDate, +9))+")"; 
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mean10_fromTo;
+	}
+	
+	public String getCompbegindate4legend30() {
+		String minDateStr = "1988-01-01";
+		String mean30_fromTo = "";
+		try {
+			Date minDate = CAL_DATE_FORMAT.parse(minDateStr);
+			Date tenYearsAgo = DateUtils.addYears(compbegindate, -29);
+			
+			if(tenYearsAgo.getTime() >= minDate.getTime() ) {
+				mean30_fromTo = "('" + LEGEND_DATE_FORMAT.format(tenYearsAgo) + "~'" + LEGEND_DATE_FORMAT.format(compbegindate) + ")"; 
+			}else if(tenYearsAgo.getTime() < minDate.getTime()) {
+				mean30_fromTo = "('" + LEGEND_DATE_FORMAT.format(minDate) + "~'" + LEGEND_DATE_FORMAT.format(DateUtils.addYears(minDate, +29))+")"; 
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mean30_fromTo;
 	}
 	
 }

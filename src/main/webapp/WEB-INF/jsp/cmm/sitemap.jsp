@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-	<title>북극해빙감시시스템</title>
+	<title><spring:message code="global.main.title"/></title>
 	
 	<script src="<c:url value="/js/jquery/jquery-1.9.1.js"/>"></script>	
     <script src="<c:url value="/mestrap/js/bootstrap.min.js"/>"></script> 
@@ -83,76 +83,79 @@
             	<div id="">
 					<div class="sitemapWrap">
 						<div class="sitemapList02">
-							<h3>01&nbsp;&nbsp;해빙감시</h3>
+							<h3>01&nbsp;&nbsp;<spring:message code="nav.monitoring"/></h3>
 							<div class="sitemapListWrap">
-								<h5>해빙분포</h5>
+								<h5><spring:message code="nav.monitoring"/></h5>
 								<ul>
-									<li><a href="<c:url value='/arctic/spatialDistribution.do'/>">SSMIS 해빙 면적</a></li>
-									<li><a href="<c:url value='/arctic/spatialDistribution.do'/>">SSMIS 해빙 표면거칠기</a></li>
+									<li><a href="<c:url value='/arctic/spatialDistribution.do'/>"><spring:message code="global.main.distribution.ext.title"/></a></li>
+									<li><a href="<c:url value='/arctic/spatialDistribution.do'/>"><spring:message code="global.main.distribution.rou.title"/></a></li>
 								</ul>
 							</div>
 							<div class="sitemapListWrap">
-								<h5>최근해빙변화</h5>
+								<h5><spring:message code="nav.monitoring.trend.current"/></h5>
 								<ul>
-									<li><a href="<c:url value='/arctic/timeseries/uptodate.do'/>">최근 해빙 변화 경향</a></li>
+									<li><a href="<c:url value='/arctic/timeseries/uptodate.do'/>"><spring:message code="trend.recent.titile"/></a></li>
 								</ul>
 							</div>
 							<div class="sitemapListWrap">
-								<h5>장기해빙변화</h5>
+								<h5><spring:message code="nav.monitoring.trend.longrange"/></h5>
 								<ul>
-									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>">해빙 면적의 연 변화</a></li>
-									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>">해빙 표면거칠기의 연 변화</a></li>
-									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>">해빙 면적의 장기 변화</a></li>
-									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>">해빙 표면거칠기의 장기 변화</a></li>
+									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>"><spring:message code="trend.annual.ext"/></a></li>
+									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>"><spring:message code="trend.annual.rou"/></a></li>
+									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>"><spring:message code="trend.long.range.ext"/></a></li>
+									<li><a href="<c:url value='/arctic/timeseries/trend.do'/>"><spring:message code="trend.long.range.rou"/></a></li>
 								</ul>
 							</div>
 							<div class="sitemapListWrap">
-								<h5>해역별분포</h5>
+								<h5><spring:message code="nav.monitoring.ocean"/></h5>
 								<ul>
-									<li><a href="<c:url value='/arctic/ocean.do'/>">바렌츠해의 해빙 변화</a></li>
-									<li><a href="<c:url value='/arctic/ocean.do'/>">베링해의 해빙 변화</a></li>
-									<li><a href="<c:url value='/arctic/ocean.do'/>">허드슨만의 해빙 변화</a></li>
+									<li><a href="<c:url value='/arctic/ocean.do'/>"><spring:message code="oceans.barents.title"/></a></li>
+									<li><a href="<c:url value='/arctic/ocean.do'/>"><spring:message code="oceans.bering.title"/></a></li>
+									<li><a href="<c:url value='/arctic/ocean.do'/>"><spring:message code="oceans.hudson.title"/></a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="sitemapList01">
-							<h3>02&nbsp;&nbsp;해빙전망</h3>
+							<h3>02&nbsp;&nbsp;<spring:message code="nav.prediction"/></h3>
 							<ul>
-								<li><a href="<c:url value='/arctic/predictive.do'/>">해빙전망</a></li>
+								<li><a href="<c:url value='/arctic/monthlyPredictionNew.do'/>"><spring:message code="nav.prediction.fcst"/></a></li>
+								<li><a href="<c:url value='/arctic/monthlyPredictionDiff.do'/>"><spring:message code="nav.prediction.fcst.verification"/></a></li>
+								<li><a href="<c:url value='/arctic/monthlyPredictionMap.do'/>"><spring:message code="nav.prediction.seasonal.prediction"/></a></li>
 							</ul>
 						</div>
 						<div class="sitemapList01">
-							<h3>03&nbsp;&nbsp;북극항로</h3>
+							<h3>03&nbsp;&nbsp;<spring:message code="nav.routes"/></h3>
 							<ul>
-								<li><a href="<c:url value='/arctic/passage.do'/>">SSMIS 해빙 면적</a></li>
-								<li><a href="<c:url value='/arctic/passage.do'/>">해빙 면적변화 시계열 그래프</a></li>
-								<li><a href="<c:url value='/arctic/passage.do'/>">해빙 표면거칠기변화 시계열 그래프</a></li>
+								<li><a href="<c:url value='/arctic/passage.do'/>"><spring:message code="global.main.distribution.ext.title"/></a></li>
+								<li><a href="<c:url value='/arctic/passage.do'/>"><spring:message code="trend.annual.ext"/></a></li>
+								<li><a href="<c:url value='/arctic/passage.do'/>"><spring:message code="trend.annual.rou"/></a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="sitemapWrap">
 						<div class="sitemapList01 first">
-							<h3>04&nbsp;&nbsp;게시판</h3>
+							<h3>04&nbsp;&nbsp;<spring:message code="nav.board"/></h3>
 							<ul>
-								<li><a href="<c:url value='/bbs/list?boardCd=notice&curPage=1'/>">공지사항</a></li>
-								<li><a href="<c:url value='/bbs/list?boardCd=anal&curPage=1'/>">분석정보</a></li>
-								<li><a href="<c:url value='/bbs/list?boardCd=refs&curPage=1'/>">참고자료</a></li>
+								<li><a href="<c:url value='/bbs/list?boardCd=notice&curPage=1'/>"><spring:message code="bbs.board.notice"/></a></li>
+								<li><a href="<c:url value='/bbs/list?boardCd=anal&curPage=1'/>"><spring:message code="bbs.board.anal"/></a></li>
+								<li><a href="<c:url value='/bbs/list?boardCd=refs&curPage=1'/>"><spring:message code="bbs.board.refs"/></a></li>
 							</ul>
 						</div>
 						<div class="sitemapList01">
-							<h3>05&nbsp;&nbsp;시스템개요</h3>
+							<h3>05&nbsp;&nbsp;<spring:message code="nav.system.summary"/></h3>
 							<ul>
-								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')">북극해빙감시시스템 개요</a></li>
-								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')">해빙 면적</a></li>
-								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')">해빙 표면거칠기</a></li>
-								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')">해빙 변화 경향</a></li>
-								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')">북극해빙 지도</a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')"><spring:message code="systemsummary.summary"/></a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')"><spring:message code="systemsummary.extent"/></a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')"><spring:message code="systemsummary.roughness"/></a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')"><spring:message code="systemsummary.changes"/></a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')"><spring:message code="systemsummary.fcst"/></a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('51','cmm/sysSummary')"><spring:message code="systemsummary.passage"/></a></li>
 							</ul>
 						</div>
 						<div class="sitemapList01">
-							<h3>06&nbsp;&nbsp;관련사이트</h3>
+							<h3>06&nbsp;&nbsp;<spring:message code="nav.related.site"/></h3>
 							<ul>
-								<li><a href="#" onclick="javascript:fn_main_headPageMove('61','cmm/reference')">관련사이트</a></li>
+								<li><a href="#" onclick="javascript:fn_main_headPageMove('61','cmm/reference')"><spring:message code="nav.related.site.title"/></a></li>
 							</ul>
 						</div>
 					</div>
@@ -165,8 +168,6 @@
 
     </div>
     <!-- /contents wrapper -->
-	
-	
 	
 	
 	

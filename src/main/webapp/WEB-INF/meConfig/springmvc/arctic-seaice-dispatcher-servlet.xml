@@ -17,12 +17,10 @@
  
 	<security:global-method-security pre-post-annotations="enabled" />
 
-
  
 	<context:component-scan base-package="kr.go.seaice" >
 		 
 	</context:component-scan>
-
 
  
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -30,7 +28,6 @@
 	</bean>	
 	
 	 
-
 
  
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
@@ -42,8 +39,6 @@
 	    
 	    />
 	    
-     
-    
 
 
  
@@ -57,6 +52,48 @@
 	<mvc:resources mapping="/data/**" location="/arcticData/" />
 	<mvc:resources mapping="/DAGR/**" location="/DAGR/" />
 	
+	
+	    
+    
+    	<!-- 메시지소스빈 설정 -->
+    <bean id="meMessageSource" class="kr.go.seaice.common.MeMessageSource">
+        <property name="reloadableResourceBundleMessageSource">
+            <ref bean="messageSource" />
+        </property> 
+    </bean>
+    
+    <!-- 프로퍼티 파일 위치 설정 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+            <!-- 
+                <value>classpath:/twoc/message/message-common</value>
+             -->
+                <value>classpath:/twoc/message/messages</value>
+            </list>
+        </property>
+        <property name="cacheSeconds">
+            <value>1117</value>
+        </property>
+	    <property name="defaultEncoding" value="UTF-8" />
+        
+    </bean>
+    
+    
+    <!-- 
+    	session locale resolver
+     -->
+    	
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	    <property name="defaultLocale" value="ko" />
+	</bean>
+	<mvc:interceptors>
+	    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	        <property name="paramName" value="lang" />
+	    </bean>
+	</mvc:interceptors>
+    
+    
 
  
 

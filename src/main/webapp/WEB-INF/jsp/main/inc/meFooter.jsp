@@ -12,6 +12,12 @@
 <script src="${pageContext.request.contextPath}/js/clipper/clipboard.js"></script>
 <script src="${pageContext.request.contextPath}/js/ctxmenu/toastr.js"></script>
      
+<script type="text/javascript">
+	function getProperFooterCi(){
+		return (isLocal)? '${pageContext.request.contextPath}/mestrap/assets/ci/footer_kma_kr_en.png' : '${pageContext.request.contextPath}/mestrap/assets/ci/footer_kma_en.png';
+	}
+</script>     
+
         
     <p id="back-to-top">
       <a class="visible-xs" href="#top">Back to top</a>
@@ -24,7 +30,7 @@
           <div id="copyright"> 
             <div class="container">
  <%--              	 <img src="${pageContext.request.contextPath}/mestrap/assets/ci/footer_kma_kr_en.png" alt="kma.go.kr logo" height="28" id="logo-kma-white"/> --%>
-              	 <img src="${pageContext.request.contextPath}/mestrap/assets/ci/footer_kma_en.png" alt="kma.go.kr logo" height="28" id="logo-kma-white"/>
+              	 <img src="${pageContext.request.contextPath}/mestrap/assets/ci/footer_kma_kr_en.png" onload="this.onload=null; this.src=getProperFooterCi();" alt="kma.go.kr logo" height="28" id="logo-kma-white"/>
 	             <div style="float: left;padding-left: 10px; padding-top: 5px;">
 	              	 <div>Copyright &copy; 2015 NMSC. All Rights Reserved.&nbsp;&nbsp;&nbsp;<spring:message code="global.address"/></div>
 	             </div> 	 	

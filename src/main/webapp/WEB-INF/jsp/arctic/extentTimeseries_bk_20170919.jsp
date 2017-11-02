@@ -218,8 +218,8 @@
 				//alert(moment(dateFrom).format('YYYY-MM-DD') + ' : ' + nadir1st + ' / ' + nadir2nd + ' / ' + nadir3rd)
 				var nadirText = '※ '+ $('#lowest_leadingStr').val() +' ('+ moment(dateFrom).format('MM.DD.') + ' ~ ' + moment(dateTo).format('MM.DD.') + ')  - ';
 				nadirText += "  <span title='"+nadir1st.split(",")[1]+" million sq. km'>" + $('#lowest_1st').val() + ' ' + nadir1st.split(",")[0] + "</span>";
-				nadirText += ", <span title="+nadir2nd.split(",")[1]+">" + $('#lowest_2nd').val() + ' ' + nadir2nd.split(",")[0] + "</span>";
-				nadirText += ", <span title="+nadir3rd.split(",")[1]+">" + $('#lowest_3rd').val() + ' ' + nadir3rd.split(",")[0] + "</span>";
+				nadirText += ", <span title='"+nadir2nd.split(",")[1]+" million sq. km'>" + $('#lowest_2nd').val() + ' ' + nadir2nd.split(",")[0] + "</span>";
+				nadirText += ", <span title='"+nadir3rd.split(",")[1]+" million sq. km'>" + $('#lowest_3rd').val() + ' ' + nadir3rd.split(",")[0] + "</span>";
 				$('#nadirString').html(nadirText);
 				//※ 1988년 이후 최저 면적(MM월 DD일~MM월 DD일) <span title="extent value">1위:YYYY년</span>, <span>2위:YYYY년</span>, <span>3위:YYYY년</span> 
 			}
