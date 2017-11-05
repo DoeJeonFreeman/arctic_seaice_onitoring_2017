@@ -40,6 +40,14 @@ public class TimeSeriesChartController {
 		return "arctic/spatialDist";
 	}
 	
+	@RequestMapping(value = "arctic/spatialDistribution.monthly")
+	public String getSDistMonthly(HttpServletRequest request, ModelMap model) throws Exception{
+//		UpToDateStuffVO stuff =  chartService.selectLatestStuff("01CON");
+		MostRecentStuffVO stuff =  chartService.retrievingIfArcticDataExists2();
+		model.addAttribute("sdist", stuff);
+		return "arctic/spatialDist_monthly";
+	}
+	
 	
 	/**해빙감시-최근해빙변화경향 시계열차트*/
 	@RequestMapping(value = "arctic/timeseries/extent.do")
@@ -66,7 +74,9 @@ public class TimeSeriesChartController {
 		return "arctic/ocean";
 	}
 	
-	/**via ajax*/
+	/**via ajax
+	 * weekly
+	 * */
 	@RequestMapping(value = "arctic/findMatchingStuff", method=RequestMethod.GET)
 	@ResponseBody
 	public MostRecentStuffVO selectMatchingData(String selectedDate, ModelMap model) throws Exception{
@@ -74,11 +84,39 @@ public class TimeSeriesChartController {
 		return stuff;
 	}
 	
-	/**via ajax*/
+	/**via ajax
+	 * weekly
+	 * */
 	@RequestMapping(value = "arctic/findMatchingStuffs", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MostRecentStuffVO> selectMatchingDataList(String dBegin, String dEnd, ModelMap model) throws Exception{
 		List<MostRecentStuffVO> stuff =  chartService.findMatchingArcticDataList(dEnd);
+		return stuff;
+	}
+	
+	/**via ajax
+	 * monthly
+	 * monthly
+	 * monthly
+	 * */
+
+	@RequestMapping(value = "arctic/findMatchingStuff_monthly", method=RequestMethod.GET)
+	@ResponseBody
+	public MostRecentStuffVO selectMatchingData2(String selectedDate, ModelMap model) throws Exception{
+		MostRecentStuffVO stuff =  chartService.findMatchingArcticData2(selectedDate);
+		return stuff;
+	}
+	
+	/**via ajax
+	 * monthly
+	 * monthly
+	 * monthly
+	 * */
+
+	@RequestMapping(value = "arctic/findMatchingStuffs_monthly", method=RequestMethod.GET)
+	@ResponseBody
+	public List<MostRecentStuffVO> selectMatchingDataList2(String dBegin, String dEnd, ModelMap model) throws Exception{
+		List<MostRecentStuffVO> stuff =  chartService.findMatchingArcticDataList2(dEnd);
 		return stuff;
 	}
 	

@@ -543,6 +543,7 @@
         }, [0,0]);
     };
     
+    
     var recentSeaAreaTypeVal = '';
     function showTimeSeries(pSeaAreaType, pSeaAreaName) {
         isModal = true;

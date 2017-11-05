@@ -39,41 +39,60 @@ public class TimeSeriesChartServiceImpl  implements TimeSeriesChartService{
 		return latestStuffPicker.seekLatestOne(id);
 	}
 
-	
+	//WEEEKLY
+	//WEEEKLY
 	public MostRecentStuffVO retrievingIfArcticDataExists() throws Exception {
 		return mostRecentStuffPicker.retrieveOneArcticData();
 	}
 	
-	
 	public MostRecentStuffVO findMatchingArcticData(String givenDateStr) throws Exception {
-		
 		String weekAgo = CAL_DATE_FORMAT.format(DateUtils.addDays(CAL_DATE_FORMAT.parse(givenDateStr), -6));
-		
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("dateSelected", givenDateStr);
 		hashmap.put("weekAgo", weekAgo);
-//		System.out.print("weekAgo: " +  weekAgo + "\t~\t");
-//		System.out.println("dateSelected: " + givenDateStr);
 		return mostRecentStuffPicker.retrieveMatchingArcticData(hashmap);
 	}
-	
-	
 	
 	/* 
 	 * @see kr.go.seaice.arctic.timeseries.service.TimeSeriesChartService#findMatchingArcticDataList(java.lang.String)
 	 * sdist slide show 
 	 */
 	public List<MostRecentStuffVO> findMatchingArcticDataList(String givenDateStr) throws Exception {
-		
 		String beginDate = CAL_DATE_FORMAT.format(DateUtils.addMonths(CAL_DATE_FORMAT.parse(givenDateStr), -2));
-		
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		hashmap.put("dBegin", beginDate);
 		hashmap.put("dEnd", givenDateStr);
-		
-//		System.out.print("2months before: " +  beginDate + "\t~\t");
-//		System.out.println("dateSelected: " + givenDateStr);
 		return mostRecentStuffPicker.retrieveMatchingArcticDataList(hashmap);
+	}
+	
+	//monthly
+	//monthly
+	public MostRecentStuffVO retrievingIfArcticDataExists2() throws Exception {
+		return mostRecentStuffPicker.retrieveOneArcticData_monthly();
+	}
+	
+	//monthly
+	//monthly
+	public MostRecentStuffVO findMatchingArcticData2(String givenDateStr) throws Exception {
+//		String weekAgo = CAL_DATE_FORMAT.format(DateUtils.addDays(CAL_DATE_FORMAT.parse(givenDateStr), -6));
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		givenDateStr = givenDateStr.substring(0,givenDateStr.lastIndexOf("-"))+"01";
+		hashmap.put("dateSelected", givenDateStr);
+//		hashmap.put("weekAgo", weekAgo);
+		return mostRecentStuffPicker.retrieveMatchingArcticData_monthly(hashmap);
+	}
+	
+	/* 
+	 * @see kr.go.seaice.arctic.timeseries.service.TimeSeriesChartService#findMatchingArcticDataList(java.lang.String)
+	 * sdist slide show 
+	 */
+	public List<MostRecentStuffVO> findMatchingArcticDataList2(String givenDateStr) throws Exception {
+		givenDateStr = givenDateStr.substring(0,givenDateStr.lastIndexOf("-"))+"-01";
+		String beginDate = CAL_DATE_FORMAT.format(DateUtils.addMonths(CAL_DATE_FORMAT.parse(givenDateStr), -9));
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		hashmap.put("dBegin", beginDate);
+		hashmap.put("dEnd", givenDateStr);
+		return mostRecentStuffPicker.retrieveMatchingArcticDataList_monthly(hashmap);
 	}
 	
 	

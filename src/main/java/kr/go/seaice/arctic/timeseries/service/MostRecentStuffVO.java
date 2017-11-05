@@ -41,7 +41,7 @@ public class MostRecentStuffVO implements Serializable {
 	private static final SimpleDateFormat CAL_DATE_FORMAT = 
 			new SimpleDateFormat("yyyy-MM-dd");
 	private static final SimpleDateFormat LEGEND_DATE_FORMAT = 
-			new SimpleDateFormat("YY");
+			new SimpleDateFormat("yy");
 //	new SimpleDateFormat("YY MM dd");
 	
 	
@@ -128,6 +128,11 @@ public class MostRecentStuffVO implements Serializable {
 		return String.format("%,d",d.intValue());
 	}
 	
+	public String getExtentInkmSquared_monthly(){
+		Double d = (double)this.extent;
+		return String.format("%,d",d.intValue());
+	}
+	
 	//
 	public String getSensor() {
 		String sensor="";
@@ -172,6 +177,18 @@ public class MostRecentStuffVO implements Serializable {
 		return dateBegin + " ~ " + weekAfter;
 	}
 	
+	//MONTHLY
+	//MONTHLY
+	//MONTHLY
+	//return yyyy.mm.dd. ~ mm.dd.
+	public String getCompbegindate4View_monthly() {
+		Date oneMonthLater = DateUtils.addMonths(compbegindate, 1);
+		String dateBegin = MostRecentStuffVO.MAIN_DATE_FORMAT.format(this.compbegindate);
+//		String weekAfter =  MostRecentStuffVO.VIEW_DATE_FORMAT.format(DateUtils.addMonths(compbegindate, 1));
+		String weekAfter =  MostRecentStuffVO.VIEW_DATE_FORMAT.format(DateUtils.addDays(oneMonthLater, -1));
+		return dateBegin + " ~ " + weekAfter;
+	}
+	
 	//return yyyymmdd
 	public String getCompbegindateInString() {
 		return MostRecentStuffVO.PLAIN_DATE_FORMAT.format(this.compbegindate);
@@ -195,9 +212,9 @@ public class MostRecentStuffVO implements Serializable {
 			Date tenYearsAgo = DateUtils.addYears(compbegindate, -9);
 			
 			if(tenYearsAgo.getTime() >= minDate.getTime() ) {
-				mean10_fromTo = "('" + LEGEND_DATE_FORMAT.format(tenYearsAgo) + "~'" + LEGEND_DATE_FORMAT.format(compbegindate) + ")"; 
+				mean10_fromTo = "(SQ" + LEGEND_DATE_FORMAT.format(tenYearsAgo) + "~SQ" + LEGEND_DATE_FORMAT.format(compbegindate) + ")"; 
 			}else if(tenYearsAgo.getTime() < minDate.getTime()) {
-				mean10_fromTo = "('" + LEGEND_DATE_FORMAT.format(minDate) + "~'" + LEGEND_DATE_FORMAT.format(DateUtils.addYears(minDate, +9))+")"; 
+				mean10_fromTo = "(SQ" + LEGEND_DATE_FORMAT.format(minDate) + "~SQ" + LEGEND_DATE_FORMAT.format(DateUtils.addYears(minDate, +9))+")"; 
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -214,9 +231,9 @@ public class MostRecentStuffVO implements Serializable {
 			Date tenYearsAgo = DateUtils.addYears(compbegindate, -29);
 			
 			if(tenYearsAgo.getTime() >= minDate.getTime() ) {
-				mean30_fromTo = "('" + LEGEND_DATE_FORMAT.format(tenYearsAgo) + "~'" + LEGEND_DATE_FORMAT.format(compbegindate) + ")"; 
+				mean30_fromTo = "(SQ" + LEGEND_DATE_FORMAT.format(tenYearsAgo) + "~SQ" + LEGEND_DATE_FORMAT.format(compbegindate) + ")"; 
 			}else if(tenYearsAgo.getTime() < minDate.getTime()) {
-				mean30_fromTo = "('" + LEGEND_DATE_FORMAT.format(minDate) + "~'" + LEGEND_DATE_FORMAT.format(DateUtils.addYears(minDate, +29))+")"; 
+				mean30_fromTo = "(SQ" + LEGEND_DATE_FORMAT.format(minDate) + "~SQ" + LEGEND_DATE_FORMAT.format(DateUtils.addYears(minDate, +29))+")"; 
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

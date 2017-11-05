@@ -205,12 +205,14 @@
 		            	
 		            	<div id="retrievalRangeSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px">
 					    <button class="  btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
-						    	<span class="selected" id="1" value="WEEK"><spring:message code="dropdown.seeking.interval.weekly"/></span><span class="caret"></span>
+						    	<span class="selected" id="1" value="MONTH"><spring:message code="dropdown.seeking.interval.monthly"/></span><span class="caret"></span>
 					    	</button>
 					    <ul class="dropdown-menu option" role="menu" >
+					    <!-- 
 					      <li id="1" role="presentation" value="WEEK"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.weekly"/></a></li>
-					      <li id="2" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.monthly"/></a></li>
-					      <li id="3" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.annually"/></a></li>
+					     -->
+					      <li id="1" role="presentation" value="MONTH"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.monthly"/></a></li>
+					      <li id="2" role="presentation" value="YEAR"><a role="menuitem" tabindex="-1" ><spring:message code="dropdown.seeking.interval.annually"/></a></li>
 					      <!-- 
 					      <li role="presentation" class="divider"></li>
 					       -->
@@ -224,7 +226,7 @@
 		            	
 	            		<div id="periodSelector" class="dropdown select pull-left" style="margin-left: 3px;margin-right: 3px; ">|&nbsp;&nbsp;&nbsp;<spring:message code="sdist.select.period"/>: &nbsp;
 					    <button class=" btn-small dropdown-toggle " type="button" id="menu1" data-toggle="dropdown" style="margin-top:6px;">
-						    	<span class="selected" id="1" value="WEEKLY"><spring:message code="sdist.select.period.weekly"/></span><span class="caret"></span>
+						    	<span class="selected" id="2" value="MONTHLY"><spring:message code="sdist.select.period.monthly"/></span><span class="caret"></span>
 					    	</button>
 					    <ul class="dropdown-menu option" role="menu" >
 					      <li id="1" role="presentation" value="WEEKLY"><a role="menuitem" tabindex="-1" ><spring:message code="sdist.select.period.weekly"/></a></li>
@@ -270,8 +272,7 @@
 	        		$('#'+i+' .selected').text(v);
 	        		$('#'+i+' .selected').attr('value',valStr);
 	        		if(valStr.toUpperCase()=='WEEKLY') javascript:fn_main_headPageAction('11','arctic/spatialDistribution.do');
-	        		else javascript:fn_main_headPageAction('112','arctic/spatialDistribution.monthly') //MONTHLY
-	        		
+	        		else javascript:fn_main_headPageAction('112','arctic/spatialDistribution.monthly')
 	        		//var haha = $('#retrievalRangeSelector .selected').attr('value');
 	        	});
         	
@@ -281,7 +282,7 @@
         			$('#meDemo').data('daterangepicker').setEndDate('<c:out value="${sdist.compbegindate4Cal}" />');
         			$('#meDemo').val('<c:out value="${sdist.compbegindate4Cal}" />');
 					//fire click event programmtically haha    
-        			//changeImgSrc("<c:out value="${sdist.compbegindateInString}" />","<c:out value="${sdist.compbegindate4View}" />" ,"<c:out value="${sdist.extentInkmSquared}" />");
+        			//changeImgSrc("<c:out value="${sdist.compbegindateInString}" />","<c:out value="${sdist.compbegindate4View_monthly}" />" ,"<c:out value="${sdist.extentInkmSquared_monthly}" />");
         			var aniPanActivated = $("#sliderContainer").is(":visible");
     		      	if(aniPanActivated){
     		      		var mRecentOne = '${sdist.compbegindate4Cal}';
@@ -289,7 +290,7 @@
     					var mRecent = new Date(dStrArr[0],dStrArr[1]-1,dStrArr[2]);
     					meRequest(moment(mRecent));
     		      	}else{
-	        			changeImgSrc("<c:out value="${sdist.compbegindateInString}" />","<c:out value="${sdist.compbegindate4View}" />" ,"<c:out value="${sdist.extentInkmSquared}" />","<c:out value="${sdist.sensor}" />","<c:out value="${sdist.compbegindate4legend}" />","<c:out value="${sdist.compbegindate4legend30}" />");
+	        			changeImgSrc("<c:out value="${sdist.compbegindateInString}" />","<c:out value="${sdist.compbegindate4View_monthly}" />" ,"<c:out value="${sdist.extentInkmSquared_monthly}" />","<c:out value="${sdist.sensor}" />","<c:out value="${sdist.compbegindate4legend}" />","<c:out value="${sdist.compbegindate4legend30}" />");
     		      	}
         		});
         	
@@ -305,6 +306,7 @@
            		    "endDate" : "<c:out value="${sdist.compbegindate4Cal}" />",
            		    "minDate": "1988-01-08",
            		    "maxDate": "<c:out value="${sdist.compbegindate4Cal}" />"     //today
+           		    ,"isInvalidDate":true
            		    
            		}, function(start, end, label) {
            			
@@ -423,7 +425,7 @@
 	            	<div class="extWrapperDiv">
 						<div align="center" class="dRangeStr_SSMIS"> 
 							<div class="sensor_ext"><h4>${sdist.sensor} <spring:message code="sdist.ext.title.trailling.str"/></h4></div>
-							<p>${sdist.compbegindate4View}</p>
+							<p>${sdist.compbegindate4View_monthly}</p>
 						</div>
 						<div style="position:relative;" >
 							<p>
@@ -445,8 +447,8 @@
 						</div>
 						
 						<div align="center" class="titleEnhancer" > 
-							<div id="extInKm"><spring:message code="sdist.ext.title.trailling.str"/> = <span>${sdist.extentInkmSquared}</span> ㎢</div>
-							<div>(<spring:message code="sdist.ext.weekly.mean"/>)</div>
+							<div id="extInKm"><spring:message code="sdist.ext.title.trailling.str"/> = <span>${sdist.extentInkmSquared_monthly}</span> ㎢</div>
+							<div>(<spring:message code="sdist.ext.monthly.mean"/>)</div>
 						</div>
 						
 					<!--  -->
@@ -467,7 +469,7 @@
 	            	<div class="rouWrapperDiv">
 						<div align="center" class="dRangeStr_SSMIS"> 
 							<div class="sensor_rou"><h4>${sdist.sensor} <spring:message code="sdist.rou.title.trailling.str"/></h4></div>
-							<p>${sdist.compbegindate4View}</p>
+							<p>${sdist.compbegindate4View_monthly}</p>
 						</div>
 						<p>
 							<span class="mePopup_rou">
@@ -510,17 +512,17 @@
 	
 		$(document).ready(function(){
 			//var abc = $('select#speed').selectToUISlider().next();
-		    var path_img = "<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${sdist.compbegindateInString}.png' />"; 
+		    var path_img = "<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${fn:substring(sdist.compbegindateInString,0,6)}.png' />"; 
 	        $("#img_ssmi_ext").attr("src",path_img);
 			
-		    var path_img2 = "<c:url value='/data/IMG/ROUGH/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_rou_${sdist.compbegindateInString}.png' />"; 
+		    var path_img2 = "<c:url value='/data/IMG/ROUGH/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_rou_${fn:substring(sdist.compbegindateInString,0,6)}.png' />"; 
 	        $("#img_ssmi_rou").attr("src",path_img2);
 	        
 	        currDateString = "${sdist.compbegindateInString}";
-	        titleString = "${sdist.compbegindate4View}";
+	        titleString = "${sdist.compbegindate4View_monthly}";
 			
-	        $("#mean_10year").attr("src","<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${sdist.compbegindateInString}_decadal.png' />"); // 
-	        $("#mean_30year").attr("src","<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${sdist.compbegindateInString}_clim.png' />" ); // 
+	        $("#mean_10year").attr("src","<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${fn:substring(sdist.compbegindateInString,0,6)}_decadal.png' />"); // 
+	        $("#mean_30year").attr("src","<c:url value='/data/IMG/SEAICE/Y${fn:substring(sdist.compbegindateInString,0,4) }/dmsp_ssmis_ice_${fn:substring(sdist.compbegindateInString,0,6)}_clim.png' />" ); // 
 	        
 	        
 	        //$("#lbl_mean10").append('${fn:substring(sdist.compbegindate4legend,0,4) }');
@@ -546,7 +548,7 @@
 			 	  	idx = ui.value;
 			 	  	idx *= 1; 
 			 	  	var iceObj = iceList[idx];
-        	        changeImgSrc(iceObj.compbegindateInString, iceObj.compbegindate4View, iceObj.extentInkmSquared, iceObj.sensor,iceObj.compbegindate4legend, iceObj.compbegindate4legend30);
+        	        changeImgSrc(iceObj.compbegindateInString, iceObj.compbegindate4View_monthly, iceObj.extentInkmSquared_monthly, iceObj.sensor,iceObj.compbegindate4legend, iceObj.compbegindate4legend30);
 			    },
 		      });	
 	        
@@ -659,11 +661,11 @@
 		function meRequest(meDateObj){
 	 		$.ajax({
      			  type: "get",
-     			  url: "<c:url value='/' />arctic/findMatchingStuff",
+     			  url: "<c:url value='/' />arctic/findMatchingStuff_monthly",
      			  cache: false,    
      			  data: "selectedDate="+meDateObj.format('YYYY-MM-DD'),
      			  success: function(response){
-	        	        changeImgSrc(response.compbegindateInString, response.compbegindate4View, response.extentInkmSquared, response.sensor, response.compbegindate4legend, response.compbegindate4legend30);
+	        	        changeImgSrc(response.compbegindateInString, response.compbegindate4View_monthly, response.extentInkmSquared_monthly, response.sensor, response.compbegindate4legend, response.compbegindate4legend30);
 	        	        
 	        	        var isInvisible =  ! $("#sliderContainer").is(":visible");
 	        	        //console.log('labeledSlider isInvisible:: ' + isInvisible);
@@ -681,11 +683,11 @@
 		function meRequestList(dBegin,dEnd){
 	 		$.ajax({
      			  type: "get",
-     			  url: "<c:url value='/' />arctic/findMatchingStuffs",
+     			  url: "<c:url value='/' />arctic/findMatchingStuffs_monthly",
      			  cache: false,    
      			  data: "dBegin=" + dBegin.format('YYYY-MM-DD') + "&dEnd=" + dEnd.format('YYYY-MM-DD'),
      			  success: function(response){
-        	        //changeImgSrc(response.compbegindateInString, response.compbegindate4View, response.extentInkmSquared)
+        	        //changeImgSrc(response.compbegindateInString, response.compbegindate4View_monthly, response.extentInkmSquared_monthly)
         	        //alert(response);
         	        doStuff(response);
      			  },
@@ -726,7 +728,8 @@
 				var dStrArr =  s.split('-');		
 				var meDate = new Date(dStrArr[0],dStrArr[1]-1,dStrArr[2]);				
 				
-				var dLable = moment(meDate).format('MM.DD');
+				//var dLable = moment(meDate).format('MM-DD');
+				var dLable = moment(meDate).format('\'YY MMM');
 				arr[i+''] = dLable;
 			}
 //			$('#slider').labeledslider('animate', 'slow');
@@ -763,12 +766,12 @@
 			/* alert(mean10label.replace(/SQ/gi,"'") + ' / ' + mean30label.replace(/SQ/gi,"'")); */
 			//평년 및 최근 10년 평균	        /data/IMG/SEAICE/mean_10years.png'
 	        
-	        $("#img_ssmi_ext").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+".png");
-	        $("#img_ssmi_rou").attr("src","<c:url value='/data/IMG/ROUGH/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_rou_"+dateStr+".png");
+	        $("#img_ssmi_ext").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr.substring(0,6)+".png");
+	        $("#img_ssmi_rou").attr("src","<c:url value='/data/IMG/ROUGH/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_rou_"+dateStr.substring(0,6)+".png");
 			
 	        //10-year, 30-year mean overlay
-	        $("#mean_10year").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+"_decadal.png");
-	        $("#mean_30year").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr+"_clim.png");
+	        $("#mean_10year").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr.substring(0,6)+"_decadal.png");
+	        $("#mean_30year").attr("src","<c:url value='/data/IMG/SEAICE/Y'/>" + dateStr.substring(0,4) + "/dmsp_ssmis_ice_"+dateStr.substring(0,6)+"_clim.png");
 	        ////10-year label
 	        $("#lbl_mean30").text($('#lgend_mean30').val() + mean30label.replace(/SQ/gi,"'"));
 	        $("#lbl_mean10").text($('#lgend_mean10').val() + mean10label.replace(/SQ/gi,"'"));
@@ -897,7 +900,7 @@
 			$( ".spinner" ).remove();
 			pleaseWait('popup_btnset');
 			
-		  	var path = "<c:url value='/data/ASC/SEAICE/Y'/>" + currDateString.substring(0,4) + "/dmsp_ssmis_ice_"   +currDateString+".svg";
+		  	var path = "<c:url value='/data/ASC/SEAICE/Y'/>" + currDateString.substring(0,4) + "/dmsp_ssmis_ice_"   +currDateString.substring(0,6)+".svg";
 		  	
 			  $('#icePopup').load(function(){  //Callback Function
 				$( ".spinner" ).remove();
@@ -958,7 +961,7 @@
 		$('.mePopup_rou .btn').on('click', function(){
 		  $( ".spinner" ).remove()	
 		  pleaseWait('popup_btnset');	
-		  var path = "<c:url value='/data/ASC/ROUGH/Y'/>" + currDateString.substring(0,4) + "/dmsp_ssmis_rou_"   +currDateString+".svg";
+		  var path = "<c:url value='/data/ASC/ROUGH/Y'/>" + currDateString.substring(0,4) + "/dmsp_ssmis_rou_"   +currDateString.substring(0,6)+".svg";
 		  $('#icePopup').load(function(){ //callback function
 			  $( ".spinner" ).remove();
 		  }).attr('src',path);

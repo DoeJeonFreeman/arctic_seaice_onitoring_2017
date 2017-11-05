@@ -27,5 +27,30 @@
     BETWEEN TO_DATE(#{dBegin},'YYYY-MM-DD') AND TO_DATE(#{dEnd},'YYYY-MM-DD') 
     ORDER BY compbegindate ASC
   </select>
+  
+  <!-- monthly -->
+  <!-- monthly -->
+  <!-- monthly -->
+  <!-- monthly -->
+  <select id="retrieveOneArcticData_monthly"  resultType="MostRecentStuff">
+    SELECT seriesNo, compBeginDate, extent, roughness
+    FROM TIMESERIES_MONTHLY 
+    WHERE compbegindate = (select max(compbegindate) 
+    						from timeseries_monthly)
+  </select>
+  
+  <select id="retrieveMatchingArcticData_monthly" parameterType="hashmap"   resultType="MostRecentStuff">
+    SELECT seriesNo, compBeginDate, extent, roughness
+    FROM TIMESERIES_MONTHLY 
+    WHERE compbegindate = TO_DATE(#{dateSelected},'YYYY-MM-DD')
+  </select>
+  
+  <select id="retrieveMatchingArcticDataList_monthly" parameterType="hashmap"   resultType="MostRecentStuff">
+    SELECT seriesNo, compBeginDate, extent, roughness
+    FROM TIMESERIES_MONTHLY 
+    WHERE compbegindate 
+    BETWEEN TO_DATE(#{dBegin},'YYYY-MM-DD') AND TO_DATE(#{dEnd},'YYYY-MM-DD') 
+    ORDER BY compbegindate ASC
+  </select>
 
 </mapper>

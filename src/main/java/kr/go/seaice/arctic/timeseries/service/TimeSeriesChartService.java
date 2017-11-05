@@ -8,12 +8,16 @@ public interface TimeSeriesChartService {
 	
 	//haha
 	UpToDateStuffVO selectLatestStuff(String id) throws Exception;
-	//haha
+	
+	//weekkly
 	MostRecentStuffVO retrievingIfArcticDataExists() throws Exception;
-	
 	MostRecentStuffVO findMatchingArcticData (String selectedDate) throws Exception;
-	
 	List<MostRecentStuffVO> findMatchingArcticDataList (String selectedDate) throws Exception;
+	
+	//monthly
+	MostRecentStuffVO retrievingIfArcticDataExists2() throws Exception;
+	MostRecentStuffVO findMatchingArcticData2 (String selectedDate) throws Exception;
+	List<MostRecentStuffVO> findMatchingArcticDataList2 (String selectedDate) throws Exception;
 	
 	
 	/**

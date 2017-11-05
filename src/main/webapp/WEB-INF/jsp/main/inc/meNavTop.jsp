@@ -114,6 +114,7 @@ pageContext.setAttribute("korean", korean);
 	            		<security:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
 							<security:authentication property="principal.username" var="check" />
 						</security:authorize>
+            		<!--  
             		
             			<li>
 	            			<a href="${korean }">Korean</a>
@@ -121,6 +122,8 @@ pageContext.setAttribute("korean", korean);
             			<li>
 	            			<a href="${english }">English</a> 
             			</li>
+            		-->
+            		
             			<li>
             				<a onclick="javascript:fn_main_headPageMove('8318','cmm/sitemap')"><i class="fa fa-sitemap fa-fw"></i> Site map </a>
             			</li>
@@ -184,7 +187,7 @@ pageContext.setAttribute("korean", korean);
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="nav.monitoring"/><b class="caret"></b></a>
                      <ul class="dropdown-menu" id="meDropdown-mnt">
                          <li>
-                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('11','arctic/spatialDistribution.do')" ><spring:message code="nav.monitoring.sdist"/></a>
+                             <a href="#LINK" onclick="javascript:fn_main_headPageAction('11','arctic/spatialDistribution.monthly')" ><spring:message code="nav.monitoring.sdist"/></a>
                          </li>
                          <li>
                              <a href="#LINK" onclick="javascript:fn_main_headPageAction('12','arctic/timeseries/extent.do')" ><spring:message code="nav.monitoring.trend.current"/></a>
