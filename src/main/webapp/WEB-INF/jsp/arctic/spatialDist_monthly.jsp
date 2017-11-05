@@ -944,17 +944,9 @@
 			  $('#meReset').click();
 			  $('#panzoomDialog').modal('show');
 			  
-			  
-			  
-			  
 			//  $("#svg1").zoomSvg();
 			//  $("#icePopup").zoomSvg();
-			  
-			  
-			  
-			  
 		});	
-		
 		
 		
 		
